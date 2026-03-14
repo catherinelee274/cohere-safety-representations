@@ -25,5 +25,9 @@ jupyterlab>=4.2.0
 # Progress bars
 tqdm>=4.66.0
 
+# Fine-tuning (scripts/10_finetune.py)
+trl>=0.8.0
+peft>=0.10.0
+
 # Dev / testing
 pytest>=8.2.0
