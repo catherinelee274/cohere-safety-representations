@@ -284,7 +284,7 @@ def run_sft(
         gradient_accumulation_steps=grad_accum,
         learning_rate=lr,
         lr_scheduler_type="cosine",
-        warmup_ratio=0.05,
+        warmup_steps=int(0.05 * epochs * (len(dataset) // batch_size // grad_accum + 1)),
         logging_steps=10,
         save_strategy="epoch",
         save_total_limit=1,
@@ -292,6 +292,7 @@ def run_sft(
         fp16=(dtype_str == "fp16"),
         gradient_checkpointing=True,
         report_to="none",
+        max_seq_length=max_seq_len,
     )
 
     trainer = SFTTrainer(
@@ -300,7 +301,6 @@ def run_sft(
         args=training_args,
         train_dataset=dataset,
         formatting_func=fmt_fn,
-        max_seq_length=max_seq_len,
     )
 
     logger.info(f"Starting SFT: {len(records)} examples, {epochs} epochs")
