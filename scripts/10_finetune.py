@@ -292,7 +292,6 @@ def run_sft(
         fp16=(dtype_str == "fp16"),
         gradient_checkpointing=True,
         report_to="none",
-        max_seq_length=max_seq_len,
     )
 
     trainer = SFTTrainer(
@@ -301,6 +300,7 @@ def run_sft(
         args=training_args,
         train_dataset=dataset,
         formatting_func=fmt_fn,
+        max_seq_length=max_seq_len,
     )
 
     logger.info(f"Starting SFT: {len(records)} examples, {epochs} epochs")
