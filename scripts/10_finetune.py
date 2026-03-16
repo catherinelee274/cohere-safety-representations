@@ -18,7 +18,7 @@ Writes:
     models/finetuned/{model_key}_dpo/   LoRA adapter + tokenizer
 
 Requirements (not in base requirements.txt):
-    pip install trl>=0.8.0 peft>=0.10.0
+    pip install trl>=0.12.0 peft>=0.10.0
 
 Usage:
     # SFT on base model, PKU data
@@ -194,7 +194,7 @@ def records_to_hf_dataset(records: list[dict], method: str):
     return Dataset.from_list(records)
 
 
-def make_sft_formatting_fn(tokenizer):
+def make_sft_formatting_fn():
     """Returns a formatting function for SFTTrainer."""
     def formatting_fn(example):
         text = SFT_TEMPLATE.format(
@@ -212,7 +212,7 @@ def build_lora_model(hf_id: str, token: str | None, lora_r: int, lora_alpha: int
     """Load model + tokenizer, apply LoRA, return (model, tokenizer)."""
     import torch
     from peft import LoraConfig, get_peft_model, TaskType
-    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     dtype = torch.bfloat16 if dtype_str == "bf16" else (
             torch.float16 if dtype_str == "fp16" else torch.float32)
@@ -273,7 +273,7 @@ def run_sft(
         cfg.hf_id, token, lora_r, lora_alpha, lora_dropout, dtype_str)
 
     dataset = records_to_hf_dataset(records, "sft")
-    fmt_fn  = make_sft_formatting_fn(tokenizer)
+    fmt_fn  = make_sft_formatting_fn()
     dataset = dataset.map(lambda ex: {"text": fmt_fn(ex)})
 
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -352,7 +352,7 @@ def run_dpo(
         gradient_accumulation_steps=grad_accum,
         learning_rate=lr,
         lr_scheduler_type="cosine",
-        warmup_ratio=0.05,
+        warmup_steps=int(0.05 * epochs * (len(dataset) // batch_size // grad_accum + 1)),
         logging_steps=10,
         save_strategy="epoch",
         save_total_limit=1,
@@ -362,7 +362,6 @@ def run_dpo(
         report_to="none",
         beta=beta,
         max_length=max_seq_len,
-        max_prompt_length=max_seq_len // 2,
     )
 
     trainer = DPOTrainer(
@@ -370,7 +369,7 @@ def run_dpo(
         ref_model=None,   # None → use implicit reference (PEFT frozen base)
         args=training_args,
         train_dataset=dataset,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
     )
 
     logger.info(f"Starting DPO: {len(records)} pairs, {epochs} epochs, beta={beta}")
@@ -474,7 +473,7 @@ def main():
         import peft  # noqa: F401
     except ImportError:
         print("ERROR: trl and peft are required. Install with:")
-        print("  pip install trl>=0.8.0 peft>=0.10.0")
+        print("  pip install trl>=0.12.0 peft>=0.10.0")
         sys.exit(1)
 
     # Set HF endpoint to mirror if specified
