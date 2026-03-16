@@ -36,8 +36,15 @@ SRC_LANG   = "eng_Latn"
 # ── translation ───────────────────────────────────────────────────────────────
 
 class NLLBTranslator:
-    def __init__(self, model_name: str = NLLB_MODEL, device: str | None = None):
+    def __init__(self, model_name: str = NLLB_MODEL, device: str | None = None, use_hf_mirror: bool = False):
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        
+        # Set HF endpoint to mirror if specified
+        if use_hf_mirror:
+            import os
+            os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+            print("Using Hugging Face mirror: https://hf-mirror.com")
+        
         print(f"Loading NLLB translator on {self.device}...")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSeq2SeqLM.from_pretrained(
@@ -98,6 +105,8 @@ def main():
                         help="Column to translate")
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--model",      default=NLLB_MODEL)
+    parser.add_argument("--use-hf-mirror", action="store_true",
+                        help="Use Hugging Face mirror as source for models")
     args = parser.parse_args()
 
     in_path  = ROOT / args.input
@@ -113,7 +122,7 @@ def main():
     df_en.to_csv(out_dir / "pku_en.csv", index=False)
     print(f"Saved English source → {out_dir}/pku_en.csv")
 
-    translator = NLLBTranslator(model_name=args.model)
+    translator = NLLBTranslator(model_name=args.model, use_hf_mirror=args.use_hf_mirror)
 
     texts = df[args.text_col].fillna("").tolist()
 

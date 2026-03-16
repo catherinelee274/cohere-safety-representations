@@ -10,6 +10,7 @@ their actual layer counts are (so you can update config/models.py).
 
 import argparse
 import sys
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,9 +45,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--token", default=None,
                         help="HuggingFace token (or set HF_TOKEN env var)")
+    parser.add_argument("--use-hf-mirror", action="store_true",
+                        help="Use Hugging Face mirror as source for models")
     args = parser.parse_args()
 
-    import os
+    # Set HF endpoint to mirror if specified
+    if args.use_hf_mirror:
+        os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+        print("Using Hugging Face mirror: https://hf-mirror.com")
+
     token = args.token or os.environ.get("HF_TOKEN")
 
     print(f"\n{'Model':<20} {'HF ID':<45} {'Access':<10} {'Layers':<8} {'Hidden'}")

@@ -464,6 +464,8 @@ def main():
     # I/O
     parser.add_argument("--out-dir", default="models/finetuned")
     parser.add_argument("--token",   default=None, help="HuggingFace token")
+    parser.add_argument("--use-hf-mirror", action="store_true",
+                        help="Use Hugging Face mirror as source for models")
 
     args = parser.parse_args()
 
@@ -474,6 +476,11 @@ def main():
         print("ERROR: trl and peft are required. Install with:")
         print("  pip install trl>=0.8.0 peft>=0.10.0")
         sys.exit(1)
+
+    # Set HF endpoint to mirror if specified
+    if args.use_hf_mirror:
+        os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+        print("Using Hugging Face mirror: https://hf-mirror.com")
 
     token = args.token or os.environ.get("HF_TOKEN")
     out_root    = ROOT / args.out_dir

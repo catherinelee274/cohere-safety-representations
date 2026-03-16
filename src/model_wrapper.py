@@ -35,12 +35,19 @@ class ModelWrapper:
         token: Optional[str] = None,
         device: Optional[str] = None,
         dtype: Optional[torch.dtype] = None,
+        use_hf_mirror: bool = False,
     ):
         self.model_id = model_id
         self.layers   = layers
 
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.dtype  = dtype  or (torch.float16 if self.device == "cuda" else torch.float32)
+
+        # Set HF endpoint to mirror if specified
+        if use_hf_mirror:
+            import os
+            os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+            logger.info("Using Hugging Face mirror: https://hf-mirror.com")
 
         logger.info(f"Loading {model_id} on {self.device} ({self.dtype})")
         self.tokenizer = AutoTokenizer.from_pretrained(model_id, token=token)
