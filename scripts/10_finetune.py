@@ -296,7 +296,7 @@ def run_sft(
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         args=training_args,
         train_dataset=dataset,
         formatting_func=fmt_fn,
