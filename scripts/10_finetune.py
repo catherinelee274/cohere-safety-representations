@@ -274,6 +274,7 @@ def run_sft(
 
     dataset = records_to_hf_dataset(records, "sft")
     fmt_fn  = make_sft_formatting_fn(tokenizer)
+    dataset = dataset.map(lambda ex: {"text": fmt_fn(ex)})
 
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -300,7 +301,6 @@ def run_sft(
         processing_class=tokenizer,
         args=training_args,
         train_dataset=dataset,
-        formatting_func=fmt_fn,
     )
 
     logger.info(f"Starting SFT: {len(records)} examples, {epochs} epochs")
