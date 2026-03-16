@@ -216,8 +216,15 @@ def main():
                         help="HuggingFace token")
     parser.add_argument("--pku-sample", type=int, default=500,
                         help="Number of PKU-SafeRLHF pairs to sample")
+    parser.add_argument("--use-hf-mirror", action="store_true",
+                        help="Use Hugging Face mirror as source for datasets")
     args = parser.parse_args()
 
+    # Set HF endpoint to mirror if specified
+    if args.use_hf_mirror:
+        os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+        print("Using Hugging Face mirror: https://hf-mirror.com")
+    
     token = args.token or os.environ.get("HF_TOKEN")
     raw   = ROOT / args.data_dir
 
