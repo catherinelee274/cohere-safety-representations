@@ -57,10 +57,22 @@ MODELS: dict[str, ModelConfig] = {
         region="latam",
         probe_layers=[18, 24, 30],
     ),
+    "base_sft": ModelConfig(
+        name="TinyAya-Base-SFT",
+        hf_id="/workspace/cohere-safety-representations/models/finetuned/base_sft",   # local adapter path
+        stage="finetuned",
+        probe_layers=[18, 24, 30],
+    ),
+    "base_dpo": ModelConfig(
+        name="TinyAya-Base-DPO",
+        hf_id="/workspace/cohere-safety-representations/models/finetuned/base_dpo",   # local adapter path
+        stage="finetuned",
+        probe_layers=[18, 24, 30],
+    ),
 }
 
 # Ordered by training stage for plots
-MODEL_ORDER = ["base", "global", "earth", "fire", "water"]
+MODEL_ORDER = ["base", "global", "earth", "fire", "water", "base_sft", "base_dpo"]
 
 # Layer used for SAE training (mid-late layer; update after probe sweep)
 SAE_LAYER = 24
