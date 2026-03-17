@@ -1,11 +1,11 @@
 """
-TinyAya model configurations.
+TinyAya model configurations plus comparison baselines.
 
 Training-stage ordering:
-  Base → Global → Regional (Earth / Fire / Water)
+  Base → Global
 
-Earth / Fire / Water are hypothetical regional variant names; update
-HF_IDS once the actual repo slugs are confirmed with Cohere.
+Comparison baselines (from Phase Work scope / MultiJail table):
+  Gemma3-4B, Ministral-3-3B, Qwen3-4B
 """
 
 from dataclasses import dataclass, field
@@ -26,35 +26,14 @@ class ModelConfig:
 MODELS: dict[str, ModelConfig] = {
     "base": ModelConfig(
         name="TinyAya-Base",
-        hf_id="CohereForAI/aya-expanse-8b",   # placeholder — update on access
+        hf_id="CohereLabs/tiny-aya-base",
         stage="base",
         probe_layers=[18, 24, 30],
     ),
     "global": ModelConfig(
         name="TinyAya-Global",
-        hf_id="CohereForAI/aya-expanse-8b",   # placeholder
+        hf_id="CohereLabs/tiny-aya-global",
         stage="global",
-        probe_layers=[18, 24, 30],
-    ),
-    "earth": ModelConfig(
-        name="TinyAya-Earth",
-        hf_id="CohereForAI/aya-expanse-8b",   # placeholder
-        stage="regional",
-        region="africa",
-        probe_layers=[18, 24, 30],
-    ),
-    "fire": ModelConfig(
-        name="TinyAya-Fire",
-        hf_id="CohereForAI/aya-expanse-8b",   # placeholder
-        stage="regional",
-        region="asia",
-        probe_layers=[18, 24, 30],
-    ),
-    "water": ModelConfig(
-        name="TinyAya-Water",
-        hf_id="CohereForAI/aya-expanse-8b",   # placeholder
-        stage="regional",
-        region="latam",
         probe_layers=[18, 24, 30],
     ),
     "base_sft": ModelConfig(
@@ -69,10 +48,38 @@ MODELS: dict[str, ModelConfig] = {
         stage="finetuned",
         probe_layers=[18, 24, 30],
     ),
+    "base_rlhf": ModelConfig(
+        name="TinyAya-Base-RLHF",
+        hf_id="/workspace/cohere-safety-representations/models/finetuned/base_rlhf",  # local adapter path
+        stage="finetuned",
+        probe_layers=[18, 24, 30],
+    ),
+    # ── Comparison baselines (Phase Work scope) ──────────────────────────
+    "gemma": ModelConfig(
+        name="Gemma3-4B",
+        hf_id="google/gemma-3-4b-it",
+        stage="baseline",
+        probe_layers=[4, 9, 18, 24, 30],
+        n_layers=34,
+    ),
+    "ministral": ModelConfig(
+        name="Ministral-3-3B",
+        hf_id="mistralai/Ministral-3B-Instruct-2410",
+        stage="baseline",
+        probe_layers=[4, 9, 18, 24, 30, 36],
+        n_layers=36,
+    ),
+    "qwen": ModelConfig(
+        name="Qwen3-4B",
+        hf_id="Qwen/Qwen3-4B",
+        stage="baseline",
+        probe_layers=[4, 9, 18, 24, 30, 36],
+        n_layers=36,
+    ),
 }
 
 # Ordered by training stage for plots
-MODEL_ORDER = ["base", "global", "earth", "fire", "water", "base_sft", "base_dpo"]
+MODEL_ORDER = ["base", "global", "base_sft", "base_dpo", "base_rlhf", "gemma", "ministral", "qwen"]
 
 # Layer used for SAE training (mid-late layer; update after probe sweep)
 SAE_LAYER = 24

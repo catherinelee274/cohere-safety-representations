@@ -1,5 +1,5 @@
 """
-Step 10 — Safety fine-tuning via SFT and/or DPO.
+Step 10 — Safety fine-tuning via SFT, DPO, and/or RLHF.
 
 Fine-tunes a model variant using LoRA, using PKU-SafeRLHF preference pairs as
 the primary data source. The resulting checkpoint can be registered in
@@ -14,20 +14,25 @@ Reads:
     data/prompts/{lang}/harmful.jsonl   (SFT refusal fallback)
 
 Writes:
-    models/finetuned/{model_key}_sft/   LoRA adapter + tokenizer
-    models/finetuned/{model_key}_dpo/   LoRA adapter + tokenizer
+    models/finetuned/{model_key}_sft/          LoRA adapter + tokenizer
+    models/finetuned/{model_key}_dpo/          LoRA adapter + tokenizer
+    models/finetuned/{model_key}_rlhf_reward/  reward model adapter + tokenizer
+    models/finetuned/{model_key}_rlhf/         PPO policy LoRA adapter + tokenizer
 
 Requirements (not in base requirements.txt):
     pip install trl>=0.12.0 peft>=0.10.0
 
 Usage:
-    # SFT on base model, PKU data
+    # SFT only on base model, PKU data
     python scripts/10_finetune.py --model base --method sft
 
-    # DPO on global model, PKU data
-    python scripts/10_finetune.py --model global --method dpo
+    # SFT then DPO on base model, PKU data
+    python scripts/10_finetune.py --model base --method dpo
 
-    # Both methods sequentially on base model
+    # SFT then RLHF (reward model + PPO) on base model
+    python scripts/10_finetune.py --model base --method rlhf
+
+    # SFT then DPO sequentially on base model (alias for dpo)
     python scripts/10_finetune.py --model base --method both
 
     # Use local harmless/harmful prompt files instead of PKU
@@ -329,6 +334,7 @@ def run_dpo(
     lr: float,
     max_seq_len: int,
     beta: float,
+    base_hf_id: str | None = None,
 ):
     from trl import DPOTrainer, DPOConfig
 
@@ -336,9 +342,9 @@ def run_dpo(
         logger.error("No DPO training data available. Aborting DPO.")
         return
 
-    cfg  = MODELS[model_key]
+    hf_id = base_hf_id if base_hf_id is not None else MODELS[model_key].hf_id
     model, tokenizer = build_lora_model(
-        cfg.hf_id, token, lora_r, lora_alpha, lora_dropout, dtype_str)
+        hf_id, token, lora_r, lora_alpha, lora_dropout, dtype_str)
 
     # DPOTrainer expects columns: prompt, chosen, rejected
     dataset = records_to_hf_dataset(records, "dpo")
@@ -380,6 +386,315 @@ def run_dpo(
     logger.info(f"DPO adapter saved → {out_dir}")
 
 
+# ── RLHF: reward model ────────────────────────────────────────────────────────
+
+def run_reward_model(
+    model_key: str,
+    records: list[dict],
+    reward_dir: Path,
+    token: str | None,
+    lora_r: int,
+    lora_alpha: int,
+    dtype_str: str,
+    epochs: int,
+    batch_size: int,
+    grad_accum: int,
+    reward_lr: float,
+    max_seq_len: int,
+    base_hf_id: str | None = None,
+):
+    """Train a reward model (sequence classifier) on preference pairs."""
+    import torch
+    from peft import LoraConfig, get_peft_model, TaskType
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
+    from trl import RewardTrainer, RewardConfig
+    from datasets import Dataset
+
+    if not records:
+        logger.error("No reward model training data available. Aborting.")
+        return
+
+    cfg = MODELS[model_key]
+    dtype = torch.bfloat16 if dtype_str == "bf16" else (
+            torch.float16 if dtype_str == "fp16" else torch.float32)
+
+    hf_id = base_hf_id if base_hf_id is not None else cfg.hf_id
+    logger.info(f"Loading reward model base: {hf_id} (dtype={dtype_str})")
+    tokenizer = AutoTokenizer.from_pretrained(hf_id, token=token)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
+
+    model = AutoModelForSequenceClassification.from_pretrained(
+        hf_id, num_labels=1, torch_dtype=dtype, token=token, device_map="auto",
+    )
+    model.config.use_cache = False
+
+    lora_cfg = LoraConfig(
+        task_type=TaskType.SEQ_CLS,
+        r=lora_r,
+        lora_alpha=lora_alpha,
+        lora_dropout=0.05,
+        bias="none",
+        target_modules=LORA_TARGET_MODULES,
+    )
+    model = get_peft_model(model, lora_cfg)
+    model.print_trainable_parameters()
+
+    def tokenize_pair(examples):
+        tok_chosen = tokenizer(
+            [SFT_TEMPLATE.format(prompt=p, completion=c)
+             for p, c in zip(examples["prompt"], examples["chosen"])],
+            truncation=True, max_length=max_seq_len, padding="max_length",
+        )
+        tok_rejected = tokenizer(
+            [SFT_TEMPLATE.format(prompt=p, completion=r)
+             for p, r in zip(examples["prompt"], examples["rejected"])],
+            truncation=True, max_length=max_seq_len, padding="max_length",
+        )
+        return {
+            "input_ids_chosen":        tok_chosen["input_ids"],
+            "attention_mask_chosen":   tok_chosen["attention_mask"],
+            "input_ids_rejected":      tok_rejected["input_ids"],
+            "attention_mask_rejected": tok_rejected["attention_mask"],
+        }
+
+    dataset = Dataset.from_list(records)
+    dataset = dataset.map(
+        tokenize_pair, batched=True,
+        remove_columns=["prompt", "chosen", "rejected"],
+    )
+
+    reward_dir.mkdir(parents=True, exist_ok=True)
+
+    training_args = RewardConfig(
+        output_dir=str(reward_dir),
+        num_train_epochs=epochs,
+        per_device_train_batch_size=batch_size,
+        gradient_accumulation_steps=grad_accum,
+        learning_rate=reward_lr,
+        lr_scheduler_type="cosine",
+        warmup_steps=int(0.05 * epochs * (len(dataset) // batch_size // grad_accum + 1)),
+        logging_steps=10,
+        save_strategy="epoch",
+        save_total_limit=1,
+        bf16=(dtype_str == "bf16"),
+        fp16=(dtype_str == "fp16"),
+        gradient_checkpointing=True,
+        report_to="none",
+        max_length=max_seq_len,
+    )
+
+    trainer = RewardTrainer(
+        model=model,
+        args=training_args,
+        train_dataset=dataset,
+        processing_class=tokenizer,
+    )
+
+    logger.info(f"Training reward model: {len(records)} pairs, {epochs} epochs")
+    trainer.train()
+
+    model.save_pretrained(str(reward_dir))
+    tokenizer.save_pretrained(str(reward_dir))
+    logger.info(f"Reward model saved → {reward_dir}")
+
+
+# ── RLHF: PPO policy fine-tuning ──────────────────────────────────────────────
+
+def run_ppo(
+    model_key: str,
+    records: list[dict],
+    reward_dir: Path,
+    out_dir: Path,
+    token: str | None,
+    lora_r: int,
+    lora_alpha: int,
+    lora_dropout: float,
+    dtype_str: str,
+    batch_size: int,
+    lr: float,
+    max_seq_len: int,
+    ppo_steps: int,
+    ppo_mini_batch_size: int,
+    base_hf_id: str | None = None,
+):
+    """PPO fine-tuning using the trained reward model."""
+    import torch
+    from peft import LoraConfig, TaskType
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
+    from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead
+
+    if not records:
+        logger.error("No PPO prompt data available. Aborting PPO.")
+        return
+
+    cfg = MODELS[model_key]
+    dtype = torch.bfloat16 if dtype_str == "bf16" else (
+            torch.float16 if dtype_str == "fp16" else torch.float32)
+
+    hf_id = base_hf_id if base_hf_id is not None else cfg.hf_id
+
+    # Policy tokenizer (left-padding for generation)
+    tokenizer = AutoTokenizer.from_pretrained(hf_id, token=token)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "left"
+
+    # Policy model wrapped with value head
+    lora_cfg = LoraConfig(
+        task_type=TaskType.CAUSAL_LM,
+        r=lora_r,
+        lora_alpha=lora_alpha,
+        lora_dropout=lora_dropout,
+        bias="none",
+        target_modules=LORA_TARGET_MODULES,
+    )
+    model = AutoModelForCausalLMWithValueHead.from_pretrained(
+        hf_id,
+        peft_config=lora_cfg,
+        torch_dtype=dtype,
+        token=token,
+        device_map="auto",
+    )
+
+    # Reward model (trained in previous step)
+    reward_tokenizer = AutoTokenizer.from_pretrained(str(reward_dir))
+    if reward_tokenizer.pad_token is None:
+        reward_tokenizer.pad_token = reward_tokenizer.eos_token
+    reward_model = AutoModelForSequenceClassification.from_pretrained(
+        str(reward_dir), torch_dtype=dtype, device_map="auto",
+    )
+    reward_model.eval()
+
+    ppo_config = PPOConfig(
+        learning_rate=lr,
+        batch_size=batch_size,
+        mini_batch_size=ppo_mini_batch_size,
+        gradient_accumulation_steps=max(1, batch_size // ppo_mini_batch_size),
+        ppo_epochs=4,
+        max_grad_norm=0.5,
+        log_with=None,
+    )
+    ppo_trainer = PPOTrainer(ppo_config, model, ref_model=None, tokenizer=tokenizer)
+
+    prompts = [r["prompt"] for r in records]
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    logger.info(f"Starting PPO: {ppo_steps} steps, batch_size={batch_size}")
+    for step in range(ppo_steps):
+        batch_prompts = prompts[
+            (step * batch_size) % len(prompts):
+            (step * batch_size) % len(prompts) + batch_size
+        ]
+        if not batch_prompts:
+            break
+
+        query_tensors = [
+            tokenizer.encode(
+                f"### Human: {p}\n### Assistant:",
+                return_tensors="pt",
+            ).squeeze(0)
+            for p in batch_prompts
+        ]
+
+        response_tensors = ppo_trainer.generate(
+            query_tensors,
+            max_new_tokens=128,
+            do_sample=True,
+            temperature=0.7,
+            pad_token_id=tokenizer.pad_token_id,
+        )
+
+        responses = [
+            tokenizer.decode(r[q.shape[0]:], skip_special_tokens=True)
+            for q, r in zip(query_tensors, response_tensors)
+        ]
+
+        rewards = []
+        for prompt, response in zip(batch_prompts, responses):
+            text = SFT_TEMPLATE.format(prompt=prompt, completion=response)
+            inputs = reward_tokenizer(
+                text, return_tensors="pt",
+                truncation=True, max_length=max_seq_len,
+            )
+            inputs = {k: v.to(reward_model.device) for k, v in inputs.items()}
+            with torch.no_grad():
+                score = reward_model(**inputs).logits[0, 0].item()
+            rewards.append(torch.tensor(score, dtype=torch.float32))
+
+        ppo_trainer.step(query_tensors, response_tensors, rewards)
+
+        if step % 10 == 0:
+            mean_r = torch.stack(rewards).mean().item()
+            logger.info(f"PPO step {step + 1}/{ppo_steps}: mean_reward={mean_r:.4f}")
+
+    # Save only the LoRA adapter (not the value head)
+    model.pretrained_model.save_pretrained(str(out_dir))
+    tokenizer.save_pretrained(str(out_dir))
+    logger.info(f"RLHF (PPO) adapter saved → {out_dir}")
+
+
+# ── RLHF: orchestrator ────────────────────────────────────────────────────────
+
+def run_rlhf(
+    model_key: str,
+    records: list[dict],
+    out_root: Path,
+    token: str | None,
+    lora_r: int,
+    lora_alpha: int,
+    lora_dropout: float,
+    dtype_str: str,
+    epochs: int,
+    batch_size: int,
+    grad_accum: int,
+    lr: float,
+    max_seq_len: int,
+    reward_lr: float,
+    ppo_steps: int,
+    ppo_mini_batch_size: int,
+    sft_dir: str | None = None,
+):
+    """Train reward model then run PPO — full RLHF pipeline."""
+    reward_dir = out_root / f"{model_key}_rlhf_reward"
+    policy_dir = out_root / f"{model_key}_rlhf"
+
+    run_reward_model(
+        model_key=model_key,
+        records=records,
+        reward_dir=reward_dir,
+        token=token,
+        lora_r=lora_r,
+        lora_alpha=lora_alpha,
+        dtype_str=dtype_str,
+        epochs=epochs,
+        batch_size=batch_size,
+        grad_accum=grad_accum,
+        reward_lr=reward_lr,
+        max_seq_len=max_seq_len,
+        base_hf_id=sft_dir,
+    )
+
+    run_ppo(
+        model_key=model_key,
+        records=records,
+        reward_dir=reward_dir,
+        out_dir=policy_dir,
+        token=token,
+        lora_r=lora_r,
+        lora_alpha=lora_alpha,
+        lora_dropout=lora_dropout,
+        dtype_str=dtype_str,
+        batch_size=batch_size,
+        lr=lr,
+        max_seq_len=max_seq_len,
+        ppo_steps=ppo_steps,
+        ppo_mini_batch_size=ppo_mini_batch_size,
+        base_hf_id=sft_dir,
+    )
+
+
 # ── post-run instructions ─────────────────────────────────────────────────────
 
 def print_next_steps(model_key: str, method: str, out_root: Path):
@@ -409,9 +724,24 @@ def print_next_steps(model_key: str, method: str, out_root: Path):
         print(f'   ),')
         print()
 
+    if method == "rlhf":
+        rlhf_path = out_root / f"{model_key}_rlhf"
+        print(f'   "{model_key}_rlhf": ModelConfig(')
+        print(f'       name="TinyAya-{model_key.capitalize()}-RLHF",')
+        print(f'       hf_id="{rlhf_path}",   # local adapter path')
+        print(f'       stage="finetuned",')
+        print(f'       probe_layers=[18, 24, 30],')
+        print(f'   ),')
+        print()
+
     print("2. Re-extract activations and train probes:")
-    for suffix in (["_sft"] if method == "sft" else
-                   ["_dpo"] if method == "dpo" else ["_sft", "_dpo"]):
+    suffixes = (
+        ["_sft"] if method == "sft" else
+        ["_dpo"] if method == "dpo" else
+        ["_rlhf"] if method == "rlhf" else
+        ["_sft", "_dpo"]
+    )
+    for suffix in suffixes:
         key = f"{model_key}{suffix}"
         print(f"   python scripts/05_extract_activations.py --model {key} --lang en")
         print(f"   python scripts/06_train_probes.py         --model {key} --lang en --alignment")
@@ -425,10 +755,10 @@ def main():
         description="Safety fine-tuning (SFT / DPO) with LoRA")
 
     # What to train
-    parser.add_argument("--model",   choices=list(MODELS.keys()), default="base",
+    parser.add_argument("--model",   choices=["base"], default="base",
                         help="Which model variant to fine-tune (default: base)")
-    parser.add_argument("--method",  choices=["sft", "dpo", "both"], default="sft",
-                        help="Fine-tuning method (default: sft)")
+    parser.add_argument("--method",  choices=["sft", "dpo", "rlhf", "both"], default="sft",
+                        help="Fine-tuning method: sft, dpo, rlhf, or both (sft+dpo) (default: sft)")
 
     # Data
     parser.add_argument("--data-source", choices=["pku", "local"], default="pku",
@@ -457,6 +787,12 @@ def main():
     parser.add_argument("--max-seq-len",type=int,   default=512)
     parser.add_argument("--beta",       type=float, default=0.1,
                         help="DPO beta (KL penalty coefficient, default: 0.1)")
+    parser.add_argument("--reward-lr",  type=float, default=1e-4,
+                        help="Learning rate for RLHF reward model (default: 1e-4)")
+    parser.add_argument("--ppo-steps",  type=int,   default=100,
+                        help="Number of PPO update steps (default: 100)")
+    parser.add_argument("--ppo-mini-batch-size", type=int, default=2,
+                        help="Mini-batch size for each PPO gradient update (default: 2)")
     parser.add_argument("--dtype",      choices=["bf16", "fp16", "fp32"], default="bf16",
                         help="Training dtype (default: bf16; use fp16 for older GPUs)")
 
@@ -491,13 +827,13 @@ def main():
 
     # ── load data ─────────────────────────────────────────────────────────────
 
-    sft_records, dpo_records = [], []
+    sft_records, dpo_records, rlhf_records = [], [], []
 
-    if args.method in ("sft", "both"):
-        if args.data_source == "pku":
-            sft_records = load_sft_data_pku(pku_csv, args.max_samples)
-        else:
-            sft_records = load_sft_data_local(prompts_dir, args.lang, args.max_samples)
+    # SFT is always run first, so always load SFT data
+    if args.data_source == "pku":
+        sft_records = load_sft_data_pku(pku_csv, args.max_samples)
+    else:
+        sft_records = load_sft_data_local(prompts_dir, args.lang, args.max_samples)
 
     if args.method in ("dpo", "both"):
         if args.data_source == "pku":
@@ -508,11 +844,18 @@ def main():
             if args.method == "dpo":
                 sys.exit(1)
 
+    if args.method == "rlhf":
+        if args.data_source == "pku":
+            rlhf_records = load_dpo_data_pku(pku_csv, args.max_samples)
+        else:
+            logger.warning("RLHF requires preference pairs; --data-source local not supported. "
+                           "Aborting.")
+            sys.exit(1)
+
     # ── train ─────────────────────────────────────────────────────────────────
 
     common_kwargs = dict(
         model_key=args.model,
-        out_dir=out_root / f"{args.model}_sft",   # overridden per method below
         token=token,
         lora_r=args.lora_r,
         lora_alpha=args.lora_alpha,
@@ -525,18 +868,29 @@ def main():
         max_seq_len=args.max_seq_len,
     )
 
-    if args.method in ("sft", "both"):
-        run_sft(records=sft_records,
-                out_dir=out_root / f"{args.model}_sft",
-                **{k: v for k, v in common_kwargs.items()
-                   if k not in ("out_dir",)})
+    # Always run SFT first
+    sft_dir = str(out_root / f"{args.model}_sft")
+    run_sft(records=sft_records,
+            out_dir=out_root / f"{args.model}_sft",
+            **common_kwargs)
 
     if args.method in ("dpo", "both") and dpo_records:
         run_dpo(records=dpo_records,
                 out_dir=out_root / f"{args.model}_dpo",
                 beta=args.beta,
-                **{k: v for k, v in common_kwargs.items()
-                   if k not in ("out_dir",)})
+                base_hf_id=sft_dir,
+                **common_kwargs)
+
+    if args.method == "rlhf":
+        run_rlhf(
+            records=rlhf_records,
+            out_root=out_root,
+            reward_lr=args.reward_lr,
+            ppo_steps=args.ppo_steps,
+            ppo_mini_batch_size=args.ppo_mini_batch_size,
+            sft_dir=sft_dir,
+            **common_kwargs,
+        )
 
     print_next_steps(args.model, args.method, out_root)
 
