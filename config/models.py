@@ -44,7 +44,7 @@ MODELS: dict[str, ModelConfig] = {
     ),
     "base_dpo": ModelConfig(
         name="TinyAya-Base-DPO",
-        hf_id="/workspace/cohere-safety-representations/models/finetuned/base_dpo",   # local adapter path
+        hf_id="cationic/tinyaya-base-dpo",   # local adapter path
         stage="finetuned",
         probe_layers=[18, 24, 30],
     ),
