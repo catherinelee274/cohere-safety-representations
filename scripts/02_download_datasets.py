@@ -49,18 +49,18 @@ def save_jsonl(records: list[dict], path: Path):
 
 def download_xsafety(out_dir: Path, token: str | None):
     """
-    XSafety: https://huggingface.co/datasets/Libra-learnmore/xsafety
+    XSafety: https://huggingface.co/datasets/Jarviswang94/Multilingual_safety_benchmark
     Columns: prompt, language, category, label (safe/unsafe)
     """
     print("\n[1/3] Downloading XSafety...")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     try:
-        ds = load_dataset("Libra-learnmore/xsafety", token=token, split="test")
+        ds = load_dataset("Jarviswang94/Multilingual_safety_benchmark", token=token, split="test")
     except Exception as e:
         print(f"  ERROR: {e}")
-        print("  Falling back to manual download instructions:")
-        print("  git clone https://github.com/Libra-learnmore/XSafety-benchmark")
+        # print("  Falling back to manual download instructions:")
+        # print("  git clone https://github.com/Libra-learnmore/XSafety-benchmark")
         return
 
     df = ds.to_pandas()
