@@ -20,7 +20,7 @@ Writes:
     models/finetuned/{model_key}_rlhf/         PPO policy LoRA adapter + tokenizer
 
 Requirements (not in base requirements.txt):
-    pip install trl>=0.12.0 peft>=0.10.0
+    pip install trl>=0.12.0 peft>=0.10.0 bitsandbytes>=0.43.0
 
 Usage:
     # SFT only on base model, PKU data
@@ -214,15 +214,19 @@ def make_sft_formatting_fn():
 
 def build_lora_model(hf_id: str, token: str | None, lora_r: int, lora_alpha: int,
                      lora_dropout: float, dtype_str: str):
-    """Load model + tokenizer, apply LoRA, return (model, tokenizer)."""
+    """Load model + tokenizer, apply QLoRA (4-bit NF4), return (model, tokenizer)."""
     import torch
-    from peft import LoraConfig, get_peft_model, TaskType
-    from transformers import AutoModelForCausalLM, AutoTokenizer
+    from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
+    from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-    dtype = torch.bfloat16 if dtype_str == "bf16" else (
-            torch.float16 if dtype_str == "fp16" else torch.float32)
+    bnb_cfg = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_compute_dtype=torch.bfloat16 if dtype_str == "bf16" else torch.float16,
+    )
 
-    logger.info(f"Loading {hf_id} (dtype={dtype_str})")
+    logger.info(f"Loading {hf_id} with QLoRA 4-bit (dtype={dtype_str})")
     tokenizer = AutoTokenizer.from_pretrained(hf_id, token=token)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
@@ -230,11 +234,12 @@ def build_lora_model(hf_id: str, token: str | None, lora_r: int, lora_alpha: int
 
     model = AutoModelForCausalLM.from_pretrained(
         hf_id,
-        torch_dtype=dtype,
+        quantization_config=bnb_cfg,
         token=token,
         device_map="auto",
     )
     model.config.use_cache = False   # required for gradient checkpointing
+    model = prepare_model_for_kbit_training(model)
 
     lora_cfg = LoraConfig(
         task_type=TaskType.CAUSAL_LM,
