@@ -22,6 +22,7 @@ Outputs (in data/raw/):
 import argparse
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -47,36 +48,30 @@ def save_jsonl(records: list[dict], path: Path):
 
 # ── dataset loaders ───────────────────────────────────────────────────────────
 
-def download_xsafety(out_dir: Path, token: str | None):
+def download_xsafety(out_dir: Path):
     """
-    XSafety: https://huggingface.co/datasets/Jarviswang94/Multilingual_safety_benchmark
+    XSafety: https://github.com/Jarviswang94/Multilingual_safety_benchmark
     Columns: prompt, language, category, label (safe/unsafe)
+    Cloned via git as the dataset is only available through the GitHub repo.
     """
-    print("\n[1/3] Downloading XSafety...")
-    out_dir.mkdir(parents=True, exist_ok=True)
+    print("\n[1/4] Downloading XSafety...")
+    out_dir.parent.mkdir(parents=True, exist_ok=True)
 
-    try:
-        ds = load_dataset("Jarviswang94/Multilingual_safety_benchmark", token=token, split="test")
-    except Exception as e:
-        print(f"  ERROR: {e}")
-        # print("  Falling back to manual download instructions:")
-        # print("  git clone https://github.com/Libra-learnmore/XSafety-benchmark")
+    repo_url = "https://github.com/Jarviswang94/Multilingual_safety_benchmark"
+
+    if out_dir.exists():
+        print(f"  {out_dir} already exists, skipping clone.")
         return
 
-    df = ds.to_pandas()
-    print(f"  Total rows: {len(df):,}  Columns: {list(df.columns)}")
-
-    # Save full dataset
-    df.to_csv(out_dir / "xsafety_full.csv", index=False)
-
-    # Save per-language subsets
-    lang_col = "language" if "language" in df.columns else "lang"
-    if lang_col in df.columns:
-        for lang in df[lang_col].unique():
-            sub = df[df[lang_col] == lang]
-            sub.to_csv(out_dir / f"xsafety_{lang}.csv", index=False)
-            print(f"  {lang}: {len(sub):,} rows")
-    print(f"  Saved → {out_dir}/")
+    print(f"  git clone {repo_url} {out_dir}")
+    result = subprocess.run(
+        ["git", "clone", repo_url, str(out_dir)],
+        capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        print(f"  ERROR cloning XSafety:\n{result.stderr}")
+        return
+    print(f"  Cloned → {out_dir}/")
 
 
 def download_aya_redteam(out_dir: Path, token: str | None):
@@ -228,7 +223,7 @@ def main():
     token = args.token or os.environ.get("HF_TOKEN")
     raw   = ROOT / args.data_dir
 
-    download_xsafety(raw / "xsafety", token)
+    download_xsafety(raw / "xsafety")
     download_aya_redteam(raw / "aya_redteam", token)
     download_pku_saferlhf(raw / "pku_saferlhf", token, n_sample=args.pku_sample)
     download_litmus(raw / "litmus", token)
