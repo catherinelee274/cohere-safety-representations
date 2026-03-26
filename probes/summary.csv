@@ -1,0 +1,7 @@
+model,lang,layer,probe_type,accuracy,auc,silhouette,acc_std
+base_dpo,en,18,diffmean,0.7512,0.6961,0.0994,
+base_dpo,en,18,logreg,0.7663,0.9508,0.0994,0.0135
+base_dpo,en,24,diffmean,0.6558,0.6713,0.0922,
+base_dpo,en,24,logreg,0.764,0.946,0.0922,0.0372
+base_dpo,en,30,diffmean,0.6488,0.7164,0.0939,
+base_dpo,en,30,logreg,0.8174,0.9273,0.0939,0.0501

@@ -28,6 +28,7 @@ tqdm>=4.66.0
 # Fine-tuning (scripts/10_finetune.py)
 trl==0.29.0
 peft>=0.10.0
+bitsandbytes>=0.43.0
 
 # Dev / testing
 pytest>=8.2.0
