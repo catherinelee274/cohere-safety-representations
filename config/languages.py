@@ -22,5 +22,5 @@ NLLB_CODES   = {l[0]: l[2] for l in LANGUAGES}
 LOW_RESOURCE = {l[0]: l[3] for l in LANGUAGES}
 
 # Prompts per language target
-N_HARMFUL  = 430
-N_HARMLESS = 430
+N_HARMFUL  = 10_000
+N_HARMLESS = 10_000
