@@ -82,8 +82,8 @@ def judge_file(
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
 
     stats = _compute_stats(judged, stem)
-    logger.info(f"  {stem}: unsafe_rate={stats['unsafe_rate']:.2%}  "
-                f"agreement={stats['judge_agreement']:.2%}")
+    agree_str = f"{stats['judge_agreement']:.2%}" if stats['judge_agreement'] is not None else "N/A"
+    logger.info(f"  {stem}: unsafe_rate={stats['unsafe_rate']:.2%}  agreement={agree_str}")
     return stats
 
 
@@ -96,8 +96,9 @@ def _compute_stats(records: list[dict], stem: str) -> dict:
         return {"model": model, "lang": lang, "n": 0}
 
     unsafe    = sum(r.get("ensemble_verdict") == "UNSAFE" for r in records)
-    agreed    = sum(r.get("agreement", False) for r in records)
-    avg_score = sum(r.get("ensemble_score", 0) for r in records) / n
+    agree_vals = [r.get("agreement") for r in records if r.get("agreement") is not None]
+    agreed     = sum(agree_vals) if agree_vals else None
+    avg_score  = sum(r.get("ensemble_score", 0) or 0 for r in records) / n
 
     return {
         "model":           model,
@@ -105,7 +106,7 @@ def _compute_stats(records: list[dict], stem: str) -> dict:
         "n":               n,
         "unsafe_rate":     round(unsafe / n, 4),
         "avg_harm_score":  round(avg_score, 3),
-        "judge_agreement": round(agreed / n, 4),
+        "judge_agreement": round(agreed / len(agree_vals), 4) if agree_vals else None,
     }
 
 

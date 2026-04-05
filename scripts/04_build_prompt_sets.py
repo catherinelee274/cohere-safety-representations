@@ -55,51 +55,61 @@ def load_jsonl(path: Path) -> list[dict]:
 # ── source loaders ────────────────────────────────────────────────────────────
 
 def load_xsafety(raw_dir: Path, lang: str) -> list[dict]:
-    """Load XSafety prompts for a given language."""
+    """Load XSafety prompts for a given language from per-category CSV files."""
     records = []
-    # XSafety uses full language names or ISO codes depending on version
-    for suffix in [lang, lang.upper()]:
-        p = raw_dir / "xsafety" / f"xsafety_{suffix}.csv"
-        if p.exists():
-            df = pd.read_csv(p)
-            col = next((c for c in df.columns if "prompt" in c.lower()), df.columns[0])
-            for _, row in df.iterrows():
-                text = str(row[col]).strip()
-                if text:
-                    records.append({
-                        "id":     make_id(text, lang),
-                        "text":   text,
-                        "source": "xsafety",
-                        "lang":   lang,
-                        "label":  "harmful",
-                    })
+    lang_dir = raw_dir / "xsafety" / lang
+    if not lang_dir.exists():
+        return records
+    for csv_path in sorted(lang_dir.glob("*.csv")):
+        try:
+            df = pd.read_csv(csv_path)
+        except Exception:
+            continue
+        col = next((c for c in df.columns if "prompt" in c.lower()), df.columns[0])
+        category = csv_path.stem
+        for _, row in df.iterrows():
+            text = str(row[col]).strip()
+            if text and text != "nan":
+                records.append({
+                    "id":       make_id(text, lang),
+                    "text":     text,
+                    "source":   "xsafety",
+                    "lang":     lang,
+                    "label":    "harmful",
+                    "category": category,
+                })
     return records
 
+
+_AYA_LANG_NAMES = {
+    "en": "english", "fr": "french", "ar": "arabic", "zh": "chinese",
+    "hi": "hindi",   "sw": "swahili", "yo": "yoruba", "fil": "filipino",
+    "es": "spanish", "ru": "russian",
+}
 
 def load_aya_redteam(raw_dir: Path, lang: str) -> list[dict]:
     """Load Aya red-teaming prompts for a given language."""
     records = []
-    for fname in (raw_dir / "aya_redteam").glob("*.csv"):
-        try:
-            df = pd.read_csv(fname)
-        except Exception:
-            continue
-        lang_col = next((c for c in df.columns
-                         if "lang" in c.lower() or "language" in c.lower()), None)
-        if lang_col is None:
-            continue
-        sub = df[df[lang_col].str.lower().str.startswith(lang)]
-        text_col = next((c for c in df.columns if "prompt" in c.lower()), df.columns[0])
-        for _, row in sub.iterrows():
-            text = str(row[text_col]).strip()
-            if text:
-                records.append({
-                    "id":     make_id(text, lang),
-                    "text":   text,
-                    "source": "aya_redteam",
-                    "lang":   lang,
-                    "label":  "harmful",
-                })
+    lang_name = _AYA_LANG_NAMES.get(lang, lang)
+    # Files are split per language: aya_redteam_{language}.csv
+    candidate = raw_dir / "aya_redteam" / f"aya_redteam_{lang_name}.csv"
+    if not candidate.exists():
+        return records
+    try:
+        df = pd.read_csv(candidate)
+    except Exception:
+        return records
+    text_col = next((c for c in df.columns if "prompt" in c.lower()), df.columns[0])
+    for _, row in df.iterrows():
+        text = str(row[text_col]).strip()
+        if text and text != "nan":
+            records.append({
+                "id":     make_id(text, lang),
+                "text":   text,
+                "source": "aya_redteam",
+                "lang":   lang,
+                "label":  "harmful",
+            })
     return records
 
 
@@ -135,6 +145,15 @@ def load_litmus(raw_dir: Path, lang: str) -> tuple[list[dict], list[dict]]:
             bucket.append(rec)
 
     return harmful, harmless
+
+
+def load_en_translated(processed_dir: Path, lang: str) -> list[dict]:
+    """Load NLLB-translated harmful prompts produced by 03b."""
+    p = processed_dir / "en_translated" / f"{lang}.jsonl"
+    if not p.exists():
+        return []
+    with open(p, encoding="utf-8") as f:
+        return [json.loads(l) for l in f if l.strip()]
 
 
 def load_pku_translated(processed_dir: Path, lang: str) -> list[dict]:
@@ -239,6 +258,7 @@ def build_for_lang(
     harmful += load_aya_redteam(raw_dir, lang)
     if lang != "en":
         harmful += load_pku_translated(processed_dir, lang)
+        harmful += load_en_translated(processed_dir, lang)
 
     # LITMUS: English-only; provides both harmful and pre-labelled harmless
     litmus_harmful, litmus_harmless = load_litmus(raw_dir, lang)

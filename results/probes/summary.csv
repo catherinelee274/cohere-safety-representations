@@ -1,0 +1,13 @@
+model,lang,layer,probe_type,accuracy,auc,silhouette,acc_std
+base_dpo,yo,4,diffmean,0.5698,0.6483,0.0241,
+base_dpo,yo,4,logreg,0.7256,0.8962,0.0241,0.0206
+base_dpo,yo,9,diffmean,0.6965,0.6318,0.0296,
+base_dpo,yo,9,logreg,0.736,0.9087,0.0296,0.0108
+base_dpo,yo,18,diffmean,0.714,0.6339,0.0332,
+base_dpo,yo,18,logreg,0.7384,0.9132,0.0332,0.0318
+base_dpo,yo,24,diffmean,0.6198,0.7284,0.0326,
+base_dpo,yo,24,logreg,0.7395,0.8896,0.0326,0.0581
+base_dpo,yo,30,diffmean,0.5779,0.7084,0.0314,
+base_dpo,yo,30,logreg,0.857,0.8798,0.0314,0.0246
+base_dpo,yo,35,diffmean,0.5849,0.7149,0.029,
+base_dpo,yo,35,logreg,0.8779,0.8775,0.029,0.0235

@@ -134,6 +134,43 @@ def compute_alignment_matrix(probe_dir: Path, model_key: str, layer: int,
     return matrix
 
 
+STAGE_ORDER = ["base", "base_sft", "base_dpo"]
+
+
+def compute_cross_stage_alignment(
+    probe_dir: Path,
+    lang: str,
+    layer: int,
+    probe_type: str = "diffmean",
+    stages: list[str] = STAGE_ORDER,
+) -> list[dict]:
+    """
+    For a given language and layer, compute pairwise cosine alignment of the
+    harmful probe direction across training stages (base → sft → dpo).
+    """
+    dirs = {}
+    for stage in stages:
+        p = probe_dir / stage / lang / f"layer_{layer}_{probe_type}.pkl"
+        if p.exists():
+            dirs[stage] = load_probe(p).direction
+
+    rows = []
+    available = [s for s in stages if s in dirs]
+    for s1, s2 in combinations(available, 2):
+        sim = cosine_alignment(dirs[s1], dirs[s2])
+        rows.append({
+            "lang":       lang,
+            "layer":      layer,
+            "probe_type": probe_type,
+            "stage_a":    s1,
+            "stage_b":    s2,
+            "cosine_sim": round(sim, 4),
+        })
+        logger.info(f"  cross-stage [{probe_type}] {s1}↔{s2} "
+                    f"lang={lang} layer={layer}: {sim:.3f}")
+    return rows
+
+
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def main():
@@ -145,6 +182,8 @@ def main():
     parser.add_argument("--probe-dir", default="results/probes")
     parser.add_argument("--alignment", action="store_true",
                         help="Compute cross-lingual alignment matrices after probing")
+    parser.add_argument("--cross-stage", action="store_true",
+                        help="Compute harmful-direction alignment across training stages")
     args = parser.parse_args()
 
     acts_dir  = ROOT / args.acts_dir
@@ -175,6 +214,28 @@ def main():
         df.to_csv(summary_path, index=False)
         logger.info(f"\nSummary saved → {summary_path}")
         print(df.to_string(index=False))
+
+    # Cross-stage alignment (harmful direction across base → sft → dpo)
+    if args.cross_stage:
+        print("\n--- Cross-stage direction alignment (harmful) ---")
+        cs_rows = []
+        processed_langs = set(l for _, l in pairs)
+        for lang in processed_langs:
+            layers = set()
+            for stage in STAGE_ORDER:
+                if stage in MODELS:
+                    layers.update(MODELS[stage].probe_layers)
+            for layer in sorted(layers):
+                for ptype in ("diffmean", "logreg"):
+                    cs_rows.extend(
+                        compute_cross_stage_alignment(probe_dir, lang, layer, ptype)
+                    )
+        if cs_rows:
+            cs_path = ROOT / "results" / "probes" / "cross_stage_alignment.csv"
+            cs_path.parent.mkdir(parents=True, exist_ok=True)
+            pd.DataFrame(cs_rows).to_csv(cs_path, index=False)
+            print(pd.DataFrame(cs_rows).to_string(index=False))
+            logger.info(f"Cross-stage alignment → {cs_path}")
 
     # Cross-lingual alignment
     if args.alignment:

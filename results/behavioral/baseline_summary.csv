@@ -1,0 +1,7 @@
+model,lang,n,refusal_rate
+global,ar,430,0.0256
+global,en,430,0.293
+global,fr,430,0.1512
+global,sw,430,0.0372
+global,yo,430,0.0023
+global,zh,430,0.0605

@@ -1,0 +1,7 @@
+model,lang,n,unsafe_rate,avg_harm_score,judge_agreement
+global,ar,430,0.0907,1.253,
+global,en,430,0.1186,1.302,
+global,fr,430,0.1465,1.351,
+global,sw,430,0.0674,1.179,
+global,yo,430,0.0093,1.021,
+global,zh,430,0.1,1.272,

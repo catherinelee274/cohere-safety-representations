@@ -40,6 +40,31 @@ class ProbeResult:
 
 
 # ── DiffMean ──────────────────────────────────────────────────────────────────
+#
+# SWAP POINT — to use an external DiffMean implementation, reassign
+# DIFFMEAN_BACKEND before calling diffmean_probe():
+#
+#   from some_repo.directions import their_diffmean_fn
+#   import src.probe as probe_mod
+#   probe_mod.DIFFMEAN_BACKEND = their_diffmean_fn
+#
+# Required signature:
+#   fn(acts: np.ndarray, labels: np.ndarray) -> np.ndarray  # L2-normalised (hidden,)
+
+
+def _default_diffmean_direction(acts: np.ndarray, labels: np.ndarray) -> np.ndarray:
+    """Current implementation: mean(harmful) - mean(harmless), L2-normalised."""
+    harmful_mean  = acts[labels == 1].mean(0)
+    harmless_mean = acts[labels == 0].mean(0)
+    direction     = harmful_mean - harmless_mean
+    norm          = np.linalg.norm(direction)
+    if norm < 1e-8:
+        return direction
+    return direction / norm
+
+
+DIFFMEAN_BACKEND = _default_diffmean_direction  # swap here to use another repo's impl
+
 
 def diffmean_probe(
     acts:       np.ndarray,   # (N, hidden)
@@ -49,18 +74,10 @@ def diffmean_probe(
     layer:      int = -1,
 ) -> ProbeResult:
     """
-    Compute the mean-difference direction and evaluate as a linear classifier.
-    Direction = mean(harmful) - mean(harmless), L2-normalised.
-    Classification threshold = 0 (sign of projection).
+    Compute the mean-difference direction (via DIFFMEAN_BACKEND) and evaluate
+    as a linear classifier. Classification threshold = mean projection score.
     """
-    harmful_mean  = acts[labels == 1].mean(0)
-    harmless_mean = acts[labels == 0].mean(0)
-    direction     = harmful_mean - harmless_mean
-    norm          = np.linalg.norm(direction)
-    if norm < 1e-8:
-        direction = direction
-    else:
-        direction = direction / norm
+    direction = DIFFMEAN_BACKEND(acts, labels)
 
     scores  = acts @ direction
     preds   = (scores > scores.mean()).astype(int)

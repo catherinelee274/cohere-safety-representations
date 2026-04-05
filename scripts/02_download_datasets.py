@@ -209,7 +209,7 @@ def main():
                         help="Root directory for raw data")
     parser.add_argument("--token", default=None,
                         help="HuggingFace token")
-    parser.add_argument("--pku-sample", type=int, default=500,
+    parser.add_argument("--pku-sample", type=int, default=20_000,
                         help="Number of PKU-SafeRLHF pairs to sample")
     parser.add_argument("--use-hf-mirror", action="store_true",
                         help="Use Hugging Face mirror as source for datasets")

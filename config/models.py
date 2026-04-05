@@ -28,25 +28,29 @@ MODELS: dict[str, ModelConfig] = {
         name="TinyAya-Base",
         hf_id="CohereLabs/tiny-aya-base",
         stage="base",
-        probe_layers=[18, 24, 30],
+        probe_layers=[4, 9, 18, 24, 30, 35],  # 35 = last layer (36 layers, 0-indexed)
+        n_layers=36,
     ),
     "global": ModelConfig(
         name="TinyAya-Global",
         hf_id="CohereLabs/tiny-aya-global",
         stage="global",
-        probe_layers=[18, 24, 30],
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
     ),
     "base_sft": ModelConfig(
         name="TinyAya-Base-SFT",
-        hf_id="/workspace/cohere-safety-representations/models/finetuned/base_sft",   # local adapter path
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft",
         stage="finetuned",
-        probe_layers=[18, 24, 30],
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
     ),
     "base_dpo": ModelConfig(
         name="TinyAya-Base-DPO",
-        hf_id="cationic/tinyaya-base-dpo",   # local adapter path
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
         stage="finetuned",
-        probe_layers=[18, 24, 30],
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
     ),
     "base_rlhf": ModelConfig(
         name="TinyAya-Base-RLHF",
