@@ -39,8 +39,15 @@ MODELS: dict[str, ModelConfig] = {
         n_layers=36,
     ),
     "base_sft": ModelConfig(
-        name="TinyAya-Base-SFT",
+        name="TinyAya-Base-SFT-500",
         hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_sft_20k": ModelConfig(
+        name="TinyAya-Base-SFT-20k",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_20k/base_sft",
         stage="finetuned",
         probe_layers=[4, 9, 18, 24, 30, 35],
         n_layers=36,
@@ -48,6 +55,42 @@ MODELS: dict[str, ModelConfig] = {
     "base_dpo": ModelConfig(
         name="TinyAya-Base-DPO",
         hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    # ── SFT data-size sweep (finetuned_sweep/) ───────────────────────────
+    "base_sft_n500": ModelConfig(
+        name="TinyAya-Base-SFT-n500",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_sft_n2000": ModelConfig(
+        name="TinyAya-Base-SFT-n2000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_sft_n5000": ModelConfig(
+        name="TinyAya-Base-SFT-n5000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_sft_n10000": ModelConfig(
+        name="TinyAya-Base-SFT-n10000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_sft_n20000": ModelConfig(
+        name="TinyAya-Base-SFT-n20000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
         stage="finetuned",
         probe_layers=[4, 9, 18, 24, 30, 35],
         n_layers=36,
@@ -83,7 +126,53 @@ MODELS: dict[str, ModelConfig] = {
 }
 
 # Ordered by training stage for plots
-MODEL_ORDER = ["base", "global", "base_sft", "base_dpo", "base_rlhf", "gemma", "ministral", "qwen"]
+MODEL_ORDER = ["base", "global", "base_sft", "base_sft_20k", "base_dpo",
+               "base_sft_n500", "base_sft_n2000", "base_sft_n5000", "base_sft_n10000", "base_sft_n20000",
+               "gemma", "ministral", "qwen"]
 
 # Layer used for SAE training (mid-late layer; update after probe sweep)
 SAE_LAYER = 24
+
+
+def get_checkpoint_configs(base_key: str) -> list[tuple[str, "ModelConfig"]]:
+    """
+    Discover all checkpoint-* subdirectories under the base model's hf_id path
+    and return a list of (checkpoint_key, ModelConfig) sorted by step number.
+
+    The checkpoint_key format is ``{base_key}_ckpt{step}``, e.g.
+    ``base_sft_n5000_ckpt500``.  Activations for each checkpoint are expected
+    at ``data/processed/activations/{checkpoint_key}/``.
+
+    Returns an empty list if the base model's hf_id directory does not exist or
+    contains no checkpoint-* subdirectories.
+    """
+    from pathlib import Path
+    import re
+
+    cfg = MODELS.get(base_key)
+    if cfg is None:
+        raise KeyError(f"Unknown model key: {base_key!r}")
+
+    model_dir = Path(cfg.hf_id)
+    if not model_dir.is_dir():
+        return []
+
+    results = []
+    for ckpt_dir in sorted(model_dir.glob("checkpoint-*")):
+        m = re.fullmatch(r"checkpoint-(\d+)", ckpt_dir.name)
+        if m is None:
+            continue
+        step = int(m.group(1))
+        ckpt_key = f"{base_key}_ckpt{step}"
+        ckpt_cfg = ModelConfig(
+            name=f"{cfg.name}-ckpt{step}",
+            hf_id=str(ckpt_dir),
+            stage=cfg.stage,
+            region=cfg.region,
+            probe_layers=cfg.probe_layers,
+            n_layers=cfg.n_layers,
+        )
+        results.append((step, ckpt_key, ckpt_cfg))
+
+    results.sort(key=lambda t: t[0])
+    return [(ckpt_key, ckpt_cfg) for _, ckpt_key, ckpt_cfg in results]
