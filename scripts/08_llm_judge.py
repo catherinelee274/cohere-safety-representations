@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.judge import judge_ensemble, validate_interrater
+from src.run_metadata import save_run_info
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
@@ -84,10 +85,22 @@ def judge_file(
     stats = _compute_stats(judged, stem)
     agree_str = f"{stats['judge_agreement']:.2%}" if stats['judge_agreement'] is not None else "N/A"
     logger.info(f"  {stem}: unsafe_rate={stats['unsafe_rate']:.2%}  agreement={agree_str}")
+
+    save_run_info(out_dir, {
+        "script":          "08_llm_judge",
+        "input_file":      str(in_path),
+        "model":           stats.get("model"),
+        "lang":            stats.get("lang"),
+        "n_judged":        stats.get("n"),
+        "unsafe_rate":     stats.get("unsafe_rate"),
+        "judge_agreement": stats.get("judge_agreement"),
+        "judges":          ["gpt-4o", "command-r"],
+    })
     return stats
 
 
 def _compute_stats(records: list[dict], stem: str) -> dict:
+    from datetime import datetime, timezone
     parts = stem.rsplit("_", 1)
     model = parts[0] if len(parts) == 2 else stem
     lang  = parts[1] if len(parts) == 2 else "?"
@@ -100,13 +113,20 @@ def _compute_stats(records: list[dict], stem: str) -> dict:
     agreed     = sum(agree_vals) if agree_vals else None
     avg_score  = sum(r.get("ensemble_score", 0) or 0 for r in records) / n
 
+    from config.models import MODELS
+    hf_id = MODELS[model].hf_id if model in MODELS else None
+    model_name = MODELS[model].name if model in MODELS else None
     return {
         "model":           model,
+        "model_hf_id":     hf_id,
+        "model_name":      model_name,
         "lang":            lang,
         "n":               n,
         "unsafe_rate":     round(unsafe / n, 4),
         "avg_harm_score":  round(avg_score, 3),
         "judge_agreement": round(agreed / len(agree_vals), 4) if agree_vals else None,
+        "judges":          "gpt-4o+command-r",
+        "run_at":          datetime.now(timezone.utc).isoformat(),
     }
 
 
