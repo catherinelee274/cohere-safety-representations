@@ -102,6 +102,32 @@ MODELS: dict[str, ModelConfig] = {
         probe_layers=[18, 24, 30],
     ),
     # ── Comparison baselines (Phase Work scope) ──────────────────────────
+    # ── Regional variants ────────────────────────────────────────────────────
+    "earth": ModelConfig(
+        name="TinyAya-Earth",
+        hf_id="CohereLabs/tiny-aya-earth",
+        stage="regional",
+        region="africa_westasia",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "fire": ModelConfig(
+        name="TinyAya-Fire",
+        hf_id="CohereLabs/tiny-aya-fire",
+        stage="regional",
+        region="south_asia",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "water": ModelConfig(
+        name="TinyAya-Water",
+        hf_id="CohereLabs/tiny-aya-water",
+        stage="regional",
+        region="asiapacific_europe",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    # ── Comparison baselines (Phase Work scope) ──────────────────────────
     "gemma": ModelConfig(
         name="Gemma3-4B",
         hf_id="google/gemma-3-4b-it",
@@ -111,22 +137,23 @@ MODELS: dict[str, ModelConfig] = {
     ),
     "ministral": ModelConfig(
         name="Ministral-3-3B",
-        hf_id="mistralai/Ministral-3B-Instruct-2410",
+        hf_id="mistralai/Ministral-3-3B-Instruct-2512",
         stage="baseline",
-        probe_layers=[4, 9, 18, 24, 30, 36],
+        probe_layers=[4, 9, 18, 24, 30, 35],
         n_layers=36,
     ),
     "qwen": ModelConfig(
         name="Qwen3-4B",
         hf_id="Qwen/Qwen3-4B",
         stage="baseline",
-        probe_layers=[4, 9, 18, 24, 30, 36],
+        probe_layers=[4, 9, 18, 24, 30, 35],
         n_layers=36,
     ),
 }
 
 # Ordered by training stage for plots
-MODEL_ORDER = ["base", "global", "base_sft", "base_sft_20k", "base_dpo",
+MODEL_ORDER = ["base", "global", "earth", "fire", "water",
+               "base_sft", "base_sft_20k", "base_dpo",
                "base_sft_n500", "base_sft_n2000", "base_sft_n5000", "base_sft_n10000", "base_sft_n20000",
                "gemma", "ministral", "qwen"]
 
