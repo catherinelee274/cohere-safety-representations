@@ -26,6 +26,16 @@ Usage:
     python scripts/06b_refusal_direction.py --model base --lang en
     python scripts/06b_refusal_direction.py --all
     python scripts/06b_refusal_direction.py --all --cross-stage
+
+    # Checkpoint trajectory: refusal direction at every saved checkpoint
+    python scripts/06b_refusal_direction.py --checkpoints-for base_sft_n5000
+    python scripts/06b_refusal_direction.py --checkpoints-for base_sft_n5000 --lang en
+
+Checkpoint mode requires activations and behavioral responses to be extracted
+for each checkpoint first:
+    python scripts/05_extract_activations.py --model base_sft_n5000_ckpt500 --lang en
+    python scripts/07_behavioral_baseline.py --model base_sft_n5000_ckpt500 --lang en
+(repeat for each checkpoint step)
 """
 
 import argparse
@@ -43,7 +53,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from config.languages import LANG_CODES
-from config.models import MODEL_ORDER, MODELS
+from config.models import MODEL_ORDER, MODELS, get_checkpoint_configs
 from src.probe import ProbeResult, cosine_alignment, diffmean_probe
 
 logging.basicConfig(level=logging.INFO,
@@ -272,21 +282,112 @@ def compute_harmful_vs_refusal_alignment(
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
+def compute_checkpoint_trajectory(
+    base_key: str,
+    lang: str,
+    probe_dir: Path,
+    acts_dir: Path,
+    behavioral_dir: Path,
+) -> list[dict]:
+    """
+    Load or train refusal probes for every checkpoint of *base_key*, then compute
+    cosine alignment of each checkpoint's refusal direction against the final
+    (fully-trained) model's refusal direction.  Returns one row per
+    (checkpoint_key, lang, layer).
+    """
+    ckpt_list = get_checkpoint_configs(base_key)
+    if not ckpt_list:
+        logger.warning(f"No checkpoints found for {base_key!r}")
+        return []
+
+    # Collect all (step, key, cfg) with their probe results
+    ckpt_probes: dict[str, dict[int, ProbeResult]] = {}  # key → layer → ProbeResult
+    for ckpt_key, ckpt_cfg in ckpt_list:
+        MODELS[ckpt_key] = ckpt_cfg  # register temporarily so helpers can find it
+        rows = run_refusal_probes_for(ckpt_key, lang, acts_dir, behavioral_dir, probe_dir)
+        if not rows:
+            continue
+        layer_probes: dict[int, ProbeResult] = {}
+        for layer in ckpt_cfg.probe_layers:
+            p = probe_dir / ckpt_key / lang / f"layer_{layer}_refusal.pkl"
+            result = load_probe(p)
+            if result is not None:
+                layer_probes[layer] = result
+        ckpt_probes[ckpt_key] = layer_probes
+
+    # Also load the final model's refusal directions as the reference
+    final_probes: dict[int, ProbeResult] = {}
+    cfg_final = MODELS[base_key]
+    for layer in cfg_final.probe_layers:
+        p = probe_dir / base_key / lang / f"layer_{layer}_refusal.pkl"
+        result = load_probe(p)
+        if result is not None:
+            final_probes[layer] = result
+
+    trajectory_rows = []
+    for ckpt_key, layer_probes in ckpt_probes.items():
+        step = int(ckpt_key.split("_ckpt")[-1])
+        for layer, result in layer_probes.items():
+            row = {
+                "base_model":   base_key,
+                "checkpoint":   ckpt_key,
+                "step":         step,
+                "lang":         lang,
+                "layer":        layer,
+                "accuracy":     round(result.accuracy, 4),
+                "auc":          round(result.auc, 4),
+                "cosine_vs_final": None,
+            }
+            if layer in final_probes:
+                row["cosine_vs_final"] = round(
+                    cosine_alignment(result.direction, final_probes[layer].direction), 4
+                )
+            trajectory_rows.append(row)
+
+    return trajectory_rows
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",          choices=list(MODELS.keys()), default=None)
-    parser.add_argument("--lang",           choices=LANG_CODES,          default=None)
-    parser.add_argument("--all",            action="store_true")
-    parser.add_argument("--cross-stage",    action="store_true",
+    parser.add_argument("--model",             choices=list(MODELS.keys()), default=None)
+    parser.add_argument("--lang",              choices=LANG_CODES,          default=None)
+    parser.add_argument("--all",               action="store_true")
+    parser.add_argument("--checkpoints-for",   default=None, metavar="BASE_KEY",
+                        help="Train refusal probes at every checkpoint of BASE_KEY "
+                             "and write a step-level trajectory CSV")
+    parser.add_argument("--cross-stage",       action="store_true",
                         help="Compute cross-stage direction alignment after probing")
-    parser.add_argument("--acts-dir",       default="data/processed/activations")
-    parser.add_argument("--behavioral-dir", default="results/behavioral")
-    parser.add_argument("--probe-dir",      default="results/probes")
+    parser.add_argument("--acts-dir",          default="data/processed/activations")
+    parser.add_argument("--behavioral-dir",    default="results/behavioral")
+    parser.add_argument("--probe-dir",         default="results/probes")
     args = parser.parse_args()
 
     acts_dir       = ROOT / args.acts_dir
     behavioral_dir = ROOT / args.behavioral_dir
     probe_dir      = ROOT / args.probe_dir
+
+    # ── checkpoint trajectory mode ────────────────────────────────────────────
+    if args.checkpoints_for:
+        base_key = args.checkpoints_for
+        if base_key not in MODELS:
+            parser.error(f"Unknown base model key: {base_key!r}")
+        langs = [args.lang] if args.lang else list(LANG_CODES)
+        traj_rows = []
+        for lang in langs:
+            traj_rows.extend(
+                compute_checkpoint_trajectory(
+                    base_key, lang, probe_dir, acts_dir, behavioral_dir
+                )
+            )
+        if traj_rows:
+            traj_path = probe_dir / f"checkpoint_trajectory_{base_key}.csv"
+            traj_path.parent.mkdir(parents=True, exist_ok=True)
+            import pandas as _pd
+            _pd.DataFrame(traj_rows).to_csv(traj_path, index=False)
+            logger.info(f"Checkpoint trajectory → {traj_path}")
+            print(f"\n{_pd.DataFrame(traj_rows).to_string(index=False)}")
+        print("\nDone.")
+        return
 
     if args.all:
         pairs = [(m, l) for m in MODEL_ORDER for l in LANG_CODES]
