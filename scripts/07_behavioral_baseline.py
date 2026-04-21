@@ -29,8 +29,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from config.languages import LANG_CODES
-from config.models import MODEL_ORDER, MODELS
+from config.models import MODEL_ORDER, MODELS, get_checkpoint_configs
 from src.model_wrapper import ModelWrapper
+from src.run_metadata import model_meta, save_run_info
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
@@ -77,7 +78,13 @@ def run_baseline(
         logger.info(f"Skipping {model_key}/{lang} — already generated.")
         return
 
-    harmful_path = prompts_dir / lang / "harmful.jsonl"
+    # Use held-out XSafety eval split to avoid leakage with probe training data
+    harmful_path = prompts_dir / lang / "harmful_eval.jsonl"
+    if not harmful_path.exists():
+        # Fall back to full set if eval split not yet generated (run 04 first)
+        harmful_path = prompts_dir / lang / "harmful.jsonl"
+        logger.warning(f"harmful_eval.jsonl not found for {lang}, falling back to harmful.jsonl. "
+                       f"Re-run 04_build_prompt_sets.py to generate the eval split.")
     if not harmful_path.exists():
         logger.warning(f"No harmful prompts for lang={lang}")
         return
@@ -113,14 +120,34 @@ def run_baseline(
     logger.info(f"  {model_key}/{lang}: "
                 f"refusal_rate={refusal_rate:.2%}  ({n_refusals}/{len(records)})")
 
+    save_run_info(out_dir, {
+        **model_meta(model_key),
+        "script":         "07_behavioral_baseline",
+        "lang":           lang,
+        "n_prompts":      len(records),
+        "n_refusals":     n_refusals,
+        "refusal_rate":   round(refusal_rate, 4),
+        "max_new_tokens": max_new_tokens,
+        "batch_size":     batch_size,
+    })
+
     del wrapper
     import gc, torch
     gc.collect()
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
 
-    return {"model": model_key, "lang": lang, "n": len(records),
-            "refusal_rate": round(refusal_rate, 4)}
+    from datetime import datetime, timezone
+    cfg = MODELS[model_key]
+    return {
+        "model":        model_key,
+        "model_hf_id":  cfg.hf_id,
+        "model_name":   cfg.name,
+        "lang":         lang,
+        "n":            len(records),
+        "refusal_rate": round(refusal_rate, 4),
+        "run_at":       datetime.now(timezone.utc).isoformat(),
+    }
 
 
 def summarize(out_dir: Path) -> pd.DataFrame:
@@ -148,21 +175,40 @@ def summarize(out_dir: Path) -> pd.DataFrame:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",          choices=list(MODELS.keys()), default=None)
-    parser.add_argument("--lang",           choices=LANG_CODES,          default=None)
-    parser.add_argument("--all",            action="store_true")
-    parser.add_argument("--prompts-dir",    default="data/prompts")
-    parser.add_argument("--out-dir",        default="results/behavioral")
-    parser.add_argument("--batch-size",     type=int, default=4)
-    parser.add_argument("--max-new-tokens", type=int, default=256)
-    parser.add_argument("--token",          default=None)
+    parser.add_argument("--model",           choices=list(MODELS.keys()), default=None)
+    parser.add_argument("--lang",            choices=LANG_CODES,          default=None)
+    parser.add_argument("--all",             action="store_true")
+    parser.add_argument("--checkpoints-for", default=None, metavar="BASE_KEY",
+                        help="Run behavioral baseline for every checkpoint-* of BASE_KEY")
+    parser.add_argument("--prompts-dir",     default="data/prompts")
+    parser.add_argument("--out-dir",         default="results/behavioral")
+    parser.add_argument("--batch-size",      type=int, default=4)
+    parser.add_argument("--max-new-tokens",  type=int, default=256)
+    parser.add_argument("--token",           default=None)
     args = parser.parse_args()
 
     token       = args.token or os.environ.get("HF_TOKEN")
     prompts_dir = ROOT / args.prompts_dir
     out_dir     = ROOT / args.out_dir
 
-    if args.all:
+    # ── checkpoint mode ───────────────────────────────────────────────────────
+    if args.checkpoints_for:
+        base_key = args.checkpoints_for
+        if base_key not in MODELS:
+            parser.error(f"Unknown base model key: {base_key!r}")
+        ckpt_list = get_checkpoint_configs(base_key)
+        if not ckpt_list:
+            logger.error(f"No checkpoint-* dirs found under {MODELS[base_key].hf_id}")
+            return
+        langs = [args.lang] if args.lang else list(LANG_CODES)
+        for ckpt_key, ckpt_cfg in ckpt_list:
+            MODELS[ckpt_key] = ckpt_cfg
+        pairs = [(ckpt_key, lang)
+                 for ckpt_key, _ in ckpt_list
+                 for lang in langs]
+        logger.info(f"Checkpoint mode: {len(ckpt_list)} checkpoints × {len(langs)} langs")
+    # ── normal mode ───────────────────────────────────────────────────────────
+    elif args.all:
         pairs = [(m, l) for m in MODEL_ORDER for l in LANG_CODES]
     elif args.model and args.lang:
         pairs = [(args.model, args.lang)]
