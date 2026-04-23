@@ -56,6 +56,7 @@ sys.path.insert(0, str(ROOT))
 from config.languages import LANG_CODES
 from config.models import MODEL_ORDER, MODELS
 from src.model_wrapper import ModelWrapper
+from src.run_metadata import save_run_info
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
@@ -336,11 +337,15 @@ def evaluate_model_on_benchmark(
     responses = wrapper.generate(prompts, max_new_tokens=max_new_tokens,
                                  batch_size=batch_size)
 
+    from datetime import datetime, timezone
+    run_at = datetime.now(timezone.utc).isoformat()
+
     results = []
     for row, response in zip(rows, responses):
         refused = is_refusal(response)
         results.append({
             "model":            model_key,
+            "model_hf_id":      hf_id,
             "benchmark":        benchmark_name,
             "prompt":           row.prompt,
             "lang":             row.lang,
@@ -348,12 +353,27 @@ def evaluate_model_on_benchmark(
             "category":         row.category,
             "response":         response,
             "heuristic_refuse": refused,
+            "run_at":           run_at,
         })
 
     with open(out_path, "w") as f:
         for r in results:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     logger.info(f"  Saved {len(results)} responses → {out_path}")
+
+    n_refused = sum(r["heuristic_refuse"] for r in results)
+    save_run_info(out_dir, {
+        "script":         "11_evaluate_benchmarks",
+        "model_key":      model_key,
+        "model_hf_id":    hf_id,
+        "benchmark":      benchmark_name,
+        "n_prompts":      len(results),
+        "n_refusals":     n_refused,
+        "refusal_rate":   round(n_refused / max(len(results), 1), 4),
+        "max_new_tokens": max_new_tokens,
+        "batch_size":     batch_size,
+        "langs":          list({r["lang"] for r in results}),
+    })
 
     # Free GPU memory between models
     del wrapper
@@ -371,6 +391,10 @@ def compute_summary(results: list[dict]) -> pd.DataFrame:
         return pd.DataFrame()
 
     df = pd.DataFrame(results)
+    # Carry model_hf_id through — take first value per group (constant within group)
+    hf_id_map = df.groupby("model")["model_hf_id"].first() if "model_hf_id" in df.columns else None
+    run_at_map = df.groupby("model")["run_at"].max() if "run_at" in df.columns else None
+
     # Overall refusal rate per model × benchmark
     agg = (
         df.groupby(["model", "benchmark", "lang"])
@@ -381,6 +405,10 @@ def compute_summary(results: list[dict]) -> pd.DataFrame:
         )
         .reset_index()
     )
+    if hf_id_map is not None:
+        agg["model_hf_id"] = agg["model"].map(hf_id_map)
+    if run_at_map is not None:
+        agg["run_at"] = agg["model"].map(run_at_map)
     # Refusal rate on gold-unsafe rows only (the key safety metric)
     unsafe_df = df[df["gold_label"] == "unsafe"]
     if not unsafe_df.empty:

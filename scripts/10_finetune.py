@@ -50,6 +50,7 @@ import json
 import logging
 import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -74,6 +75,16 @@ LORA_TARGET_MODULES = [
     "q_proj", "k_proj", "v_proj", "o_proj",
     "gate_proj", "up_proj", "down_proj",
 ]
+
+
+# ── training metadata ─────────────────────────────────────────────────────────
+
+def save_training_info(out_dir: Path, info: dict) -> None:
+    """Write training_info.json alongside the saved adapter."""
+    info_path = out_dir / "training_info.json"
+    with open(info_path, "w") as f:
+        json.dump(info, f, indent=2)
+    logger.info(f"Training info saved → {info_path}")
 
 
 # ── data loading ──────────────────────────────────────────────────────────────
@@ -271,6 +282,8 @@ def run_sft(
     grad_accum: int,
     lr: float,
     max_seq_len: int,
+    save_steps: int | None = None,
+    extra_info: dict | None = None,
 ):
     from trl import SFTTrainer, SFTConfig
 
@@ -288,6 +301,16 @@ def run_sft(
 
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    total_steps = epochs * (len(dataset) // batch_size // grad_accum + 1)
+    if save_steps is not None:
+        _save_strategy = "steps"
+        _save_steps    = save_steps
+        _save_limit    = None  # keep all checkpoints
+    else:
+        _save_strategy = "epoch"
+        _save_steps    = 500   # ignored when strategy="epoch"
+        _save_limit    = 1
+
     training_args = SFTConfig(
         output_dir=str(out_dir),
         num_train_epochs=epochs,
@@ -295,10 +318,11 @@ def run_sft(
         gradient_accumulation_steps=grad_accum,
         learning_rate=lr,
         lr_scheduler_type="cosine",
-        warmup_steps=int(0.05 * epochs * (len(dataset) // batch_size // grad_accum + 1)),
+        warmup_steps=int(0.05 * total_steps),
         logging_steps=10,
-        save_strategy="epoch",
-        save_total_limit=1,
+        save_strategy=_save_strategy,
+        save_steps=_save_steps,
+        save_total_limit=_save_limit,
         bf16=(dtype_str == "bf16"),
         fp16=(dtype_str == "fp16"),
         gradient_checkpointing=True,
@@ -321,6 +345,20 @@ def run_sft(
     tokenizer.save_pretrained(str(out_dir))
     logger.info(f"SFT adapter saved → {out_dir}")
 
+    save_training_info(out_dir, {
+        "trained_at": datetime.now(timezone.utc).isoformat(),
+        "model_key": model_key,
+        "base_model_hf_id": MODELS[model_key].hf_id,
+        "method": "sft",
+        "num_examples": len(records),
+        "hyperparams": {
+            "lora_r": lora_r, "lora_alpha": lora_alpha, "lora_dropout": lora_dropout,
+            "epochs": epochs, "batch_size": batch_size, "grad_accum": grad_accum,
+            "lr": lr, "max_seq_len": max_seq_len, "dtype": dtype_str,
+        },
+        **(extra_info or {}),
+    })
+
 
 # ── DPO ───────────────────────────────────────────────────────────────────────
 
@@ -340,6 +378,8 @@ def run_dpo(
     max_seq_len: int,
     beta: float,
     base_hf_id: str | None = None,
+    save_steps: int | None = None,
+    extra_info: dict | None = None,
 ):
     from trl import DPOTrainer, DPOConfig
 
@@ -356,6 +396,16 @@ def run_dpo(
 
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    total_steps = epochs * (len(dataset) // batch_size // grad_accum + 1)
+    if save_steps is not None:
+        _save_strategy = "steps"
+        _save_steps    = save_steps
+        _save_limit    = None  # keep all checkpoints
+    else:
+        _save_strategy = "epoch"
+        _save_steps    = 500
+        _save_limit    = 1
+
     training_args = DPOConfig(
         output_dir=str(out_dir),
         num_train_epochs=epochs,
@@ -363,10 +413,11 @@ def run_dpo(
         gradient_accumulation_steps=grad_accum,
         learning_rate=lr,
         lr_scheduler_type="cosine",
-        warmup_steps=int(0.05 * epochs * (len(dataset) // batch_size // grad_accum + 1)),
+        warmup_steps=int(0.05 * total_steps),
         logging_steps=10,
-        save_strategy="epoch",
-        save_total_limit=1,
+        save_strategy=_save_strategy,
+        save_steps=_save_steps,
+        save_total_limit=_save_limit,
         bf16=(dtype_str == "bf16"),
         fp16=(dtype_str == "fp16"),
         gradient_checkpointing=True,
@@ -389,6 +440,20 @@ def run_dpo(
     model.save_pretrained(str(out_dir))
     tokenizer.save_pretrained(str(out_dir))
     logger.info(f"DPO adapter saved → {out_dir}")
+
+    save_training_info(out_dir, {
+        "trained_at": datetime.now(timezone.utc).isoformat(),
+        "model_key": model_key,
+        "base_model_hf_id": hf_id,
+        "method": "dpo",
+        "num_examples": len(records),
+        "hyperparams": {
+            "lora_r": lora_r, "lora_alpha": lora_alpha, "lora_dropout": lora_dropout,
+            "epochs": epochs, "batch_size": batch_size, "grad_accum": grad_accum,
+            "lr": lr, "max_seq_len": max_seq_len, "dtype": dtype_str, "beta": beta,
+        },
+        **(extra_info or {}),
+    })
 
 
 # ── RLHF: reward model ────────────────────────────────────────────────────────
@@ -639,6 +704,20 @@ def run_ppo(
     tokenizer.save_pretrained(str(out_dir))
     logger.info(f"RLHF (PPO) adapter saved → {out_dir}")
 
+    save_training_info(out_dir, {
+        "trained_at": datetime.now(timezone.utc).isoformat(),
+        "model_key": model_key,
+        "base_model_hf_id": hf_id,
+        "method": "rlhf_ppo",
+        "num_examples": len(records),
+        "hyperparams": {
+            "lora_r": lora_r, "lora_alpha": lora_alpha, "lora_dropout": lora_dropout,
+            "lr": lr, "max_seq_len": max_seq_len, "dtype": dtype_str,
+            "ppo_steps": ppo_steps, "ppo_mini_batch_size": ppo_mini_batch_size,
+            "batch_size": batch_size,
+        },
+    })
+
 
 # ── RLHF: orchestrator ────────────────────────────────────────────────────────
 
@@ -770,8 +849,17 @@ def main():
                         help="Data source: pku=PKU-SafeRLHF CSV, local=data/prompts/ files")
     parser.add_argument("--lang",        choices=LANG_CODES, default="en",
                         help="Language for --data-source local (default: en)")
-    parser.add_argument("--max-samples", type=int, default=2000,
-                        help="Max training examples per method (default: 2000)")
+    parser.add_argument("--max-samples", type=int, default=500,
+                        help="Max training examples per method (default: 500)")
+    parser.add_argument("--sample-sizes", type=int, nargs="+", default=None,
+                        help="Run multiple sample sizes in one go, each saved to its own subdir "
+                             "(e.g. --sample-sizes 500 2000 5000 10000 20000). "
+                             "Overrides --max-samples.")
+    parser.add_argument("--save-steps", type=int, default=None,
+                        help="Save a checkpoint every N optimizer steps (default: save per epoch only).")
+    parser.add_argument("--save-every-n-samples", type=int, default=None,
+                        help="Save a checkpoint every N training samples. Converted to steps "
+                             "using batch-size × grad-accum. Overrides --save-steps.")
     parser.add_argument("--pku-csv",
                         default="data/raw/pku_saferlhf/pku_saferlhf_sample.csv",
                         help="Path to PKU-SafeRLHF CSV")
@@ -834,30 +922,39 @@ def main():
 
     sft_records, dpo_records, rlhf_records = [], [], []
 
-    # SFT is always run first, so always load SFT data
-    if args.data_source == "pku":
-        sft_records = load_sft_data_pku(pku_csv, args.max_samples)
-    else:
-        sft_records = load_sft_data_local(prompts_dir, args.lang, args.max_samples)
+    # Determine which sample sizes to run
+    sample_sizes = args.sample_sizes if args.sample_sizes else [args.max_samples]
 
-    if args.method in ("dpo", "both"):
-        if args.data_source == "pku":
-            dpo_records = load_dpo_data_pku(pku_csv, args.max_samples)
-        else:
-            logger.warning("DPO requires preference pairs; --data-source local only supports SFT. "
-                           "Skipping DPO.")
-            if args.method == "dpo":
+    # Load the full pool once (max of all requested sizes)
+    max_needed = max(sample_sizes)
+    if args.data_source == "pku":
+        all_sft_records  = load_sft_data_pku(pku_csv, max_needed)
+        all_dpo_records  = load_dpo_data_pku(pku_csv, max_needed) if args.method in ("dpo", "both", "rlhf") else []
+        all_rlhf_records = all_dpo_records
+    else:
+        all_sft_records  = load_sft_data_local(prompts_dir, args.lang, max_needed)
+        all_dpo_records  = []
+        all_rlhf_records = []
+        if args.method in ("dpo", "both", "rlhf"):
+            logger.warning("DPO/RLHF requires preference pairs; --data-source local only supports SFT.")
+            if args.method != "sft":
                 sys.exit(1)
 
-    if args.method == "rlhf":
-        if args.data_source == "pku":
-            rlhf_records = load_dpo_data_pku(pku_csv, args.max_samples)
-        else:
-            logger.warning("RLHF requires preference pairs; --data-source local not supported. "
-                           "Aborting.")
-            sys.exit(1)
-
     # ── train ─────────────────────────────────────────────────────────────────
+
+    extra_info = {
+        "data_source": args.data_source,
+        "lang": args.lang if args.data_source == "local" else None,
+    }
+
+    # Resolve save_steps: --save-every-n-samples overrides --save-steps
+    effective_save_steps = args.save_steps
+    if args.save_every_n_samples is not None:
+        effective_batch = args.batch_size * args.grad_accum
+        effective_save_steps = max(1, args.save_every_n_samples // effective_batch)
+        logger.info(f"--save-every-n-samples {args.save_every_n_samples} → "
+                    f"save_steps={effective_save_steps} "
+                    f"(effective batch={effective_batch})")
 
     common_kwargs = dict(
         model_key=args.model,
@@ -871,31 +968,45 @@ def main():
         grad_accum=args.grad_accum,
         lr=args.lr,
         max_seq_len=args.max_seq_len,
+        save_steps=effective_save_steps,
+        extra_info=extra_info,
     )
 
-    # Always run SFT first
-    sft_dir = str(out_root / f"{args.model}_sft")
-    run_sft(records=sft_records,
-            out_dir=out_root / f"{args.model}_sft",
-            **common_kwargs)
+    for n in sample_sizes:
+        sft_records  = all_sft_records[:n]
+        dpo_records  = all_dpo_records[:n]
+        rlhf_records = all_rlhf_records[:n]
 
-    if args.method in ("dpo", "both") and dpo_records:
-        run_dpo(records=dpo_records,
-                out_dir=out_root / f"{args.model}_dpo",
-                beta=args.beta,
-                base_hf_id=sft_dir,
-                **common_kwargs)
+        # Use n-specific subdir when running multiple sizes
+        suffix = f"_n{n}" if len(sample_sizes) > 1 else ""
+        run_dir = out_root / f"{args.model}_sft{suffix}"
+
+        logger.info(f"=== Sample size: {n} → {run_dir} ===")
+        run_sft(records=sft_records, out_dir=run_dir, **common_kwargs)
+
+    if args.method in ("dpo", "both") and all_dpo_records:
+        for n in sample_sizes:
+            suffix = f"_n{n}" if len(sample_sizes) > 1 else ""
+            sft_dir = str(out_root / f"{args.model}_sft{suffix}")
+            run_dpo(records=all_dpo_records[:n],
+                    out_dir=out_root / f"{args.model}_dpo{suffix}",
+                    beta=args.beta,
+                    base_hf_id=sft_dir,
+                    **common_kwargs)
 
     if args.method == "rlhf":
-        run_rlhf(
-            records=rlhf_records,
-            out_root=out_root,
-            reward_lr=args.reward_lr,
-            ppo_steps=args.ppo_steps,
-            ppo_mini_batch_size=args.ppo_mini_batch_size,
-            sft_dir=sft_dir,
-            **common_kwargs,
-        )
+        for n in sample_sizes:
+            suffix = f"_n{n}" if len(sample_sizes) > 1 else ""
+            sft_dir = str(out_root / f"{args.model}_sft{suffix}")
+            run_rlhf(
+                records=all_rlhf_records[:n],
+                out_root=out_root,
+                reward_lr=args.reward_lr,
+                ppo_steps=args.ppo_steps,
+                ppo_mini_batch_size=args.ppo_mini_batch_size,
+                sft_dir=sft_dir,
+                **common_kwargs,
+            )
 
     print_next_steps(args.model, args.method, out_root)
 
