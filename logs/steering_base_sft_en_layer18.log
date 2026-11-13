@@ -1,0 +1,34 @@
+2026-04-22 00:19:54,436 INFO base_sft/en: 100 harmless prompts, layer 18
+2026-04-22 00:19:54,452 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft on cuda (torch.float16)
+2026-04-22 00:19:55,233 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-22 00:19:55,310 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:46,  2.72it/s]Loading weights:  20%|██        | 59/290 [00:00<00:01, 159.54it/s]Loading weights:  31%|███▏      | 91/290 [00:00<00:01, 197.09it/s]Loading weights:  42%|████▏     | 123/290 [00:00<00:00, 221.88it/s]Loading weights:  53%|█████▎    | 155/290 [00:00<00:00, 246.86it/s]Loading weights:  64%|██████▍   | 187/290 [00:00<00:00, 254.13it/s]Loading weights:  76%|███████▌  | 219/290 [00:01<00:00, 260.87it/s]Loading weights:  87%|████████▋ | 251/290 [00:01<00:00, 277.01it/s]Loading weights:  97%|█████████▋| 281/290 [00:01<00:00, 280.02it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 228.79it/s]
+2026-04-22 00:19:56,985 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+Traceback (most recent call last):
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/17_activation_steering.py", line 358, in <module>
+    main()
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/17_activation_steering.py", line 334, in main
+    rows = steer_model_lang(
+           ^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/17_activation_steering.py", line 218, in steer_model_lang
+    wrapper = ModelWrapper(cfg.hf_id, layers=[target_layer], token=token)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/src/model_wrapper.py", line 54, in __init__
+    self.model     = AutoModelForCausalLM.from_pretrained(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 381, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4161, in from_pretrained
+    loading_info = model.load_adapter(
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/integrations/peft.py", line 618, in load_adapter
+    loading_info, _ = self._load_pretrained_model(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4210, in _load_pretrained_model
+    caching_allocator_warmup(model, expanded_device_map, load_config.hf_quantizer)
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4827, in caching_allocator_warmup
+    _ = torch.empty(int(byte_count // 2), dtype=torch.float16, device=device, requires_grad=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.29 GiB. GPU 0 has a total capacity of 23.54 GiB of which 2.52 GiB is free. Process 3424548 has 258.00 MiB memory in use. Process 3522812 has 12.94 GiB memory in use. Including non-PyTorch memory, this process has 6.54 GiB memory in use. Of the allocated memory 6.29 GiB is allocated by PyTorch, and 203.00 KiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

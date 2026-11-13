@@ -1,0 +1,40 @@
+[
+  {
+    "run_at": "2026-04-25T07:50:00.930599+00:00",
+    "git_commit": "26dd88c",
+    "model_key": "global",
+    "model_name": "TinyAya-Global",
+    "model_hf_id": "CohereLabs/tiny-aya-global",
+    "model_stage": "global",
+    "script": "06_train_probes",
+    "lang": "hi",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-25T07:57:31.317699+00:00",
+    "git_commit": "26dd88c",
+    "model_key": "global",
+    "model_name": "TinyAya-Global",
+    "model_hf_id": "CohereLabs/tiny-aya-global",
+    "model_stage": "global",
+    "script": "06_train_probes",
+    "lang": "hi",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

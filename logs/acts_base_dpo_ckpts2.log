@@ -1,0 +1,85 @@
+2026-04-16 14:54:38,666 INFO Checkpoint mode: 3 checkpoints × 6 langs = 18 pairs
+2026-04-16 14:54:38,667 INFO Skipping base_dpo_ckpt15 — all languages already extracted.
+2026-04-16 14:54:38,753 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-312 on cuda (torch.float16)
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-16 14:54:39,806 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.93it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.16it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.89it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 14:54:42,112 INFO Found 36 transformer blocks
+2026-04-16 14:54:42,112 INFO Skipping base_dpo_ckpt312/en — already extracted.
+2026-04-16 14:54:42,112 INFO Skipping base_dpo_ckpt312/fr — already extracted.
+2026-04-16 14:54:42,112 INFO Skipping base_dpo_ckpt312/ar — already extracted.
+2026-04-16 14:54:42,112 INFO Skipping base_dpo_ckpt312/hi — already extracted.
+2026-04-16 14:54:42,125 INFO Extracting base_dpo_ckpt312/sw: 200 harmless + 9850 harmful
+2026-04-16 15:00:32,597 INFO   Saved layer 4: (10050, 2048)
+2026-04-16 15:00:32,618 INFO   Saved layer 9: (10050, 2048)
+2026-04-16 15:00:32,637 INFO   Saved layer 18: (10050, 2048)
+2026-04-16 15:00:32,656 INFO   Saved layer 24: (10050, 2048)
+2026-04-16 15:00:32,676 INFO   Saved layer 30: (10050, 2048)
+2026-04-16 15:00:32,695 INFO   Saved layer 35: (10050, 2048)
+2026-04-16 15:00:32,716 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt312/sw
+2026-04-16 15:00:32,751 INFO Extracting base_dpo_ckpt312/yo: 200 harmless + 9873 harmful
+2026-04-16 15:07:17,302 INFO   Saved layer 4: (10073, 2048)
+2026-04-16 15:07:17,322 INFO   Saved layer 9: (10073, 2048)
+2026-04-16 15:07:17,340 INFO   Saved layer 18: (10073, 2048)
+2026-04-16 15:07:17,360 INFO   Saved layer 24: (10073, 2048)
+2026-04-16 15:07:17,379 INFO   Saved layer 30: (10073, 2048)
+2026-04-16 15:07:17,398 INFO   Saved layer 35: (10073, 2048)
+2026-04-16 15:07:17,424 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt312/yo
+2026-04-16 15:07:17,786 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-540 on cuda (torch.float16)
+2026-04-16 15:07:18,415 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.97it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  3.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.94it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 15:07:19,435 INFO Found 36 transformer blocks
+2026-04-16 15:07:19,440 INFO Extracting base_dpo_ckpt540/en: 200 harmless + 3215 harmful
+2026-04-16 15:09:19,795 INFO   Saved layer 4: (3415, 2048)
+2026-04-16 15:09:19,802 INFO   Saved layer 9: (3415, 2048)
+2026-04-16 15:09:19,808 INFO   Saved layer 18: (3415, 2048)
+2026-04-16 15:09:19,815 INFO   Saved layer 24: (3415, 2048)
+2026-04-16 15:09:19,822 INFO   Saved layer 30: (3415, 2048)
+2026-04-16 15:09:19,828 INFO   Saved layer 35: (3415, 2048)
+2026-04-16 15:09:19,838 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt540/en
+2026-04-16 15:09:19,856 INFO Extracting base_dpo_ckpt540/fr: 200 harmless + 10000 harmful
+2026-04-16 15:15:18,965 INFO   Saved layer 4: (10200, 2048)
+2026-04-16 15:15:18,984 INFO   Saved layer 9: (10200, 2048)
+2026-04-16 15:15:19,004 INFO   Saved layer 18: (10200, 2048)
+2026-04-16 15:15:19,023 INFO   Saved layer 24: (10200, 2048)
+2026-04-16 15:15:19,041 INFO   Saved layer 30: (10200, 2048)
+2026-04-16 15:15:19,060 INFO   Saved layer 35: (10200, 2048)
+2026-04-16 15:15:19,084 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt540/fr
+2026-04-16 15:15:19,120 INFO Extracting base_dpo_ckpt540/ar: 365 harmless + 10000 harmful
+2026-04-16 15:21:22,744 INFO   Saved layer 4: (10365, 2048)
+2026-04-16 15:21:22,764 INFO   Saved layer 9: (10365, 2048)
+2026-04-16 15:21:22,783 INFO   Saved layer 18: (10365, 2048)
+2026-04-16 15:21:22,803 INFO   Saved layer 24: (10365, 2048)
+2026-04-16 15:21:22,823 INFO   Saved layer 30: (10365, 2048)
+2026-04-16 15:21:22,842 INFO   Saved layer 35: (10365, 2048)
+2026-04-16 15:21:22,867 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt540/ar
+2026-04-16 15:21:22,901 INFO Extracting base_dpo_ckpt540/hi: 200 harmless + 10000 harmful
+2026-04-16 15:28:50,354 INFO   Saved layer 4: (10200, 2048)
+2026-04-16 15:28:50,374 INFO   Saved layer 9: (10200, 2048)
+2026-04-16 15:28:50,393 INFO   Saved layer 18: (10200, 2048)
+2026-04-16 15:28:50,412 INFO   Saved layer 24: (10200, 2048)
+2026-04-16 15:28:50,431 INFO   Saved layer 30: (10200, 2048)
+2026-04-16 15:28:50,450 INFO   Saved layer 35: (10200, 2048)
+2026-04-16 15:28:50,478 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt540/hi
+2026-04-16 15:28:50,504 INFO Extracting base_dpo_ckpt540/sw: 200 harmless + 9850 harmful
+2026-04-16 15:34:41,958 INFO   Saved layer 4: (10050, 2048)
+2026-04-16 15:34:41,977 INFO   Saved layer 9: (10050, 2048)
+2026-04-16 15:34:41,996 INFO   Saved layer 18: (10050, 2048)
+2026-04-16 15:34:42,014 INFO   Saved layer 24: (10050, 2048)
+2026-04-16 15:34:42,032 INFO   Saved layer 30: (10050, 2048)
+2026-04-16 15:34:42,051 INFO   Saved layer 35: (10050, 2048)
+2026-04-16 15:34:42,071 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt540/sw
+2026-04-16 15:34:42,101 INFO Extracting base_dpo_ckpt540/yo: 200 harmless + 9873 harmful
+2026-04-16 15:41:27,758 INFO   Saved layer 4: (10073, 2048)
+2026-04-16 15:41:27,777 INFO   Saved layer 9: (10073, 2048)
+2026-04-16 15:41:27,796 INFO   Saved layer 18: (10073, 2048)
+2026-04-16 15:41:27,815 INFO   Saved layer 24: (10073, 2048)
+2026-04-16 15:41:27,834 INFO   Saved layer 30: (10073, 2048)
+2026-04-16 15:41:27,853 INFO   Saved layer 35: (10073, 2048)
+2026-04-16 15:41:27,880 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt540/yo
+
+Done. Next: scripts/06_train_probes.py

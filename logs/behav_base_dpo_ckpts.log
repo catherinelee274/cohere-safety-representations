@@ -1,0 +1,377 @@
+2026-04-17 08:48:13,180 INFO Checkpoint mode: 3 checkpoints × 6 langs
+2026-04-17 08:48:13,195 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-15 on cuda (torch.float16)
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-17 08:48:14,105 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.18it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.91it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.75it/s]
+2026-04-17 08:48:17,083 INFO Found 36 transformer blocks
+2026-04-17 08:48:17,083 INFO Generating base_dpo_ckpt15/en (558 prompts)...
+2026-04-17 09:11:04,113 INFO   base_dpo_ckpt15/en: refusal_rate=15.95%  (89/558)
+2026-04-17 09:11:04,255 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-15 on cuda (torch.float16)
+2026-04-17 09:11:04,761 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.18it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.92it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.76it/s]
+2026-04-17 09:11:06,639 INFO Found 36 transformer blocks
+2026-04-17 09:11:06,639 INFO Generating base_dpo_ckpt15/fr (558 prompts)...
+2026-04-17 09:36:53,964 INFO   base_dpo_ckpt15/fr: refusal_rate=8.06%  (45/558)
+2026-04-17 09:36:54,111 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-15 on cuda (torch.float16)
+2026-04-17 09:36:54,635 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.88it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.70it/s]
+2026-04-17 09:36:56,375 INFO Found 36 transformer blocks
+2026-04-17 09:36:56,375 INFO Generating base_dpo_ckpt15/ar (558 prompts)...
+2026-04-17 10:04:07,165 INFO   base_dpo_ckpt15/ar: refusal_rate=2.15%  (12/558)
+2026-04-17 10:04:07,340 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-15 on cuda (torch.float16)
+2026-04-17 10:04:07,842 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.02s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.61it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.47it/s]
+2026-04-17 10:04:10,003 INFO Found 36 transformer blocks
+2026-04-17 10:04:10,003 INFO Generating base_dpo_ckpt15/hi (597 prompts)...
+2026-04-17 10:32:49,240 INFO   base_dpo_ckpt15/hi: refusal_rate=0.00%  (0/597)
+2026-04-17 10:32:49,389 INFO Skipping base_dpo_ckpt15/sw — already generated.
+2026-04-17 10:32:49,390 INFO Skipping base_dpo_ckpt15/yo — already generated.
+2026-04-17 10:32:49,396 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-312 on cuda (torch.float16)
+2026-04-17 10:32:50,108 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.94it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.78it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 10:32:51,900 INFO Found 36 transformer blocks
+2026-04-17 10:32:51,900 INFO Generating base_dpo_ckpt312/en (558 prompts)...
+2026-04-17 10:57:39,737 INFO   base_dpo_ckpt312/en: refusal_rate=21.86%  (122/558)
+2026-04-17 10:57:39,888 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-312 on cuda (torch.float16)
+2026-04-17 10:57:40,623 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.95it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.77it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 10:57:42,309 INFO Found 36 transformer blocks
+2026-04-17 10:57:42,309 INFO Generating base_dpo_ckpt312/fr (558 prompts)...
+2026-04-17 11:23:33,470 INFO   base_dpo_ckpt312/fr: refusal_rate=20.61%  (115/558)
+2026-04-17 11:23:33,612 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-312 on cuda (torch.float16)
+2026-04-17 11:23:34,260 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.15it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.77it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 11:23:36,023 INFO Found 36 transformer blocks
+2026-04-17 11:23:36,023 INFO Generating base_dpo_ckpt312/ar (558 prompts)...
+2026-04-17 11:49:11,542 INFO   base_dpo_ckpt312/ar: refusal_rate=1.61%  (9/558)
+2026-04-17 11:49:11,686 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-312 on cuda (torch.float16)
+2026-04-17 11:49:12,366 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.11it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.91it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 11:49:14,008 INFO Found 36 transformer blocks
+2026-04-17 11:49:14,008 INFO Generating base_dpo_ckpt312/hi (597 prompts)...
+2026-04-17 12:17:06,305 INFO   base_dpo_ckpt312/hi: refusal_rate=0.00%  (0/597)
+2026-04-17 12:17:06,440 INFO Skipping base_dpo_ckpt312/sw — already generated.
+2026-04-17 12:17:06,440 INFO Skipping base_dpo_ckpt312/yo — already generated.
+2026-04-17 12:17:06,447 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-540 on cuda (torch.float16)
+2026-04-17 12:17:07,083 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.23it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.02it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 12:17:08,740 INFO Found 36 transformer blocks
+2026-04-17 12:17:08,740 INFO Generating base_dpo_ckpt540/en (558 prompts)...
+2026-04-17 12:41:09,570 INFO   base_dpo_ckpt540/en: refusal_rate=24.55%  (137/558)
+2026-04-17 12:41:09,716 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-540 on cuda (torch.float16)
+2026-04-17 12:41:10,583 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.22it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.83it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 12:41:12,279 INFO Found 36 transformer blocks
+2026-04-17 12:41:12,279 INFO Generating base_dpo_ckpt540/fr (558 prompts)...
+2026-04-17 13:06:26,304 INFO   base_dpo_ckpt540/fr: refusal_rate=23.12%  (129/558)
+2026-04-17 13:06:26,442 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-540 on cuda (torch.float16)
+2026-04-17 13:06:27,118 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.99it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 13:06:28,758 INFO Found 36 transformer blocks
+2026-04-17 13:06:28,758 INFO Generating base_dpo_ckpt540/ar (558 prompts)...
+2026-04-17 13:31:50,494 INFO   base_dpo_ckpt540/ar: refusal_rate=1.61%  (9/558)
+2026-04-17 13:31:50,634 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-540 on cuda (torch.float16)
+2026-04-17 13:31:51,321 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.22it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.02it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 13:31:52,904 INFO Found 36 transformer blocks
+2026-04-17 13:31:52,904 INFO Generating base_dpo_ckpt540/hi (597 prompts)...
+2026-04-17 13:53:27,651 INFO   base_dpo_ckpt540/hi: refusal_rate=0.00%  (0/597)
+2026-04-17 13:53:27,790 INFO Skipping base_dpo_ckpt540/sw — already generated.
+2026-04-17 13:53:27,791 INFO Skipping base_dpo_ckpt540/yo — already generated.
+
+Baseline summary:
+            model lang   n  refusal_rate
+             base   ar 558        0.0179
+             base   en 558        0.1523
+             base   fr 558        0.0484
+             base   hi 597        0.0000
+             base   sw   0        0.0000
+             base   yo   0        0.0000
+         base_dpo   ar 558        0.0161
+         base_dpo   en 558        0.2455
+         base_dpo   fr 558        0.2312
+         base_dpo   hi 597        0.0000
+         base_dpo   sw   0        0.0000
+         base_dpo   yo   0        0.0000
+  base_dpo_ckpt15   ar 558        0.0215
+  base_dpo_ckpt15   en 558        0.1595
+  base_dpo_ckpt15   fr 558        0.0806
+  base_dpo_ckpt15   hi 597        0.0000
+  base_dpo_ckpt15   sw   0        0.0000
+  base_dpo_ckpt15   yo   0        0.0000
+ base_dpo_ckpt312   ar 558        0.0161
+ base_dpo_ckpt312   en 558        0.2186
+ base_dpo_ckpt312   fr 558        0.2061
+ base_dpo_ckpt312   hi 597        0.0000
+ base_dpo_ckpt312   sw   0        0.0000
+ base_dpo_ckpt312   yo   0        0.0000
+ base_dpo_ckpt540   ar 558        0.0161
+ base_dpo_ckpt540   en 558        0.2455
+ base_dpo_ckpt540   fr 558        0.2312
+ base_dpo_ckpt540   hi 597        0.0000
+ base_dpo_ckpt540   sw   0        0.0000
+ base_dpo_ckpt540   yo   0        0.0000
+         base_sft   ar 558        0.0161
+         base_sft   en 558        0.1882
+         base_sft   fr 558        0.0591
+         base_sft   hi 597        0.0285
+         base_sft   sw   0        0.0000
+         base_sft   yo   0        0.0000
+     base_sft_20k   ar 558        0.0125
+     base_sft_20k   en 558        0.1864
+     base_sft_20k   fr 558        0.0556
+     base_sft_20k   hi 597        0.0419
+     base_sft_20k   sw   0        0.0000
+     base_sft_20k   yo   0        0.0000
+base_sft_ckpt1248   ar 558        0.0305
+base_sft_ckpt1248   en 558        0.1470
+base_sft_ckpt1248   fr 558        0.0699
+base_sft_ckpt1248   hi 597        0.0184
+base_sft_ckpt1248   sw   0        0.0000
+base_sft_ckpt1248   yo   0        0.0000
+base_sft_ckpt1560   ar 558        0.0233
+base_sft_ckpt1560   en 558        0.1738
+base_sft_ckpt1560   fr 558        0.0609
+base_sft_ckpt1560   hi 597        0.0268
+base_sft_ckpt1560   sw   0        0.0000
+base_sft_ckpt1560   yo   0        0.0000
+base_sft_ckpt1872   ar 558        0.0197
+base_sft_ckpt1872   en 558        0.1900
+base_sft_ckpt1872   fr 558        0.0573
+base_sft_ckpt1872   hi 597        0.0251
+base_sft_ckpt1872   sw   0        0.0000
+base_sft_ckpt1872   yo   0        0.0000
+base_sft_ckpt2169   ar 558        0.0161
+base_sft_ckpt2169   en 558        0.1882
+base_sft_ckpt2169   fr 558        0.0591
+base_sft_ckpt2169   hi 597        0.0285
+base_sft_ckpt2169   sw   0        0.0000
+base_sft_ckpt2169   yo   0        0.0000
+ base_sft_ckpt312   ar 558        0.0143
+ base_sft_ckpt312   en 558        0.1935
+ base_sft_ckpt312   fr 558        0.0645
+ base_sft_ckpt312   hi 597        0.0050
+ base_sft_ckpt312   sw   0        0.0000
+ base_sft_ckpt312   yo   0        0.0000
+ base_sft_ckpt624   ar 558        0.0072
+ base_sft_ckpt624   en 558        0.1649
+ base_sft_ckpt624   fr 558        0.0573
+ base_sft_ckpt624   hi 597        0.0184
+ base_sft_ckpt624   sw   0        0.0000
+ base_sft_ckpt624   yo   0        0.0000
+ base_sft_ckpt936   ar 558        0.0108
+ base_sft_ckpt936   en 558        0.1900
+ base_sft_ckpt936   fr 558        0.0645
+ base_sft_ckpt936   hi 597        0.0134
+ base_sft_ckpt936   sw   0        0.0000
+ base_sft_ckpt936   yo   0        0.0000
+  base_sft_ckpt96   ar 558        0.0215
+  base_sft_ckpt96   en 558        0.1810
+  base_sft_ckpt96   fr 558        0.0896
+  base_sft_ckpt96   hi 597        0.0017
+  base_sft_ckpt96   sw   0        0.0000
+  base_sft_ckpt96   yo   0        0.0000
+  base_sft_n10000   ar 558        0.0251
+  base_sft_n10000   en 558        0.1613
+  base_sft_n10000   fr 558        0.0824
+  base_sft_n10000   hi 597        0.0268
+  base_sft_n10000   sw   0        0.0000
+  base_sft_n10000   yo   0        0.0000
+   base_sft_n2000   ar 558        0.0179
+   base_sft_n2000   en 558        0.1505
+   base_sft_n2000   fr 558        0.0556
+   base_sft_n2000   hi 597        0.0151
+   base_sft_n2000   sw   0        0.0000
+   base_sft_n2000   yo   0        0.0000
+  base_sft_n20000   ar 558        0.0143
+  base_sft_n20000   en 558        0.1810
+  base_sft_n20000   fr 558        0.0591
+  base_sft_n20000   hi 597        0.0235
+  base_sft_n20000   sw   0        0.0000
+  base_sft_n20000   yo   0        0.0000
+    base_sft_n500   ar 558        0.0179
+    base_sft_n500   en 558        0.1792
+    base_sft_n500   fr 558        0.0627
+    base_sft_n500   hi 597        0.0117
+    base_sft_n500   sw   0        0.0000
+    base_sft_n500   yo   0        0.0000
+   base_sft_n5000   ar 558        0.0233
+   base_sft_n5000   en 558        0.1828
+   base_sft_n5000   fr 558        0.0860
+   base_sft_n5000   hi 597        0.0419
+   base_sft_n5000   sw   0        0.0000
+   base_sft_n5000   yo   0        0.0000
+           global   ar 430        0.0256
+           global   en 430        0.2930
+           global   fr 430        0.1512
+           global   hi 597        0.0000
+           global   sw 430        0.0372
+           global   yo 430        0.0023
+           global   zh 430        0.0605
+
+Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/behavioral/baseline_summary.csv
+
+Done. Next: scripts/08_llm_judge.py  (to re-score with LLM judge)
+grade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 13:45:29,643 INFO Found 36 transformer blocks
+2026-04-17 13:45:29,643 INFO Generating base_dpo_ckpt540/sw (0 prompts)...
+2026-04-17 13:45:29,643 INFO   base_dpo_ckpt540/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 13:45:29,779 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-540 on cuda (torch.float16)
+2026-04-17 13:45:30,391 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.91it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.74it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 13:45:32,158 INFO Found 36 transformer blocks
+2026-04-17 13:45:32,158 INFO Generating base_dpo_ckpt540/yo (0 prompts)...
+2026-04-17 13:45:32,158 INFO   base_dpo_ckpt540/yo: refusal_rate=0.00%  (0/0)
+
+Baseline summary:
+            model lang   n  refusal_rate
+             base   ar 558        0.0179
+             base   en 558        0.1523
+             base   fr 558        0.0484
+             base   hi 597        0.0000
+             base   sw   0        0.0000
+             base   yo   0        0.0000
+         base_dpo   ar 558        0.0161
+         base_dpo   en 558        0.2455
+         base_dpo   fr 558        0.2312
+         base_dpo   hi 597        0.0000
+         base_dpo   sw   0        0.0000
+         base_dpo   yo   0        0.0000
+  base_dpo_ckpt15   ar 558        0.0215
+  base_dpo_ckpt15   en 558        0.1595
+  base_dpo_ckpt15   fr 558        0.0806
+  base_dpo_ckpt15   hi 597        0.0000
+  base_dpo_ckpt15   sw   0        0.0000
+  base_dpo_ckpt15   yo   0        0.0000
+ base_dpo_ckpt312   ar 558        0.0161
+ base_dpo_ckpt312   en 558        0.2186
+ base_dpo_ckpt312   fr 558        0.2061
+ base_dpo_ckpt312   hi 597        0.0000
+ base_dpo_ckpt312   sw   0        0.0000
+ base_dpo_ckpt312   yo   0        0.0000
+ base_dpo_ckpt540   ar 558        0.0161
+ base_dpo_ckpt540   en 558        0.2455
+ base_dpo_ckpt540   fr 558        0.2312
+ base_dpo_ckpt540   hi 597        0.0000
+ base_dpo_ckpt540   sw   0        0.0000
+ base_dpo_ckpt540   yo   0        0.0000
+         base_sft   ar 558        0.0161
+         base_sft   en 558        0.1882
+         base_sft   fr 558        0.0591
+         base_sft   hi 597        0.0285
+         base_sft   sw   0        0.0000
+         base_sft   yo   0        0.0000
+     base_sft_20k   ar 558        0.0125
+     base_sft_20k   en 558        0.1864
+     base_sft_20k   fr 558        0.0556
+     base_sft_20k   hi 597        0.0419
+     base_sft_20k   sw   0        0.0000
+     base_sft_20k   yo   0        0.0000
+base_sft_ckpt1248   ar 558        0.0305
+base_sft_ckpt1248   en 558        0.1470
+base_sft_ckpt1248   fr 558        0.0699
+base_sft_ckpt1248   hi 597        0.0184
+base_sft_ckpt1248   sw   0        0.0000
+base_sft_ckpt1248   yo   0        0.0000
+base_sft_ckpt1560   ar 558        0.0233
+base_sft_ckpt1560   en 558        0.1738
+base_sft_ckpt1560   fr 558        0.0609
+base_sft_ckpt1560   hi 597        0.0268
+base_sft_ckpt1560   sw   0        0.0000
+base_sft_ckpt1560   yo   0        0.0000
+base_sft_ckpt1872   ar 558        0.0197
+base_sft_ckpt1872   en 558        0.1900
+base_sft_ckpt1872   fr 558        0.0573
+base_sft_ckpt1872   hi 597        0.0251
+base_sft_ckpt1872   sw   0        0.0000
+base_sft_ckpt1872   yo   0        0.0000
+base_sft_ckpt2169   ar 558        0.0161
+base_sft_ckpt2169   en 558        0.1882
+base_sft_ckpt2169   fr 558        0.0591
+base_sft_ckpt2169   hi 597        0.0285
+base_sft_ckpt2169   sw   0        0.0000
+base_sft_ckpt2169   yo   0        0.0000
+ base_sft_ckpt312   ar 558        0.0143
+ base_sft_ckpt312   en 558        0.1935
+ base_sft_ckpt312   fr 558        0.0645
+ base_sft_ckpt312   hi 597        0.0050
+ base_sft_ckpt312   sw   0        0.0000
+ base_sft_ckpt312   yo   0        0.0000
+ base_sft_ckpt624   ar 558        0.0072
+ base_sft_ckpt624   en 558        0.1649
+ base_sft_ckpt624   fr 558        0.0573
+ base_sft_ckpt624   hi 597        0.0184
+ base_sft_ckpt624   sw   0        0.0000
+ base_sft_ckpt624   yo   0        0.0000
+ base_sft_ckpt936   ar 558        0.0108
+ base_sft_ckpt936   en 558        0.1900
+ base_sft_ckpt936   fr 558        0.0645
+ base_sft_ckpt936   hi 597        0.0134
+ base_sft_ckpt936   sw   0        0.0000
+ base_sft_ckpt936   yo   0        0.0000
+  base_sft_ckpt96   ar 558        0.0215
+  base_sft_ckpt96   en 558        0.1810
+  base_sft_ckpt96   fr 558        0.0896
+  base_sft_ckpt96   hi 597        0.0017
+  base_sft_ckpt96   sw   0        0.0000
+  base_sft_ckpt96   yo   0        0.0000
+  base_sft_n10000   ar 558        0.0251
+  base_sft_n10000   en 558        0.1613
+  base_sft_n10000   fr 558        0.0824
+  base_sft_n10000   hi 597        0.0268
+  base_sft_n10000   sw   0        0.0000
+  base_sft_n10000   yo   0        0.0000
+   base_sft_n2000   ar 558        0.0179
+   base_sft_n2000   en 558        0.1505
+   base_sft_n2000   fr 558        0.0556
+   base_sft_n2000   hi 597        0.0151
+   base_sft_n2000   sw   0        0.0000
+   base_sft_n2000   yo   0        0.0000
+  base_sft_n20000   ar 558        0.0143
+  base_sft_n20000   en 558        0.1810
+  base_sft_n20000   fr 558        0.0591
+  base_sft_n20000   hi 597        0.0235
+  base_sft_n20000   sw   0        0.0000
+  base_sft_n20000   yo   0        0.0000
+    base_sft_n500   ar 558        0.0179
+    base_sft_n500   en 558        0.1792
+    base_sft_n500   fr 558        0.0627
+    base_sft_n500   hi 597        0.0117
+    base_sft_n500   sw   0        0.0000
+    base_sft_n500   yo   0        0.0000
+   base_sft_n5000   ar 558        0.0233
+   base_sft_n5000   en 558        0.1828
+   base_sft_n5000   fr 558        0.0860
+   base_sft_n5000   hi 597        0.0419
+   base_sft_n5000   sw   0        0.0000
+   base_sft_n5000   yo   0        0.0000
+           global   ar 430        0.0256
+           global   en 430        0.2930
+           global   fr 430        0.1512
+           global   hi 597        0.0000
+           global   sw 430        0.0372
+           global   yo 430        0.0023
+           global   zh 430        0.0605
+
+Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/behavioral/baseline_summary.csv
+
+Done. Next: scripts/08_llm_judge.py  (to re-score with LLM judge)

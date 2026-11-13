@@ -1,0 +1,38 @@
+2026-04-17 13:53:34,400 WARNING base_dpo_ckpt15/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,400 WARNING base_dpo_ckpt15/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,407 WARNING base_dpo_ckpt312/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,407 WARNING base_dpo_ckpt312/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,414 WARNING base_dpo_ckpt540/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,414 WARNING base_dpo_ckpt540/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,432 WARNING base_dpo_ckpt15/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,432 WARNING base_dpo_ckpt15/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:34,450 WARNING base_dpo_ckpt312/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,450 WARNING base_dpo_ckpt312/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:34,467 WARNING base_dpo_ckpt540/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,467 WARNING base_dpo_ckpt540/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:34,488 WARNING base_dpo_ckpt15/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,488 WARNING base_dpo_ckpt15/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:34,509 WARNING base_dpo_ckpt312/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,509 WARNING base_dpo_ckpt312/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:34,530 WARNING base_dpo_ckpt540/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,530 WARNING base_dpo_ckpt540/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:34,553 WARNING base_dpo_ckpt15/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,553 WARNING base_dpo_ckpt15/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:34,576 WARNING base_dpo_ckpt312/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,576 WARNING base_dpo_ckpt312/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:34,598 WARNING base_dpo_ckpt540/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,598 WARNING base_dpo_ckpt540/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:34,611 WARNING base_dpo_ckpt15/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,611 WARNING base_dpo_ckpt15/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,624 WARNING base_dpo_ckpt312/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,624 WARNING base_dpo_ckpt312/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,636 WARNING base_dpo_ckpt540/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,636 WARNING base_dpo_ckpt540/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,655 WARNING base_dpo_ckpt15/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,655 WARNING base_dpo_ckpt15/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,673 WARNING base_dpo_ckpt312/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,673 WARNING base_dpo_ckpt312/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:34,691 WARNING base_dpo_ckpt540/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:34,691 WARNING base_dpo_ckpt540/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+
+Done.

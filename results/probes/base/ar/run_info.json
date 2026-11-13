@@ -1,0 +1,173 @@
+[
+  {
+    "run_at": "2026-04-18T02:18:59.755252+00:00",
+    "git_commit": "79e8230",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T17:40:17.840382+00:00",
+    "git_commit": "4137619",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T18:38:01.937049+00:00",
+    "git_commit": "4137619",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T19:38:24.793170+00:00",
+    "git_commit": "050c354",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T20:37:46.569286+00:00",
+    "git_commit": "050c354",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T01:08:25.388864+00:00",
+    "git_commit": "050c354",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T04:07:00.648756+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T05:28:18.971681+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-22T00:00:38.275062+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base",
+    "model_name": "TinyAya-Base",
+    "model_hf_id": "CohereLabs/tiny-aya-base",
+    "model_stage": "base",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

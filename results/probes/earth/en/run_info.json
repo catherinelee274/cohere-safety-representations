@@ -1,0 +1,173 @@
+[
+  {
+    "run_at": "2026-04-20T17:50:19.994586+00:00",
+    "git_commit": "4137619",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T18:49:33.570408+00:00",
+    "git_commit": "4137619",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T19:49:38.230158+00:00",
+    "git_commit": "050c354",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T20:47:35.521020+00:00",
+    "git_commit": "050c354",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T01:18:13.825523+00:00",
+    "git_commit": "050c354",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T04:16:55.395085+00:00",
+    "git_commit": "caf949d",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T05:37:18.497890+00:00",
+    "git_commit": "caf949d",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-22T00:09:47.414143+00:00",
+    "git_commit": "caf949d",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-25T07:59:31.570660+00:00",
+    "git_commit": "26dd88c",
+    "model_key": "earth",
+    "model_name": "TinyAya-Earth",
+    "model_hf_id": "CohereLabs/tiny-aya-earth",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "en",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

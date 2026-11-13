@@ -1,0 +1,98 @@
+2026-04-17 13:53:33,040 WARNING base_sft_ckpt96/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,040 WARNING base_sft_ckpt96/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,048 WARNING base_sft_ckpt312/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,048 WARNING base_sft_ckpt312/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,055 WARNING base_sft_ckpt624/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,055 WARNING base_sft_ckpt624/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,062 WARNING base_sft_ckpt936/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,063 WARNING base_sft_ckpt936/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,070 WARNING base_sft_ckpt1248/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,070 WARNING base_sft_ckpt1248/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,077 WARNING base_sft_ckpt1560/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,077 WARNING base_sft_ckpt1560/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,084 WARNING base_sft_ckpt1872/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,084 WARNING base_sft_ckpt1872/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,091 WARNING base_sft_ckpt2169/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,091 WARNING base_sft_ckpt2169/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,111 WARNING base_sft_ckpt96/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,111 WARNING base_sft_ckpt96/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,130 WARNING base_sft_ckpt312/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,130 WARNING base_sft_ckpt312/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,148 WARNING base_sft_ckpt624/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,148 WARNING base_sft_ckpt624/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,167 WARNING base_sft_ckpt936/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,167 WARNING base_sft_ckpt936/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,186 WARNING base_sft_ckpt1248/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,186 WARNING base_sft_ckpt1248/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,204 WARNING base_sft_ckpt1560/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,204 WARNING base_sft_ckpt1560/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,223 WARNING base_sft_ckpt1872/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,223 WARNING base_sft_ckpt1872/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,241 WARNING base_sft_ckpt2169/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,241 WARNING base_sft_ckpt2169/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,262 WARNING base_sft_ckpt96/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,262 WARNING base_sft_ckpt96/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,282 WARNING base_sft_ckpt312/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,282 WARNING base_sft_ckpt312/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,302 WARNING base_sft_ckpt624/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,302 WARNING base_sft_ckpt624/ar: too few refused (1) or complied (4) samples — skipping refusal probe
+2026-04-17 13:53:33,323 WARNING base_sft_ckpt936/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,323 WARNING base_sft_ckpt936/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,343 WARNING base_sft_ckpt1248/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,343 WARNING base_sft_ckpt1248/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,364 WARNING base_sft_ckpt1560/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,364 WARNING base_sft_ckpt1560/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,384 WARNING base_sft_ckpt1872/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,384 WARNING base_sft_ckpt1872/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,405 WARNING base_sft_ckpt2169/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,405 WARNING base_sft_ckpt2169/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:33,427 WARNING base_sft_ckpt96/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,427 WARNING base_sft_ckpt96/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,450 WARNING base_sft_ckpt312/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,450 WARNING base_sft_ckpt312/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:33,473 WARNING base_sft_ckpt624/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,473 WARNING base_sft_ckpt624/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:33,497 WARNING base_sft_ckpt936/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,497 WARNING base_sft_ckpt936/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:33,520 WARNING base_sft_ckpt1248/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,520 WARNING base_sft_ckpt1248/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:33,543 WARNING base_sft_ckpt1560/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,543 WARNING base_sft_ckpt1560/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:33,566 WARNING base_sft_ckpt1872/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,566 WARNING base_sft_ckpt1872/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:33,589 WARNING base_sft_ckpt2169/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,589 WARNING base_sft_ckpt2169/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:33,602 WARNING base_sft_ckpt96/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,602 WARNING base_sft_ckpt96/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,615 WARNING base_sft_ckpt312/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,615 WARNING base_sft_ckpt312/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,627 WARNING base_sft_ckpt624/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,627 WARNING base_sft_ckpt624/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,640 WARNING base_sft_ckpt936/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,640 WARNING base_sft_ckpt936/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,653 WARNING base_sft_ckpt1248/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,653 WARNING base_sft_ckpt1248/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,666 WARNING base_sft_ckpt1560/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,666 WARNING base_sft_ckpt1560/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,678 WARNING base_sft_ckpt1872/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,678 WARNING base_sft_ckpt1872/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,691 WARNING base_sft_ckpt2169/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,691 WARNING base_sft_ckpt2169/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,709 WARNING base_sft_ckpt96/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,709 WARNING base_sft_ckpt96/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,727 WARNING base_sft_ckpt312/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,727 WARNING base_sft_ckpt312/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,745 WARNING base_sft_ckpt624/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,745 WARNING base_sft_ckpt624/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,764 WARNING base_sft_ckpt936/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,764 WARNING base_sft_ckpt936/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,782 WARNING base_sft_ckpt1248/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,782 WARNING base_sft_ckpt1248/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,800 WARNING base_sft_ckpt1560/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,800 WARNING base_sft_ckpt1560/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,818 WARNING base_sft_ckpt1872/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,818 WARNING base_sft_ckpt1872/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:33,836 WARNING base_sft_ckpt2169/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:33,837 WARNING base_sft_ckpt2169/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+
+Done.

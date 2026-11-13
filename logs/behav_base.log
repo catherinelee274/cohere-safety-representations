@@ -1,0 +1,159 @@
+2026-04-15 23:05:33,256 INFO Loading CohereLabs/tiny-aya-base on cuda (torch.float16)
+2026-04-15 23:05:33,299 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:05:33,323 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:05:33,350 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-15 23:05:33,380 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-15 23:05:34,008 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base "HTTP/1.1 200 OK"
+2026-04-15 23:05:34,033 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-15 23:05:34,099 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:30,  3.20it/s]Loading weights:  15%|█▍        | 43/290 [00:00<00:01, 128.68it/s]Loading weights:  24%|██▍       | 69/290 [00:00<00:01, 167.82it/s]Loading weights:  34%|███▍      | 99/290 [00:00<00:00, 198.72it/s]Loading weights:  45%|████▌     | 131/290 [00:00<00:00, 218.80it/s]Loading weights:  56%|█████▌    | 163/290 [00:00<00:00, 228.72it/s]Loading weights:  67%|██████▋   | 195/290 [00:01<00:00, 245.85it/s]Loading weights:  77%|███████▋  | 223/290 [00:01<00:00, 255.03it/s]Loading weights:  87%|████████▋ | 251/290 [00:01<00:00, 253.94it/s]Loading weights:  96%|█████████▌| 278/290 [00:01<00:00, 256.10it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 215.59it/s]
+2026-04-15 23:05:35,835 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:05:35,837 INFO Found 36 transformer blocks
+2026-04-15 23:05:35,837 INFO Generating base/en (558 prompts)...
+2026-04-15 23:18:25,804 INFO   base/en: refusal_rate=15.23%  (85/558)
+2026-04-15 23:18:25,964 INFO Loading CohereLabs/tiny-aya-base on cuda (torch.float16)
+2026-04-15 23:18:26,012 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:18:26,034 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:18:26,062 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-15 23:18:26,094 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-15 23:18:26,636 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base "HTTP/1.1 200 OK"
+2026-04-15 23:18:26,659 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:18:26,683 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:35,  3.04it/s]Loading weights:  18%|█▊        | 51/290 [00:00<00:01, 151.57it/s]Loading weights:  28%|██▊       | 80/290 [00:00<00:01, 189.55it/s]Loading weights:  37%|███▋      | 108/290 [00:00<00:00, 205.97it/s]Loading weights:  48%|████▊     | 139/290 [00:00<00:00, 223.29it/s]Loading weights:  59%|█████▉    | 171/290 [00:00<00:00, 244.74it/s]Loading weights:  69%|██████▊   | 199/290 [00:00<00:00, 250.80it/s]Loading weights:  78%|███████▊  | 227/290 [00:01<00:00, 249.05it/s]Loading weights:  88%|████████▊ | 254/290 [00:01<00:00, 245.43it/s]Loading weights:  98%|█████████▊| 283/290 [00:01<00:00, 251.02it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 217.55it/s]
+2026-04-15 23:18:28,254 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:18:28,256 INFO Found 36 transformer blocks
+2026-04-15 23:18:28,256 INFO Generating base/fr (558 prompts)...
+2026-04-15 23:33:08,176 INFO   base/fr: refusal_rate=4.84%  (27/558)
+2026-04-15 23:33:08,347 INFO Loading CohereLabs/tiny-aya-base on cuda (torch.float16)
+2026-04-15 23:33:08,446 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:33:08,469 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:33:08,495 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-15 23:33:08,528 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-15 23:33:09,077 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base "HTTP/1.1 200 OK"
+2026-04-15 23:33:09,098 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:33:09,117 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:47,  2.69it/s]Loading weights:  18%|█▊        | 51/290 [00:00<00:01, 133.86it/s]Loading weights:  29%|██▊       | 83/290 [00:00<00:01, 170.51it/s]Loading weights:  40%|███▉      | 115/290 [00:00<00:00, 201.32it/s]Loading weights:  51%|█████     | 147/290 [00:00<00:00, 229.19it/s]Loading weights:  60%|██████    | 175/290 [00:00<00:00, 242.95it/s]Loading weights:  70%|███████   | 203/290 [00:01<00:00, 243.63it/s]Loading weights:  81%|████████  | 235/290 [00:01<00:00, 247.86it/s]Loading weights:  92%|█████████▏| 267/290 [00:01<00:00, 263.06it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 213.98it/s]
+2026-04-15 23:33:10,699 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:33:10,700 INFO Found 36 transformer blocks
+2026-04-15 23:33:10,700 INFO Generating base/ar (558 prompts)...
+2026-04-15 23:47:16,267 INFO   base/ar: refusal_rate=1.79%  (10/558)
+2026-04-15 23:47:16,437 INFO Loading CohereLabs/tiny-aya-base on cuda (torch.float16)
+2026-04-15 23:47:16,472 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:47:16,494 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:47:16,519 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-15 23:47:16,545 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-15 23:47:17,131 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base "HTTP/1.1 200 OK"
+2026-04-15 23:47:17,149 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:47:17,168 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:21,  3.54it/s]Loading weights:  15%|█▍        | 43/290 [00:00<00:01, 134.88it/s]Loading weights:  26%|██▌       | 75/290 [00:00<00:01, 190.90it/s]Loading weights:  35%|███▍      | 101/290 [00:00<00:00, 211.65it/s]Loading weights:  45%|████▌     | 131/290 [00:00<00:00, 220.17it/s]Loading weights:  56%|█████▌    | 163/290 [00:00<00:00, 238.78it/s]Loading weights:  67%|██████▋   | 195/290 [00:00<00:00, 244.93it/s]Loading weights:  78%|███████▊  | 227/290 [00:01<00:00, 254.02it/s]Loading weights:  89%|████████▉ | 259/290 [00:01<00:00, 258.15it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 224.63it/s]
+2026-04-15 23:47:18,715 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:47:18,716 INFO Found 36 transformer blocks
+2026-04-15 23:47:18,716 INFO Generating base/hi (597 prompts)...
+2026-04-16 00:03:23,275 INFO   base/hi: refusal_rate=0.00%  (0/597)
+2026-04-16 00:03:23,447 INFO Loading CohereLabs/tiny-aya-base on cuda (torch.float16)
+2026-04-16 00:03:23,550 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:23,573 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:23,599 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-16 00:03:23,627 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-16 00:03:24,277 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base "HTTP/1.1 200 OK"
+2026-04-16 00:03:24,300 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:24,324 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:30,  3.18it/s]Loading weights:  15%|█▍        | 43/290 [00:00<00:01, 128.15it/s]Loading weights:  26%|██▌       | 75/290 [00:00<00:01, 180.55it/s]Loading weights:  35%|███▍      | 101/290 [00:00<00:00, 199.84it/s]Loading weights:  45%|████▌     | 131/290 [00:00<00:00, 214.06it/s]Loading weights:  57%|█████▋    | 164/290 [00:00<00:00, 243.53it/s]Loading weights:  66%|██████▌   | 192/290 [00:00<00:00, 252.87it/s]Loading weights:  76%|███████▌  | 220/290 [00:01<00:00, 252.24it/s]Loading weights:  87%|████████▋ | 251/290 [00:01<00:00, 252.10it/s]Loading weights:  98%|█████████▊| 283/290 [00:01<00:00, 266.52it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 218.73it/s]
+2026-04-16 00:03:25,898 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:25,899 INFO Found 36 transformer blocks
+2026-04-16 00:03:25,899 INFO Generating base/sw (0 prompts)...
+2026-04-16 00:03:25,900 INFO   base/sw: refusal_rate=0.00%  (0/0)
+2026-04-16 00:03:26,028 INFO Loading CohereLabs/tiny-aya-base on cuda (torch.float16)
+2026-04-16 00:03:26,049 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:26,068 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:26,094 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-16 00:03:26,125 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-16 00:03:26,719 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-base "HTTP/1.1 200 OK"
+2026-04-16 00:03:26,739 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:26,759 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:19,  3.65it/s]Loading weights:  18%|█▊        | 51/290 [00:00<00:01, 164.53it/s]Loading weights:  27%|██▋       | 77/290 [00:00<00:01, 190.63it/s]Loading weights:  37%|███▋      | 107/290 [00:00<00:00, 218.91it/s]Loading weights:  46%|████▌     | 134/290 [00:00<00:00, 226.32it/s]Loading weights:  57%|█████▋    | 164/290 [00:00<00:00, 245.91it/s]Loading weights:  67%|██████▋   | 195/290 [00:00<00:00, 242.42it/s]Loading weights:  76%|███████▌  | 221/290 [00:01<00:00, 244.70it/s]Loading weights:  86%|████████▌ | 249/290 [00:01<00:00, 249.65it/s]Loading weights:  95%|█████████▍| 275/290 [00:01<00:00, 244.13it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 221.31it/s]
+2026-04-16 00:03:28,328 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:28,330 INFO Found 36 transformer blocks
+2026-04-16 00:03:28,330 INFO Generating base/yo (0 prompts)...
+2026-04-16 00:03:28,330 INFO   base/yo: refusal_rate=0.00%  (0/0)
+2026-04-16 00:03:28,448 INFO Skipping global/en — already generated.
+2026-04-16 00:03:28,448 INFO Skipping global/fr — already generated.
+2026-04-16 00:03:28,448 INFO Skipping global/ar — already generated.
+2026-04-16 00:03:28,451 INFO Loading CohereLabs/tiny-aya-global on cuda (torch.float16)
+2026-04-16 00:03:28,470 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-global/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:28,492 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-global/resolve/main/tokenizer_config.json "HTTP/1.1 401 Unauthorized"
+2026-04-16 00:03:28,518 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-global/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-16 00:03:28,557 INFO HTTP Request: GET https://huggingface.co/api/models/CohereLabs/tiny-aya-global/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-16 00:03:28,576 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-global/resolve/main/vocab.json "HTTP/1.1 401 Unauthorized"
+Traceback (most recent call last):
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 761, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://huggingface.co/CohereLabs/tiny-aya-global/resolve/main/vocab.json'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/utils/hub.py", line 422, in cached_files
+    hf_hub_download(
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 986, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1137, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1766, in _raise_on_head_call_error
+    raise head_call_error
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1653, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1576, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects_with_backoff(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 692, in _httpx_follow_relative_redirects_with_backoff
+    hf_raise_for_status(response)
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 796, in hf_raise_for_status
+    raise gated_err from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-69e05f90-65f327be446c76ba09b1da6b;8185ded6-412b-40fd-aca1-7c6b4f0fe926)
+
+Cannot access gated repo for url https://huggingface.co/CohereLabs/tiny-aya-global/resolve/main/vocab.json.
+Access to model CohereLabs/tiny-aya-global is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/07_behavioral_baseline.py", line 238, in <module>
+    main()
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/07_behavioral_baseline.py", line 224, in main
+    run_baseline(model_key, lang, prompts_dir, out_dir, token,
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/07_behavioral_baseline.py", line 98, in run_baseline
+    wrapper = ModelWrapper(cfg.hf_id, layers=[], token=token)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/src/model_wrapper.py", line 53, in __init__
+    self.tokenizer = AutoTokenizer.from_pretrained(model_id, token=token)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py", line 782, in from_pretrained
+    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1690, in from_pretrained
+    resolved_vocab_files[file_id] = cached_file(
+                                    ^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/utils/hub.py", line 278, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/.venv/lib/python3.12/site-packages/transformers/utils/hub.py", line 488, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/CohereLabs/tiny-aya-global.
+401 Client Error. (Request ID: Root=1-69e05f90-65f327be446c76ba09b1da6b;8185ded6-412b-40fd-aca1-7c6b4f0fe926)
+
+Cannot access gated repo for url https://huggingface.co/CohereLabs/tiny-aya-global/resolve/main/vocab.json.
+Access to model CohereLabs/tiny-aya-global is restricted. You must have access to it and be authenticated to access it. Please log in.

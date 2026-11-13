@@ -28,6 +28,7 @@ sys.path.insert(0, str(ROOT))
 
 from config.languages import LANG_CODES
 from config.models import MODEL_ORDER, MODELS
+from src.run_metadata import model_meta, save_run_info
 from src.probe import (
     ProbeResult,
     cosine_alignment,
@@ -74,8 +75,10 @@ def run_probes_for(
     probe_dir: Path,
 ) -> list[dict]:
     """Train both probe types for every layer. Return list of result rows."""
+    from datetime import datetime, timezone
     cfg  = MODELS[model_key]
     rows = []
+    run_at = datetime.now(timezone.utc).isoformat()
 
     for layer in cfg.probe_layers:
         acts, labels = load_acts_labels(acts_dir, model_key, lang, layer)
@@ -92,13 +95,16 @@ def run_probes_for(
             fpath   = save_probe(result, out_dir)
 
             row = {
-                "model":       model_key,
-                "lang":        lang,
-                "layer":       layer,
-                "probe_type":  ptype,
-                "accuracy":    round(result.accuracy, 4),
-                "auc":         round(result.auc, 4),
-                "silhouette":  round(sil, 4),
+                "model":        model_key,
+                "model_hf_id":  cfg.hf_id,
+                "model_name":   cfg.name,
+                "lang":         lang,
+                "layer":        layer,
+                "probe_type":   ptype,
+                "accuracy":     round(result.accuracy, 4),
+                "auc":          round(result.auc, 4),
+                "silhouette":   round(sil, 4),
+                "run_at":       run_at,
             }
             if result.fold_accs:
                 row["acc_std"] = round(float(np.std(result.fold_accs)), 4)
@@ -106,6 +112,15 @@ def run_probes_for(
             logger.info(f"  {model_key}/{lang}/layer{layer}/{ptype}: "
                         f"acc={row['accuracy']:.3f}  auc={row['auc']:.3f}  "
                         f"sil={row['silhouette']:.3f}")
+
+    if rows:
+        save_run_info(probe_dir / model_key / lang, {
+            **model_meta(model_key),
+            "script":  "06_train_probes",
+            "lang":    lang,
+            "layers":  cfg.probe_layers,
+            "n_probes": len(rows),
+        })
     return rows
 
 
@@ -206,14 +221,21 @@ def main():
         rows = run_probes_for(model_key, lang, acts_dir, probe_dir)
         all_rows.extend(rows)
 
-    # Save summary CSV
+    # Save summary CSV — merge with existing to avoid losing prior runs
     if all_rows:
         summary_path = ROOT / "results" / "probes" / "summary.csv"
         summary_path.parent.mkdir(parents=True, exist_ok=True)
-        df = pd.DataFrame(all_rows)
-        df.to_csv(summary_path, index=False)
+        new_df = pd.DataFrame(all_rows)
+        if summary_path.exists():
+            existing = pd.read_csv(summary_path)
+            # Drop rows for models we just re-ran, then append fresh results
+            existing = existing[~existing["model"].isin(new_df["model"].unique())]
+            combined = pd.concat([existing, new_df], ignore_index=True)
+        else:
+            combined = new_df
+        combined.to_csv(summary_path, index=False)
         logger.info(f"\nSummary saved → {summary_path}")
-        print(df.to_string(index=False))
+        print(new_df.to_string(index=False))
 
     # Cross-stage alignment (harmful direction across base → sft → dpo)
     if args.cross_stage:

@@ -1,0 +1,192 @@
+[
+  {
+    "run_at": "2026-04-08T13:21:46.366624+00:00",
+    "git_commit": "e7bbdaa",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-18T03:00:20.357092+00:00",
+    "git_commit": "79e8230",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T18:33:38.038893+00:00",
+    "git_commit": "4137619",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T19:34:05.139230+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T20:33:35.757299+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T21:28:15.552555+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T01:59:52.353724+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T04:57:10.524252+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T06:13:59.593804+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-22T00:48:07.784402+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_sft_n20000",
+    "model_name": "TinyAya-Base-SFT-n20000",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "yo",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

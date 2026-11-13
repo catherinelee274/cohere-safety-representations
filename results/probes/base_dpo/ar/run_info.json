@@ -1,0 +1,230 @@
+[
+  {
+    "run_at": "2026-04-08T13:09:02.390348+00:00",
+    "git_commit": "e7bbdaa",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-08T13:12:56.676222+00:00",
+    "git_commit": "e7bbdaa",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-08T13:43:02.630367+00:00",
+    "git_commit": "e7bbdaa",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-18T02:37:12.242167+00:00",
+    "git_commit": "79e8230",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T18:11:21.601065+00:00",
+    "git_commit": "4137619",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T19:11:20.139087+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T20:11:50.760191+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T21:07:47.189225+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T01:38:26.736877+00:00",
+    "git_commit": "050c354",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T04:36:51.150525+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T05:55:37.369114+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-22T00:27:25.349026+00:00",
+    "git_commit": "caf949d",
+    "model_key": "base_dpo",
+    "model_name": "TinyAya-Base-DPO",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

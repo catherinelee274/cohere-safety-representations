@@ -1,0 +1,21 @@
+[
+  {
+    "run_at": "2026-06-24T08:11:30.655488+00:00",
+    "git_commit": "26dd88c",
+    "model_key": "base_sft_ml",
+    "model_name": "TinyAya-Base-SFT-ML",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_ml/base_sft",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

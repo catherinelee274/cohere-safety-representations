@@ -1,0 +1,21 @@
+[
+  {
+    "run_at": "2026-07-13T16:59:24.829168+00:00",
+    "git_commit": "26dd88c",
+    "model_key": "base_dpo_en3000_s43",
+    "model_name": "TinyAya-Base-DPO-EN3000-s43",
+    "model_hf_id": "/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed43/en3000/base_dpo",
+    "model_stage": "finetuned",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

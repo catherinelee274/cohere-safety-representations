@@ -47,9 +47,13 @@ def judge_file(
     openai_key: str | None,
     cohere_key: str | None,
     rate_limit_sleep: float = 0.5,
+    limit: int | None = None,
+    workers: int = 1,
+    out_tag: str = "",
 ) -> dict:
     stem     = in_path.stem.replace("responses_", "")
-    out_path = out_dir / f"judged_{stem}.jsonl"
+    suffix   = (f"_{out_tag}" if out_tag else "") + (f"_s{limit}" if limit else "")
+    out_path = out_dir / f"judged_{stem}{suffix}.jsonl"
 
     if out_path.exists():
         logger.info(f"Skipping {in_path.name} — already judged.")
@@ -60,22 +64,32 @@ def judge_file(
     with open(in_path) as f:
         records = [json.loads(l) for l in f if l.strip()]
 
-    judged = []
-    n_unsafe = 0
+    # Deterministic sample so refusal/unsafe rates stay comparable across models.
+    if limit and len(records) > limit:
+        import numpy as np
+        idx = np.random.default_rng(42).choice(len(records), limit, replace=False)
+        records = [records[i] for i in sorted(idx)]
 
-    for rec in tqdm(records, desc=f"Judging {stem}"):
+    def _judge_one(rec):
         judgment = judge_ensemble(
             prompt=rec["text"],
             response=rec["response"],
             openai_key=openai_key,
             cohere_key=cohere_key,
         )
-        row = {**rec, **judgment}
-        judged.append(row)
-        if judgment["ensemble_verdict"] == "UNSAFE":
-            n_unsafe += 1
+        return {**rec, **judgment}
 
-        import time; time.sleep(rate_limit_sleep)
+    judged = []
+    if workers > 1:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            judged = list(tqdm(ex.map(_judge_one, records),
+                               total=len(records), desc=f"Judging {stem}"))
+    else:
+        for rec in tqdm(records, desc=f"Judging {stem}"):
+            judged.append(_judge_one(rec))
+            import time; time.sleep(rate_limit_sleep)
+    n_unsafe = sum(r.get("ensemble_verdict") == "UNSAFE" for r in judged)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w") as f:
@@ -113,6 +127,19 @@ def _compute_stats(records: list[dict], stem: str) -> dict:
     agreed     = sum(agree_vals) if agree_vals else None
     avg_score  = sum(r.get("ensemble_score", 0) or 0 for r in records) / n
 
+    # Inter-judge Cohen's κ (Command-R vs Claude), gold-free — needs both verdicts.
+    kappa = None
+    cr = [r.get("command_r_verdict") for r in records]
+    cl = [r.get("claude_verdict")    for r in records]
+    pairs = [(a, b) for a, b in zip(cr, cl)
+             if a in ("SAFE", "UNSAFE") and b in ("SAFE", "UNSAFE")]
+    if len(pairs) >= 2 and len({a for a, _ in pairs} | {b for _, b in pairs}) > 1:
+        try:
+            from sklearn.metrics import cohen_kappa_score
+            kappa = round(cohen_kappa_score([a for a, _ in pairs], [b for _, b in pairs]), 4)
+        except Exception:
+            kappa = None
+
     from config.models import MODELS
     hf_id = MODELS[model].hf_id if model in MODELS else None
     model_name = MODELS[model].name if model in MODELS else None
@@ -125,7 +152,8 @@ def _compute_stats(records: list[dict], stem: str) -> dict:
         "unsafe_rate":     round(unsafe / n, 4),
         "avg_harm_score":  round(avg_score, 3),
         "judge_agreement": round(agreed / len(agree_vals), 4) if agree_vals else None,
-        "judges":          "gpt-4o+command-r",
+        "interjudge_kappa": kappa,
+        "n_judges":        records[0].get("n_judges") if records else None,
         "run_at":          datetime.now(timezone.utc).isoformat(),
     }
 
@@ -144,7 +172,18 @@ def main():
     parser.add_argument("--openai-key",     default=None)
     parser.add_argument("--cohere-key",     default=None)
     parser.add_argument("--sleep",    type=float, default=0.5,
-                        help="Sleep between API calls (seconds)")
+                        help="Sleep between API calls (seconds; ignored when --workers > 1)")
+    parser.add_argument("--limit",    type=int, default=None,
+                        help="Judge at most N responses per file (deterministic sample)")
+    parser.add_argument("--workers",  type=int, default=1,
+                        help="Concurrent judge calls per file")
+    parser.add_argument("--models",   nargs="+", default=None,
+                        help="Only judge these model keys")
+    parser.add_argument("--langs",    nargs="+", default=None,
+                        help="Only judge these languages")
+    parser.add_argument("--judge-tag", default="",
+                        help="Suffix for output files + summary (e.g. 'ens' -> judged_*_ens.jsonl, "
+                             "judge_summary_ens.csv). Avoids clobbering a single-judge run.")
     args = parser.parse_args()
 
     openai_key = args.openai_key or os.environ.get("OPENAI_API_KEY")
@@ -171,7 +210,7 @@ def main():
         return
 
     # ── Collect files to judge ──────────────────────────────────────────────
-    if args.all:
+    if args.all or args.models or args.langs:
         files = sorted(behav_dir.glob("responses_*.jsonl"))
     elif args.input:
         files = [Path(args.input)]
@@ -181,15 +220,42 @@ def main():
             print("No files found. Run scripts/07_behavioral_baseline.py first.")
             sys.exit(1)
 
+    # Optional model / language filters (parse stem = responses_{model}_{lang})
+    def _keep(fpath: Path) -> bool:
+        stem = fpath.stem.replace("responses_", "")
+        parts = stem.rsplit("_", 1)
+        if len(parts) != 2:
+            return False
+        model, lang = parts
+        if args.models and model not in args.models:
+            return False
+        if args.langs and lang not in args.langs:
+            return False
+        return True
+
+    if args.models or args.langs:
+        files = [f for f in files if _keep(f)]
+    logger.info(f"Judging {len(files)} file(s)"
+                + (f", sampling {args.limit}/file" if args.limit else "")
+                + (f", {args.workers} workers" if args.workers > 1 else ""))
+
     all_stats = []
     for fpath in files:
-        stats = judge_file(fpath, behav_dir, openai_key, cohere_key, args.sleep)
+        stats = judge_file(fpath, behav_dir, openai_key, cohere_key,
+                           args.sleep, limit=args.limit, workers=args.workers,
+                           out_tag=args.judge_tag)
         all_stats.append(stats)
 
-    # ── Summary ─────────────────────────────────────────────────────────────
+    # ── Summary (merge with existing, keyed by model+lang) ──────────────────
     if all_stats:
         df = pd.DataFrame(all_stats)
-        summary_path = behav_dir / "judge_summary.csv"
+        summary_name = f"judge_summary_{args.judge_tag}.csv" if args.judge_tag else "judge_summary.csv"
+        summary_path = behav_dir / summary_name
+        if summary_path.exists():
+            prev = pd.read_csv(summary_path)
+            keys = set(zip(df.get("model", []), df.get("lang", [])))
+            prev = prev[~prev.apply(lambda r: (r.get("model"), r.get("lang")) in keys, axis=1)]
+            df = pd.concat([prev, df], ignore_index=True)
         df.to_csv(summary_path, index=False)
         print(f"\nJudge summary:\n{df.to_string(index=False)}")
         print(f"\nSaved → {summary_path}")

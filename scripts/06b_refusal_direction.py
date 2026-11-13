@@ -56,6 +56,12 @@ from config.languages import LANG_CODES
 from config.models import MODEL_ORDER, MODELS, get_checkpoint_configs
 from src.probe import ProbeResult, cosine_alignment, diffmean_probe
 
+# Activation roots, searched in order (eval split preferred — IDs match behavioral responses)
+_ACTS_FALLBACK = [
+    ROOT / "data" / "processed" / "activations_eval",
+    ROOT / "data" / "processed" / "activations",
+]
+
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -66,27 +72,70 @@ STAGE_ORDER = ["base", "base_sft", "base_dpo"]
 
 # ── data loading ──────────────────────────────────────────────────────────────
 
+def _resolve_acts_dir(primary_acts_dir: Path, model_key: str, lang: str) -> Path | None:
+    """Return the activation directory with the best ID overlap against behavioral responses."""
+    candidates = [primary_acts_dir / model_key / lang] + [
+        r / model_key / lang for r in _ACTS_FALLBACK
+        if (r / model_key / lang) != (primary_acts_dir / model_key / lang)
+    ]
+    for d in candidates:
+        if d.exists() and (d / "labels.npy").exists():
+            return d
+    return None
+
+
 def load_refusal_labels(
     acts_dir: Path,
     behavioral_dir: Path,
     model_key: str,
     lang: str,
-) -> tuple[np.ndarray, np.ndarray] | tuple[None, None]:
+) -> tuple[np.ndarray, np.ndarray, Path] | tuple[None, None, None]:
     """
-    Returns (harmful_indices, refusal_labels) where:
-      harmful_indices  — row indices into layer_{n}.npy that correspond to harmful prompts
-      refusal_labels   — 1 if model refused, 0 if complied, aligned to harmful_indices
-    Returns (None, None) if data is missing.
+    Returns (harmful_indices, refusal_labels, resolved_acts_dir) where:
+      harmful_indices    — row indices into layer_{n}.npy for harmful prompts
+      refusal_labels     — 1 if model refused, 0 if complied, aligned to harmful_indices
+      resolved_acts_dir  — the activation dir whose IDs matched the behavioral responses
+    Returns (None, None, None) if data is missing.
     """
-    act_base = acts_dir / model_key / lang
+    resp_path = behavioral_dir / f"responses_{model_key}_{lang}.jsonl"
+    if not resp_path.exists():
+        logger.warning(f"Missing: {resp_path}")
+        return None, None, None
+
+    # Find the activation directory whose prompt IDs best match the behavioral responses
+    with open(resp_path) as f:
+        beh_records = [json.loads(l) for l in f if l.strip()]
+    beh_ids = {r["id"] for r in beh_records}
+
+    best_dir = None
+    best_overlap = 0
+    candidates = [acts_dir / model_key / lang] + [
+        r / model_key / lang for r in _ACTS_FALLBACK
+    ]
+    seen = set()
+    for d in candidates:
+        key = str(d)
+        if key in seen or not d.exists() or not (d / "labels.npy").exists():
+            seen.add(key)
+            continue
+        seen.add(key)
+        try:
+            with open(d / "prompts.jsonl") as f:
+                ids = {json.loads(l)["id"] for l in f if l.strip()}
+            overlap = len(ids & beh_ids)
+            if overlap > best_overlap:
+                best_overlap = overlap
+                best_dir = d
+        except Exception:
+            continue
+
+    if best_dir is None or best_overlap == 0:
+        logger.warning(f"{model_key}/{lang}: no activation dir with matching IDs found")
+        return None, None, None
+
+    act_base = best_dir
     labels_path  = act_base / "labels.npy"
     prompts_path = act_base / "prompts.jsonl"
-    resp_path    = behavioral_dir / f"responses_{model_key}_{lang}.jsonl"
-
-    for p in (labels_path, prompts_path, resp_path):
-        if not p.exists():
-            logger.warning(f"Missing: {p}")
-            return None, None
 
     labels = np.load(labels_path)
 
@@ -123,17 +172,31 @@ def load_refusal_labels(
     if n_refused < 5 or n_complied < 5:
         logger.warning(f"{model_key}/{lang}: too few refused ({n_refused}) or "
                        f"complied ({n_complied}) samples — skipping refusal probe")
-        return None, None
+        return None, None, None
 
-    logger.info(f"{model_key}/{lang}: {n_refused} refused / {n_complied} complied")
-    return harmful_indices, refusal_labels
+    logger.info(f"{model_key}/{lang}: {n_refused} refused / {n_complied} complied "
+                f"[acts: {best_dir}]")
+    return harmful_indices, refusal_labels, best_dir
 
 
-def load_acts(acts_dir: Path, model_key: str, lang: str, layer: int) -> np.ndarray | None:
-    p = acts_dir / model_key / lang / f"layer_{layer}.npy"
-    if not p.exists():
-        return None
-    return np.load(p)
+def load_acts(acts_dir: Path, model_key: str, lang: str, layer: int,
+              resolved_dir: Path | None = None) -> np.ndarray | None:
+    """Load layer activations, preferring resolved_dir if provided."""
+    dirs_to_try = []
+    if resolved_dir is not None:
+        dirs_to_try.append(resolved_dir)
+    dirs_to_try.append(acts_dir / model_key / lang)
+    dirs_to_try += [r / model_key / lang for r in _ACTS_FALLBACK]
+    seen = set()
+    for d in dirs_to_try:
+        key = str(d)
+        if key in seen:
+            continue
+        seen.add(key)
+        p = d / f"layer_{layer}.npy"
+        if p.exists():
+            return np.load(p)
+    return None
 
 
 # ── probe helpers ─────────────────────────────────────────────────────────────
@@ -162,7 +225,7 @@ def run_refusal_probes_for(
     behavioral_dir: Path,
     probe_dir: Path,
 ) -> list[dict]:
-    harmful_indices, refusal_labels = load_refusal_labels(
+    harmful_indices, refusal_labels, resolved_acts_dir = load_refusal_labels(
         acts_dir, behavioral_dir, model_key, lang
     )
     if harmful_indices is None:
@@ -172,7 +235,7 @@ def run_refusal_probes_for(
     rows = []
 
     for layer in cfg.probe_layers:
-        acts = load_acts(acts_dir, model_key, lang, layer)
+        acts = load_acts(acts_dir, model_key, lang, layer, resolved_dir=resolved_acts_dir)
         if acts is None:
             logger.warning(f"Missing activations: {model_key}/{lang}/layer_{layer}")
             continue

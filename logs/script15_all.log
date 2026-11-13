@@ -1,0 +1,133 @@
+2026-04-22 01:19:31,065 INFO base/en: refused_harmful=85, accepted_harmful=473, accepted_harmless=200
+2026-04-22 01:19:31,536 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_en.png
+2026-04-22 01:19:31,764 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_en.png
+2026-04-22 01:19:31,768 INFO base/fr: refused_harmful=27, accepted_harmful=531, accepted_harmless=200
+2026-04-22 01:19:32,114 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_fr.png
+2026-04-22 01:19:32,270 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_fr.png
+2026-04-22 01:19:32,276 INFO base/ar: refused_harmful=10, accepted_harmful=548, accepted_harmless=365
+2026-04-22 01:19:32,787 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_ar.png
+2026-04-22 01:19:32,954 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_ar.png
+2026-04-22 01:19:32,959 INFO base/hi: refused_harmful=0, accepted_harmful=597, accepted_harmless=200
+2026-04-22 01:19:32,959 WARNING Not enough groups for base/hi — need refused_harmful + accepted_harmless
+2026-04-22 01:19:32,960 INFO base/sw: refused_harmful=0, accepted_harmful=0, accepted_harmless=200
+2026-04-22 01:19:32,960 WARNING Not enough groups for base/sw — need refused_harmful + accepted_harmless
+2026-04-22 01:19:32,961 INFO base/yo: refused_harmful=0, accepted_harmful=0, accepted_harmless=200
+2026-04-22 01:19:32,961 WARNING Not enough groups for base/yo — need refused_harmful + accepted_harmless
+2026-04-22 01:19:32,961 WARNING No prompts for global/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:32,961 WARNING No prompts for global/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:32,962 WARNING No prompts for global/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:32,962 WARNING No prompts for global/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:32,962 WARNING No prompts for global/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:32,962 WARNING No prompts for global/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:32,965 INFO base_sft/en: refused_harmful=105, accepted_harmful=453, accepted_harmless=200
+2026-04-22 01:19:33,355 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_sft_en.png
+2026-04-22 01:19:33,555 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_sft_en.png
+2026-04-22 01:19:33,559 INFO base_sft/fr: refused_harmful=33, accepted_harmful=525, accepted_harmless=200
+2026-04-22 01:19:33,938 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_sft_fr.png
+2026-04-22 01:19:34,122 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_sft_fr.png
+2026-04-22 01:19:34,127 INFO base_sft/ar: refused_harmful=9, accepted_harmful=549, accepted_harmless=365
+2026-04-22 01:19:34,689 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_sft_ar.png
+2026-04-22 01:19:34,921 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_sft_ar.png
+2026-04-22 01:19:34,927 INFO base_sft/hi: refused_harmful=17, accepted_harmful=580, accepted_harmless=200
+2026-04-22 01:19:35,458 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_sft_hi.png
+2026-04-22 01:19:35,639 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_sft_hi.png
+2026-04-22 01:19:35,640 INFO base_sft/sw: refused_harmful=0, accepted_harmful=0, accepted_harmless=200
+2026-04-22 01:19:35,640 WARNING Not enough groups for base_sft/sw — need refused_harmful + accepted_harmless
+2026-04-22 01:19:35,641 INFO base_sft/yo: refused_harmful=0, accepted_harmful=0, accepted_harmless=200
+2026-04-22 01:19:35,641 WARNING Not enough groups for base_sft/yo — need refused_harmful + accepted_harmless
+2026-04-22 01:19:35,642 WARNING No prompts for base_sft_20k/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:35,642 WARNING No prompts for base_sft_20k/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:35,642 WARNING No prompts for base_sft_20k/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:35,642 WARNING No prompts for base_sft_20k/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:35,642 WARNING No prompts for base_sft_20k/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:35,642 WARNING No prompts for base_sft_20k/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:35,645 INFO base_dpo/en: refused_harmful=137, accepted_harmful=421, accepted_harmless=200
+2026-04-22 01:19:36,290 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_dpo_en.png
+2026-04-22 01:19:36,473 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_dpo_en.png
+2026-04-22 01:19:36,476 INFO base_dpo/fr: refused_harmful=129, accepted_harmful=429, accepted_harmless=200
+2026-04-22 01:19:36,840 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_dpo_fr.png
+2026-04-22 01:19:37,023 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_dpo_fr.png
+2026-04-22 01:19:37,032 INFO base_dpo/ar: refused_harmful=9, accepted_harmful=549, accepted_harmless=365
+2026-04-22 01:19:37,725 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig3_belief_scatter_base_dpo_ar.png
+2026-04-22 01:19:37,925 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig2_base_dpo_ar.png
+2026-04-22 01:19:37,931 INFO base_dpo/hi: refused_harmful=0, accepted_harmful=597, accepted_harmless=200
+2026-04-22 01:19:37,931 WARNING Not enough groups for base_dpo/hi — need refused_harmful + accepted_harmless
+2026-04-22 01:19:37,932 INFO base_dpo/sw: refused_harmful=0, accepted_harmful=0, accepted_harmless=200
+2026-04-22 01:19:37,932 WARNING Not enough groups for base_dpo/sw — need refused_harmful + accepted_harmless
+2026-04-22 01:19:37,933 INFO base_dpo/yo: refused_harmful=0, accepted_harmful=0, accepted_harmless=200
+2026-04-22 01:19:37,933 WARNING Not enough groups for base_dpo/yo — need refused_harmful + accepted_harmless
+2026-04-22 01:19:37,933 WARNING No prompts for base_sft_n500/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,933 WARNING No prompts for base_sft_n500/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n500/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n500/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n500/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n500/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n2000/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n2000/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n2000/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n2000/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n2000/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n2000/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n5000/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n5000/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n5000/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n5000/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n5000/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n5000/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n10000/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n10000/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,934 WARNING No prompts for base_sft_n10000/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n10000/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n10000/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n10000/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n20000/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n20000/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n20000/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n20000/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n20000/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_sft_n20000/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_rlhf/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_rlhf/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_rlhf/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_rlhf/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_rlhf/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for base_rlhf/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for earth/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for earth/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for earth/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for earth/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for earth/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for earth/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,935 WARNING No prompts for fire/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for fire/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for fire/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for fire/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for fire/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for fire/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for water/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for water/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for water/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for water/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for water/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for water/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for gemma/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for gemma/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for gemma/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for gemma/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for gemma/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for gemma/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for ministral/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for ministral/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for ministral/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for ministral/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,936 WARNING No prompts for ministral/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for ministral/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for qwen/en in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for qwen/fr in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for qwen/ar in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for qwen/hi in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for qwen/sw in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,937 WARNING No prompts for qwen/yo in /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations_tinst
+2026-04-22 01:19:37,938 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/probes/harmfulness_refusal_clustering.csv
+
+Done.

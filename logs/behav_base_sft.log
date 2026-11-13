@@ -1,0 +1,345 @@
+2026-04-16 19:17:03,116 INFO Skipping base/en — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base/fr — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base/ar — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base/hi — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base/sw — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base/yo — already generated.
+2026-04-16 19:17:03,116 INFO Skipping global/en — already generated.
+2026-04-16 19:17:03,116 INFO Skipping global/fr — already generated.
+2026-04-16 19:17:03,116 INFO Skipping global/ar — already generated.
+2026-04-16 19:17:03,116 INFO Skipping global/hi — already generated.
+2026-04-16 19:17:03,116 INFO Skipping global/sw — already generated.
+2026-04-16 19:17:03,116 INFO Skipping global/yo — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft/en — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft/fr — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft/ar — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft/hi — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft/sw — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft/yo — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft_20k/en — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft_20k/fr — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft_20k/ar — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft_20k/hi — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft_20k/sw — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_sft_20k/yo — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_dpo/en — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_dpo/fr — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_dpo/ar — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_dpo/hi — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_dpo/sw — already generated.
+2026-04-16 19:17:03,116 INFO Skipping base_dpo/yo — already generated.
+2026-04-16 19:17:03,135 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500 on cuda (torch.float16)
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-16 19:17:04,286 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.88it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.71it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 19:17:07,539 INFO Found 36 transformer blocks
+2026-04-16 19:17:07,539 INFO Generating base_sft_n500/en (558 prompts)...
+2026-04-16 19:43:26,465 INFO   base_sft_n500/en: refusal_rate=17.92%  (100/558)
+2026-04-16 19:43:26,601 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500 on cuda (torch.float16)
+2026-04-16 19:43:27,338 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.18it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.94it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.77it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 19:43:29,256 INFO Found 36 transformer blocks
+2026-04-16 19:43:29,256 INFO Generating base_sft_n500/fr (558 prompts)...
+2026-04-16 20:09:55,387 INFO   base_sft_n500/fr: refusal_rate=6.27%  (35/558)
+2026-04-16 20:09:55,534 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500 on cuda (torch.float16)
+2026-04-16 20:09:56,254 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.92it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.76it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 20:09:57,998 INFO Found 36 transformer blocks
+2026-04-16 20:09:57,998 INFO Generating base_sft_n500/ar (558 prompts)...
+2026-04-16 20:36:19,519 INFO   base_sft_n500/ar: refusal_rate=1.79%  (10/558)
+2026-04-16 20:36:19,668 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500 on cuda (torch.float16)
+2026-04-16 20:36:20,332 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.23it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.08it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.89it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 20:36:21,992 INFO Found 36 transformer blocks
+2026-04-16 20:36:21,992 INFO Generating base_sft_n500/hi (597 prompts)...
+2026-04-16 21:04:28,025 INFO   base_sft_n500/hi: refusal_rate=1.17%  (7/597)
+2026-04-16 21:04:28,160 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500 on cuda (torch.float16)
+2026-04-16 21:04:28,802 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.41it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.35it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.13it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 21:04:30,391 INFO Found 36 transformer blocks
+2026-04-16 21:04:30,391 INFO Generating base_sft_n500/sw (0 prompts)...
+2026-04-16 21:04:30,391 INFO   base_sft_n500/sw: refusal_rate=0.00%  (0/0)
+2026-04-16 21:04:30,520 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n500 on cuda (torch.float16)
+2026-04-16 21:04:31,135 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.01it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 21:04:32,655 INFO Found 36 transformer blocks
+2026-04-16 21:04:32,655 INFO Generating base_sft_n500/yo (0 prompts)...
+2026-04-16 21:04:32,655 INFO   base_sft_n500/yo: refusal_rate=0.00%  (0/0)
+2026-04-16 21:04:32,797 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000 on cuda (torch.float16)
+2026-04-16 21:04:33,427 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.26it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.07it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.89it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 21:04:35,209 INFO Found 36 transformer blocks
+2026-04-16 21:04:35,209 INFO Generating base_sft_n2000/en (558 prompts)...
+2026-04-16 21:31:06,355 INFO   base_sft_n2000/en: refusal_rate=15.05%  (84/558)
+2026-04-16 21:31:06,503 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000 on cuda (torch.float16)
+2026-04-16 21:31:07,188 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.14it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.70it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 21:31:08,972 INFO Found 36 transformer blocks
+2026-04-16 21:31:08,972 INFO Generating base_sft_n2000/fr (558 prompts)...
+2026-04-16 21:57:50,953 INFO   base_sft_n2000/fr: refusal_rate=5.56%  (31/558)
+2026-04-16 21:57:51,111 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000 on cuda (torch.float16)
+2026-04-16 21:57:51,789 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 21:57:53,483 INFO Found 36 transformer blocks
+2026-04-16 21:57:53,483 INFO Generating base_sft_n2000/ar (558 prompts)...
+2026-04-16 22:24:50,934 INFO   base_sft_n2000/ar: refusal_rate=1.79%  (10/558)
+2026-04-16 22:24:51,087 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000 on cuda (torch.float16)
+2026-04-16 22:24:51,791 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.93it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.76it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 22:24:53,466 INFO Found 36 transformer blocks
+2026-04-16 22:24:53,466 INFO Generating base_sft_n2000/hi (597 prompts)...
+2026-04-16 22:54:46,698 INFO   base_sft_n2000/hi: refusal_rate=1.51%  (9/597)
+2026-04-16 22:54:46,858 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000 on cuda (torch.float16)
+2026-04-16 22:54:47,640 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.70it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.55it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 22:54:49,757 INFO Found 36 transformer blocks
+2026-04-16 22:54:49,757 INFO Generating base_sft_n2000/sw (0 prompts)...
+2026-04-16 22:54:49,757 INFO   base_sft_n2000/sw: refusal_rate=0.00%  (0/0)
+2026-04-16 22:54:49,906 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n2000 on cuda (torch.float16)
+2026-04-16 22:54:50,613 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.95it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.77it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 22:54:52,431 INFO Found 36 transformer blocks
+2026-04-16 22:54:52,431 INFO Generating base_sft_n2000/yo (0 prompts)...
+2026-04-16 22:54:52,431 INFO   base_sft_n2000/yo: refusal_rate=0.00%  (0/0)
+2026-04-16 22:54:52,581 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000 on cuda (torch.float16)
+2026-04-16 22:54:53,281 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.13it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.88it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.71it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 22:54:55,164 INFO Found 36 transformer blocks
+2026-04-16 22:54:55,164 INFO Generating base_sft_n5000/en (558 prompts)...
+2026-04-16 23:22:35,880 INFO   base_sft_n5000/en: refusal_rate=18.28%  (102/558)
+2026-04-16 23:22:36,026 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000 on cuda (torch.float16)
+2026-04-16 23:22:36,693 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.22it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.80it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 23:22:38,383 INFO Found 36 transformer blocks
+2026-04-16 23:22:38,383 INFO Generating base_sft_n5000/fr (558 prompts)...
+2026-04-16 23:49:44,222 INFO   base_sft_n5000/fr: refusal_rate=8.60%  (48/558)
+2026-04-16 23:49:44,376 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000 on cuda (torch.float16)
+2026-04-16 23:49:45,108 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.91it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.76it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-16 23:49:46,837 INFO Found 36 transformer blocks
+2026-04-16 23:49:46,837 INFO Generating base_sft_n5000/ar (558 prompts)...
+2026-04-17 00:16:54,571 INFO   base_sft_n5000/ar: refusal_rate=2.33%  (13/558)
+2026-04-17 00:16:54,730 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000 on cuda (torch.float16)
+2026-04-17 00:16:55,396 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.15it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.95it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.76it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 00:16:57,179 INFO Found 36 transformer blocks
+2026-04-17 00:16:57,180 INFO Generating base_sft_n5000/hi (597 prompts)...
+2026-04-17 00:46:39,091 INFO   base_sft_n5000/hi: refusal_rate=4.19%  (25/597)
+2026-04-17 00:46:39,254 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000 on cuda (torch.float16)
+2026-04-17 00:46:39,947 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.02it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.83it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 00:46:41,683 INFO Found 36 transformer blocks
+2026-04-17 00:46:41,683 INFO Generating base_sft_n5000/sw (0 prompts)...
+2026-04-17 00:46:41,683 INFO   base_sft_n5000/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 00:46:41,818 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n5000 on cuda (torch.float16)
+2026-04-17 00:46:42,489 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.13it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.77it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.63it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 00:46:44,525 INFO Found 36 transformer blocks
+2026-04-17 00:46:44,525 INFO Generating base_sft_n5000/yo (0 prompts)...
+2026-04-17 00:46:44,525 INFO   base_sft_n5000/yo: refusal_rate=0.00%  (0/0)
+2026-04-17 00:46:44,671 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000 on cuda (torch.float16)
+2026-04-17 00:46:45,367 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.01it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 00:46:47,234 INFO Found 36 transformer blocks
+2026-04-17 00:46:47,234 INFO Generating base_sft_n10000/en (558 prompts)...
+2026-04-17 01:14:15,570 INFO   base_sft_n10000/en: refusal_rate=16.13%  (90/558)
+2026-04-17 01:14:15,724 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000 on cuda (torch.float16)
+2026-04-17 01:14:16,426 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.70it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.55it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 01:14:18,409 INFO Found 36 transformer blocks
+2026-04-17 01:14:18,409 INFO Generating base_sft_n10000/fr (558 prompts)...
+2026-04-17 01:42:19,323 INFO   base_sft_n10000/fr: refusal_rate=8.24%  (46/558)
+2026-04-17 01:42:19,478 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000 on cuda (torch.float16)
+2026-04-17 01:42:20,209 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.89it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.73it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 01:42:22,046 INFO Found 36 transformer blocks
+2026-04-17 01:42:22,046 INFO Generating base_sft_n10000/ar (558 prompts)...
+2026-04-17 02:09:40,239 INFO   base_sft_n10000/ar: refusal_rate=2.51%  (14/558)
+2026-04-17 02:09:40,397 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000 on cuda (torch.float16)
+2026-04-17 02:09:41,094 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.19it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.94it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.77it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 02:09:42,840 INFO Found 36 transformer blocks
+2026-04-17 02:09:42,841 INFO Generating base_sft_n10000/hi (597 prompts)...
+2026-04-17 02:39:31,492 INFO   base_sft_n10000/hi: refusal_rate=2.68%  (16/597)
+2026-04-17 02:39:31,645 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000 on cuda (torch.float16)
+2026-04-17 02:39:32,328 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.70it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 02:39:34,174 INFO Found 36 transformer blocks
+2026-04-17 02:39:34,174 INFO Generating base_sft_n10000/sw (0 prompts)...
+2026-04-17 02:39:34,174 INFO   base_sft_n10000/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 02:39:34,310 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n10000 on cuda (torch.float16)
+2026-04-17 02:39:34,978 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.14it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.71it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 02:39:36,776 INFO Found 36 transformer blocks
+2026-04-17 02:39:36,776 INFO Generating base_sft_n10000/yo (0 prompts)...
+2026-04-17 02:39:36,776 INFO   base_sft_n10000/yo: refusal_rate=0.00%  (0/0)
+2026-04-17 02:39:36,921 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000 on cuda (torch.float16)
+2026-04-17 02:39:37,595 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.24it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.05it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 02:39:39,415 INFO Found 36 transformer blocks
+2026-04-17 02:39:39,415 INFO Generating base_sft_n20000/en (558 prompts)...
+2026-04-17 03:05:35,651 INFO   base_sft_n20000/en: refusal_rate=18.10%  (101/558)
+2026-04-17 03:05:35,791 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000 on cuda (torch.float16)
+2026-04-17 03:05:36,400 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.79it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 03:05:38,127 INFO Found 36 transformer blocks
+2026-04-17 03:05:38,127 INFO Generating base_sft_n20000/fr (558 prompts)...
+2026-04-17 03:30:43,977 INFO   base_sft_n20000/fr: refusal_rate=5.91%  (33/558)
+2026-04-17 03:30:44,117 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000 on cuda (torch.float16)
+2026-04-17 03:30:44,737 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 03:30:46,702 INFO Found 36 transformer blocks
+2026-04-17 03:30:46,703 INFO Generating base_sft_n20000/ar (558 prompts)...
+2026-04-17 03:55:45,348 INFO   base_sft_n20000/ar: refusal_rate=1.43%  (8/558)
+2026-04-17 03:55:45,490 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000 on cuda (torch.float16)
+2026-04-17 03:55:46,106 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.99it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 03:55:48,045 INFO Found 36 transformer blocks
+2026-04-17 03:55:48,045 INFO Generating base_sft_n20000/hi (597 prompts)...
+2026-04-17 04:23:08,722 INFO   base_sft_n20000/hi: refusal_rate=2.35%  (14/597)
+2026-04-17 04:23:08,857 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000 on cuda (torch.float16)
+2026-04-17 04:23:09,466 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.23it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.83it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 04:23:11,114 INFO Found 36 transformer blocks
+2026-04-17 04:23:11,114 INFO Generating base_sft_n20000/sw (0 prompts)...
+2026-04-17 04:23:11,114 INFO   base_sft_n20000/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 04:23:11,241 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_sweep/base_sft_n20000 on cuda (torch.float16)
+2026-04-17 04:23:11,831 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.97it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.80it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 04:23:13,841 INFO Found 36 transformer blocks
+2026-04-17 04:23:13,841 INFO Generating base_sft_n20000/yo (0 prompts)...
+2026-04-17 04:23:13,841 INFO   base_sft_n20000/yo: refusal_rate=0.00%  (0/0)
+2026-04-17 04:23:13,973 INFO Loading google/gemma-3-4b-it on cuda (torch.float16)
+Traceback (most recent call last):
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 402, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/google/gemma-3-4b-it/resolve/main/tokenizer_config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1007, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1114, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1655, in _raise_on_head_call_error
+    raise head_call_error
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1543, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1460, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 307, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 419, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-69e1edf2-527b673a5522b5fa13e0053d;0330cfa4-4d3b-4d5c-bbf7-5c1944469780)
+
+Cannot access gated repo for url https://huggingface.co/google/gemma-3-4b-it/resolve/main/tokenizer_config.json.
+Access to model google/gemma-3-4b-it is restricted. You must have access to it and be authenticated to access it. Please log in.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/07_behavioral_baseline.py", line 238, in <module>
+    main()
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/07_behavioral_baseline.py", line 224, in main
+    run_baseline(model_key, lang, prompts_dir, out_dir, token,
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/07_behavioral_baseline.py", line 98, in run_baseline
+    wrapper = ModelWrapper(cfg.hf_id, layers=[], token=token)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/src/model_wrapper.py", line 53, in __init__
+    self.tokenizer = AutoTokenizer.from_pretrained(model_id, token=token)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py", line 1159, in from_pretrained
+    return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 1993, in from_pretrained
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/catherine/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py", line 543, in cached_files
+    raise OSError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/google/gemma-3-4b-it.
+401 Client Error. (Request ID: Root=1-69e1edf2-527b673a5522b5fa13e0053d;0330cfa4-4d3b-4d5c-bbf7-5c1944469780)
+
+Cannot access gated repo for url https://huggingface.co/google/gemma-3-4b-it/resolve/main/tokenizer_config.json.
+Access to model google/gemma-3-4b-it is restricted. You must have access to it and be authenticated to access it. Please log in.

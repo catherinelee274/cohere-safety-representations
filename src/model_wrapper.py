@@ -76,6 +76,11 @@ class ModelWrapper:
             return m.transformer.h         # GPT-2
         if hasattr(m, "model") and hasattr(m.model, "blocks"):
             return m.model.blocks
+        # Gemma3 / models that expose layers via get_decoder()
+        if hasattr(m, "model") and hasattr(m.model, "get_decoder"):
+            decoder = m.model.get_decoder()
+            if hasattr(decoder, "layers"):
+                return decoder.layers
         raise RuntimeError(
             "Cannot locate transformer blocks. "
             "Add support for this model architecture in ModelWrapper._find_blocks."
@@ -87,24 +92,33 @@ class ModelWrapper:
         self,
         prompts: list[str],
         batch_size: int = 8,
-        aggregation: str = "last",   # "last" | "mean" | "first"
+        aggregation: str = "last",   # "last" | "mean" | "first" | "t_inst" | "post_inst"
     ) -> dict[int, np.ndarray]:
         """
         Return residual-stream activations for each target layer.
 
         Args:
-            prompts:     list of N text strings
+            prompts:     list of N plain-text strings (chat template applied internally
+                         for t_inst / post_inst modes)
             batch_size:  number of prompts per forward pass
             aggregation: how to collapse the token dimension
-                         "last"  → last non-padding token (recommended)
-                         "mean"  → mean over non-padding tokens
-                         "first" → [BOS] token
+                         "last"      → last non-padding token
+                         "mean"      → mean over non-padding tokens
+                         "first"     → [BOS] token
+                         "t_inst"    → last token of the user instruction turn
+                                       (chat template applied with add_generation_prompt=False)
+                         "post_inst" → first token of the assistant turn
+                                       (chat template applied with add_generation_prompt=True,
+                                       extracts the last token of that formatted input)
 
         Returns:
             {layer_idx: np.ndarray of shape (N, hidden_size)}
         """
-        all_acts: dict[int, list[np.ndarray]] = {l: [] for l in self.layers}
+        # For chat-aware modes, pre-compute per-example extract positions
+        if aggregation in ("t_inst", "post_inst"):
+            return self._get_activations_chat(prompts, batch_size, aggregation)
 
+        all_acts: dict[int, list[np.ndarray]] = {l: [] for l in self.layers}
         for i in range(0, len(prompts), batch_size):
             batch = prompts[i : i + batch_size]
             batch_acts = self._forward_batch(batch, aggregation)
@@ -113,7 +127,180 @@ class ModelWrapper:
 
         return {l: np.concatenate(arrs, axis=0) for l, arrs in all_acts.items()}
 
+    def get_first_gen_activations(
+        self,
+        prompts: list[str],
+        batch_size: int = 4,
+    ) -> dict[int, np.ndarray]:
+        """
+        Extract activations at the first generated token for each prompt.
+
+        Runs generation with max_new_tokens=1 and captures hidden states at that
+        token position via output_hidden_states. Returns shape (N, hidden_size)
+        per layer, same as get_activations.
+        """
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+
+        formatted = self._apply_chat_template(prompts, add_generation_prompt=True)
+        all_acts: dict[int, list[np.ndarray]] = {l: [] for l in self.layers}
+
+        for i in range(0, len(formatted), batch_size):
+            batch = formatted[i : i + batch_size]
+            enc = self.tokenizer(
+                batch,
+                return_tensors="pt",
+                padding=True,
+                truncation=True,
+                max_length=512,
+                padding_side="left",   # left-pad for generation
+            ).to(self.device)
+
+            with torch.no_grad():
+                out = self.model.generate(
+                    **enc,
+                    max_new_tokens=1,
+                    do_sample=False,
+                    output_hidden_states=True,
+                    return_dict_in_generate=True,
+                    pad_token_id=self.tokenizer.pad_token_id,
+                )
+
+            # out.hidden_states is a tuple of length max_new_tokens;
+            # each element is a tuple of (n_layers+1) tensors of shape (batch, 1, hidden)
+            first_step_hidden = out.hidden_states[0]   # tuple over layers
+            for layer_idx in self.layers:
+                # +1 because index 0 is the embedding layer
+                h = first_step_hidden[layer_idx + 1]   # (batch, 1, hidden)
+                all_acts[layer_idx].append(h[:, 0, :].cpu().float().numpy())
+
+        return {l: np.concatenate(arrs, axis=0) for l, arrs in all_acts.items()}
+
     # ── internals ─────────────────────────────────────────────────────────────
+
+    def _apply_chat_template(self, texts: list[str], add_generation_prompt: bool) -> list[str]:
+        """Format plain-text prompts as user turns using the tokenizer's chat template."""
+        out = []
+        for text in texts:
+            messages = [{"role": "user", "content": text}]
+            try:
+                fmt = self.tokenizer.apply_chat_template(
+                    messages,
+                    tokenize=False,
+                    add_generation_prompt=add_generation_prompt,
+                )
+            except Exception:
+                # Fallback: no chat template available, use raw text
+                logger.warning("No chat template found; using raw text for extraction.")
+                fmt = text
+            out.append(fmt)
+        return out
+
+    def _get_activations_chat(
+        self,
+        prompts: list[str],
+        batch_size: int,
+        aggregation: str,   # "t_inst" or "post_inst"
+    ) -> dict[int, np.ndarray]:
+        """
+        Extract activations at instruction-boundary token positions.
+
+        t_inst:    last token of the user turn
+                   (formatted with add_generation_prompt=False)
+        post_inst: last token of the full formatted input, i.e. the assistant
+                   turn-start token (formatted with add_generation_prompt=True)
+
+        With right-padding, the position of the last real token of a particular
+        formatted text is simply len(tokenize(that_text)) - 1.
+        """
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+
+        # For t_inst we need to know where the user turn ends within the
+        # full (add_generation_prompt=True) tokenized input.
+        full_texts = self._apply_chat_template(prompts, add_generation_prompt=True)
+
+        if aggregation == "t_inst":
+            # Tokenize user-only formatted texts (no padding) to get per-example lengths
+            user_texts = self._apply_chat_template(prompts, add_generation_prompt=False)
+            user_lens = [
+                len(self.tokenizer(t, add_special_tokens=False)["input_ids"])
+                for t in user_texts
+            ]
+        # post_inst: last token of full_texts → same as "last" on full_texts
+        # (computed below via attn_mask)
+
+        all_acts: dict[int, list[np.ndarray]] = {l: [] for l in self.layers}
+
+        for i in range(0, len(full_texts), batch_size):
+            batch_full = full_texts[i : i + batch_size]
+
+            enc = self.tokenizer(
+                batch_full,
+                return_tensors="pt",
+                padding=True,
+                truncation=True,
+                max_length=512,
+            ).to(self.device)
+
+            # Compute per-example extract positions (right-padding assumed)
+            attn_mask = enc["attention_mask"].cpu()
+            if aggregation == "t_inst":
+                batch_user_lens = user_lens[i : i + batch_size]
+                # Clamp to actual sequence length in case of truncation
+                seq_lens = attn_mask.sum(dim=1)
+                extract_pos = torch.tensor(
+                    [min(l - 1, seq_lens[j].item() - 1) for j, l in enumerate(batch_user_lens)],
+                    dtype=torch.long,
+                )
+            else:  # post_inst
+                extract_pos = attn_mask.sum(dim=1) - 1
+
+            batch_acts = self._forward_batch_at_positions(enc, extract_pos)
+            for layer, arr in batch_acts.items():
+                all_acts[layer].append(arr)
+
+        return {l: np.concatenate(arrs, axis=0) for l, arrs in all_acts.items()}
+
+    def _forward_batch_at_positions(
+        self,
+        enc,   # pre-tokenized batch already on device
+        positions: torch.Tensor,   # (batch,) int64, one position per example
+    ) -> dict[int, np.ndarray]:
+        """Run a forward pass and extract hidden states at per-example token positions."""
+        captured: dict[int, torch.Tensor] = {}
+        hooks = []
+
+        for layer_idx in self.layers:
+            if layer_idx >= len(self._blocks):
+                raise ValueError(
+                    f"Layer {layer_idx} out of range "
+                    f"(model has {len(self._blocks)} blocks)."
+                )
+            block = self._blocks[layer_idx]
+
+            def make_hook(idx):
+                def hook(module, input, output):
+                    hidden = output[0] if isinstance(output, tuple) else output
+                    captured[idx] = hidden.detach().cpu().float()
+                return hook
+
+            hooks.append(block.register_forward_hook(make_hook(layer_idx)))
+
+        with torch.no_grad():
+            self.model(**enc)
+
+        for h in hooks:
+            h.remove()
+
+        result = {}
+        for layer_idx, hidden in captured.items():
+            agg = hidden[torch.arange(hidden.size(0)), positions]
+            result[layer_idx] = agg.numpy()
+
+        del captured
+        gc.collect()
+        return result
 
     def _forward_batch(
         self,

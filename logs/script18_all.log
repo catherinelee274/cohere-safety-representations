@@ -1,0 +1,27 @@
+2026-04-22 01:19:38,786 INFO base: langs=['en', 'fr', 'ar', 'hi', 'sw', 'yo']
+2026-04-22 01:19:39,393 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_layer4.png
+2026-04-22 01:19:40,109 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_layer9.png
+2026-04-22 01:19:40,826 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_layer18.png
+2026-04-22 01:19:41,393 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_layer24.png
+2026-04-22 01:19:41,927 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_layer30.png
+2026-04-22 01:19:42,512 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_layer35.png
+2026-04-22 01:19:43,011 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig5_crosslingual_cosine_base.png
+2026-04-22 01:19:43,012 INFO base_sft: langs=['en', 'fr', 'ar', 'hi', 'sw', 'yo']
+2026-04-22 01:19:43,595 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_sft_layer4.png
+2026-04-22 01:19:44,079 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_sft_layer9.png
+2026-04-22 01:19:44,633 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_sft_layer18.png
+2026-04-22 01:19:45,231 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_sft_layer24.png
+2026-04-22 01:19:45,780 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_sft_layer30.png
+2026-04-22 01:19:46,365 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_sft_layer35.png
+2026-04-22 01:19:46,848 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig5_crosslingual_cosine_base_sft.png
+2026-04-22 01:19:46,848 INFO base_dpo: langs=['en', 'fr', 'ar', 'hi', 'sw', 'yo']
+2026-04-22 01:19:47,449 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_dpo_layer4.png
+2026-04-22 01:19:48,016 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_dpo_layer9.png
+2026-04-22 01:19:48,618 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_dpo_layer18.png
+2026-04-22 01:19:49,317 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_dpo_layer24.png
+2026-04-22 01:19:49,867 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_dpo_layer30.png
+2026-04-22 01:19:50,504 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig4_pca_base_dpo_layer35.png
+2026-04-22 01:19:51,068 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/figures/fig5_crosslingual_cosine_base_dpo.png
+2026-04-22 01:19:51,071 INFO Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/probes/crosslingual_cosine.csv
+
+Done.

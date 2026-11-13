@@ -5,9 +5,8 @@ Datasets:
   - XSafety      : multilingual safety benchmark (11 categories, 10 langs)
   - Aya Red-teaming : multilingual red-teaming prompts (CohereForAI)
   - PKU-SafeRLHF : English preference pairs (used for DPO/translation)
-  - LITMUS (ACCD): English axiom-based safety dataset (20k rows, 7 value dims)
-                   columns: axiom, safety_label, source_dataset, input, target
-                   English-only; used for en harmful/harmless pool + axiom analysis
+  - Aya Eval Suite (dolly_machine_translated): 200 harmless prompts per language,
+                   10 languages; used as harmless baseline for probe training
 
 Usage:
     python scripts/02_download_datasets.py [--data-dir data/raw] [--token HF_TOKEN]
@@ -16,7 +15,7 @@ Outputs (in data/raw/):
     xsafety/           XSafety CSV split by language
     aya_redteam/       Aya red-teaming JSONL
     pku_saferlhf/      PKU-SafeRLHF parquet files
-    litmus/            LITMUS CSV (full + split by safety_label)
+    aya_eval/          Aya Eval dolly_machine_translated CSV split by language
 """
 
 import argparse
@@ -148,57 +147,41 @@ def download_pku_saferlhf(out_dir: Path, token: str | None, n_sample: int = 500)
     print(f"  Sampled {len(sampled):,} rows → {out_path}")
 
 
-def download_litmus(out_dir: Path, token: str | None):
+def download_aya_eval(out_dir: Path, token: str | None):
     """
-    LITMUS / ACCD (hasnat79/litmus): English axiom-based safety dataset.
-
-    Columns used:
-      - input        : the prompt / email text
-      - safety_label : "safe" | "unsafe"
-      - axiom        : value dimension (Wisdom, Well-being, Justice, Duty, Civility …)
-      - source_dataset: origin dataset name
-
-    English-only. Used as an additional source for English harmful/harmless pairs;
-    axiom column enables stratified analysis by value dimension.
-    ~44% of rows have missing 'target'; we keep those since we only need 'input'.
+    Aya Evaluation Suite — dolly_machine_translated subset (CohereForAI).
+    200 harmless prompts per language, 10 languages. Used as harmless baseline.
+    Saves one CSV per language to out_dir/{lang}.csv with columns: inputs, targets.
     """
-    print("\n[4/4] Downloading LITMUS (ACCD)...")
+    print("\n[4/4] Downloading Aya Evaluation Suite (dolly_machine_translated)...")
     out_dir.mkdir(parents=True, exist_ok=True)
 
     try:
-        ds = load_dataset("hasnat79/litmus", token=token)
+        ds = load_dataset(
+            "CohereLabs/aya_evaluation_suite",
+            "dolly_machine_translated",
+            token=token,
+        )
     except Exception as e:
         print(f"  ERROR: {e}")
         return
 
-    dfs = []
-    for split_name, split_ds in ds.items():
-        df = split_ds.to_pandas()
-        df["split"] = split_name
-        dfs.append(df)
-        print(f"  {split_name}: {len(df):,} rows")
-
+    # Combine all splits into one dataframe
+    dfs = [split_ds.to_pandas() for split_ds in ds.values()]
     full = pd.concat(dfs, ignore_index=True)
+    print(f"  Total rows: {len(full):,}")
 
-    # Normalise safety_label to lowercase
-    if "safety_label" in full.columns:
-        full["safety_label"] = full["safety_label"].str.lower().str.strip()
+    # Normalise language column name
+    lang_col = next((c for c in full.columns if "language" in c.lower()), None)
+    if lang_col is None:
+        print("  ERROR: could not find language column. Columns:", full.columns.tolist())
+        return
 
-    full.to_csv(out_dir / "litmus_full.csv", index=False)
-    print(f"  Total: {len(full):,} rows → {out_dir}/litmus_full.csv")
-
-    # Split by label for easy loading downstream
-    for label in ["safe", "unsafe"]:
-        sub = full[full["safety_label"] == label]
-        sub.to_csv(out_dir / f"litmus_{label}.csv", index=False)
-        print(f"  {label}: {len(sub):,} rows")
-
-    # Per-axiom breakdown
-    if "axiom" in full.columns:
-        print("  Axiom breakdown:")
-        for axiom, grp in full.groupby("axiom"):
-            n_unsafe = (grp["safety_label"] == "unsafe").sum()
-            print(f"    {axiom:<30} {len(grp):>5} rows  ({n_unsafe} unsafe)")
+    # language column contains ISO 639-3 codes (e.g. "eng", "fra", "arb")
+    for iso_code, grp in full.groupby(lang_col):
+        out_path = out_dir / f"{iso_code}.csv"
+        grp.to_csv(out_path, index=False)
+        print(f"  {iso_code}: {len(grp):,} rows → {out_path}")
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -226,7 +209,7 @@ def main():
     download_xsafety(raw / "xsafety")
     download_aya_redteam(raw / "aya_redteam", token)
     download_pku_saferlhf(raw / "pku_saferlhf", token, n_sample=args.pku_sample)
-    download_litmus(raw / "litmus", token)
+    download_aya_eval(raw / "aya_eval", token)
 
     print("\nDone. Next: run scripts/03_translate_prompts.py")
 

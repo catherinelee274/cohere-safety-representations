@@ -166,6 +166,49 @@ def load_sft_data_local(prompts_dir: Path, lang: str, max_samples: int) -> list[
     return records
 
 
+def load_sft_data_multilingual(path: Path, max_samples: int) -> list[dict]:
+    """
+    Load the balanced multilingual SFT set produced by 03c_translate_pku.py.
+    Each line is {"prompt", "completion", "lang"} — PKU pairs partitioned across
+    the 6 target languages (English kept verbatim, others Command-A translated).
+    """
+    if not path.exists():
+        logger.warning(f"Multilingual SFT file not found: {path}")
+        logger.warning("Run scripts/03c_translate_pku.py first.")
+        return []
+
+    with open(path) as f:
+        records = [json.loads(l) for l in f if l.strip()]
+    records = [{"prompt": r["prompt"], "completion": r["completion"]}
+               for r in records if r.get("prompt") and r.get("completion")]
+
+    if max_samples and len(records) > max_samples:
+        rng = np.random.default_rng(42)
+        idx = rng.choice(len(records), max_samples, replace=False)
+        records = [records[i] for i in idx]
+
+    logger.info(f"SFT (multilingual): {len(records)} examples")
+    return records
+
+
+def load_dpo_data_multilingual(path: Path, max_samples: int) -> list[dict]:
+    """Load a multilingual DPO preference set from 03d_translate_pku_dpo.py:
+    lines of {"prompt","chosen","rejected","lang"}."""
+    if not path.exists():
+        logger.warning(f"Multilingual DPO file not found: {path}")
+        return []
+    with open(path) as f:
+        records = [json.loads(l) for l in f if l.strip()]
+    records = [{"prompt": r["prompt"], "chosen": r["chosen"], "rejected": r["rejected"]}
+               for r in records if r.get("prompt") and r.get("chosen") and r.get("rejected")]
+    if max_samples and len(records) > max_samples:
+        rng = np.random.default_rng(42)
+        idx = rng.choice(len(records), max_samples, replace=False)
+        records = [records[i] for i in idx]
+    logger.info(f"DPO (multilingual): {len(records)} preference pairs")
+    return records
+
+
 def load_dpo_data_pku(pku_csv: Path, max_samples: int) -> list[dict]:
     """
     Build DPO preference pairs from PKU-SafeRLHF.
@@ -326,7 +369,9 @@ def run_sft(
         bf16=(dtype_str == "bf16"),
         fp16=(dtype_str == "fp16"),
         gradient_checkpointing=True,
-        report_to="none",
+        report_to=os.environ.get("FT_REPORT_TO", "none"),
+        run_name=os.environ.get("WANDB_RUN_NAME"),
+        seed=int(os.environ.get("FT_SEED", "42")),
         max_length=max_seq_len,
     )
 
@@ -347,6 +392,7 @@ def run_sft(
 
     save_training_info(out_dir, {
         "trained_at": datetime.now(timezone.utc).isoformat(),
+        "seed": int(os.environ.get("FT_SEED", "42")),
         "model_key": model_key,
         "base_model_hf_id": MODELS[model_key].hf_id,
         "method": "sft",
@@ -387,69 +433,98 @@ def run_dpo(
         logger.error("No DPO training data available. Aborting DPO.")
         return
 
+    import gc
+    import torch
+
     hf_id = base_hf_id if base_hf_id is not None else MODELS[model_key].hf_id
-    model, tokenizer = build_lora_model(
-        hf_id, token, lora_r, lora_alpha, lora_dropout, dtype_str)
 
     # DPOTrainer expects columns: prompt, chosen, rejected
     dataset = records_to_hf_dataset(records, "dpo")
-
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    total_steps = epochs * (len(dataset) // batch_size // grad_accum + 1)
     if save_steps is not None:
-        _save_strategy = "steps"
-        _save_steps    = save_steps
-        _save_limit    = None  # keep all checkpoints
+        _save_strategy, _save_steps, _save_limit = "steps", save_steps, None
     else:
-        _save_strategy = "epoch"
-        _save_steps    = 500
-        _save_limit    = 1
+        _save_strategy, _save_steps, _save_limit = "epoch", 500, 1
 
-    training_args = DPOConfig(
-        output_dir=str(out_dir),
-        num_train_epochs=epochs,
-        per_device_train_batch_size=batch_size,
-        gradient_accumulation_steps=grad_accum,
-        learning_rate=lr,
-        lr_scheduler_type="cosine",
-        warmup_steps=int(0.05 * total_steps),
-        logging_steps=10,
-        save_strategy=_save_strategy,
-        save_steps=_save_steps,
-        save_total_limit=_save_limit,
-        bf16=(dtype_str == "bf16"),
-        fp16=(dtype_str == "fp16"),
-        gradient_checkpointing=True,
-        report_to="none",
-        beta=beta,
-        max_length=max_seq_len,
-    )
-
-    trainer = DPOTrainer(
-        model=model,
-        ref_model=None,   # None → use implicit reference (PEFT frozen base)
-        args=training_args,
-        train_dataset=dataset,
-        processing_class=tokenizer,
-    )
-
-    logger.info(f"Starting DPO: {len(records)} pairs, {epochs} epochs, beta={beta}")
-    trainer.train()
+    # DPO holds chosen+rejected activations per example, so long (often non-Latin,
+    # multilingual) sequences can OOM at the default batch size. Rather than force
+    # the caller to hand-tune, auto-back-off: on CUDA OOM, halve the per-device
+    # batch and double grad-accum (effective batch unchanged), rebuild, and retry
+    # down to batch size 1.
+    bs, ga = batch_size, grad_accum
+    oom_retries = 0
+    model = None
+    while True:
+        model, tokenizer = build_lora_model(
+            hf_id, token, lora_r, lora_alpha, lora_dropout, dtype_str)
+        total_steps = epochs * (len(dataset) // max(bs, 1) // max(ga, 1) + 1)
+        training_args = DPOConfig(
+            output_dir=str(out_dir),
+            num_train_epochs=epochs,
+            per_device_train_batch_size=bs,
+            gradient_accumulation_steps=ga,
+            learning_rate=lr,
+            lr_scheduler_type="cosine",
+            warmup_steps=int(0.05 * total_steps),
+            logging_steps=10,
+            save_strategy=_save_strategy,
+            save_steps=_save_steps,
+            save_total_limit=_save_limit,
+            bf16=(dtype_str == "bf16"),
+            fp16=(dtype_str == "fp16"),
+            gradient_checkpointing=True,
+            report_to=os.environ.get("FT_REPORT_TO", "none"),
+            run_name=os.environ.get("WANDB_RUN_NAME"),
+            seed=int(os.environ.get("FT_SEED", "42")),
+            beta=beta,
+            max_length=max_seq_len,
+        )
+        trainer = DPOTrainer(
+            model=model,
+            ref_model=None,   # None → use implicit reference (PEFT frozen base)
+            args=training_args,
+            train_dataset=dataset,
+            processing_class=tokenizer,
+        )
+        logger.info(f"Starting DPO: {len(records)} pairs, {epochs} epochs, "
+                    f"beta={beta}, batch={bs}, grad_accum={ga}")
+        try:
+            trainer.train()
+            break
+        except RuntimeError as e:
+            if "out of memory" not in str(e).lower():
+                raise
+            if bs <= 1:
+                logger.error("DPO OOM even at batch size 1 — aborting. "
+                             "Try a shorter --max-seq-len or a smaller model.")
+                raise
+            oom_retries += 1
+            new_bs, new_ga = max(1, bs // 2), ga * 2
+            logger.warning(f"DPO CUDA OOM at batch {bs} → retrying at batch {new_bs} "
+                           f"(grad_accum {new_ga}); effective batch unchanged.")
+            del trainer, model
+            model = None
+            gc.collect()
+            torch.cuda.empty_cache()
+            bs, ga = new_bs, new_ga
 
     model.save_pretrained(str(out_dir))
     tokenizer.save_pretrained(str(out_dir))
-    logger.info(f"DPO adapter saved → {out_dir}")
+    logger.info(f"DPO adapter saved → {out_dir} (final batch={bs}, grad_accum={ga}, "
+                f"oom_retries={oom_retries})")
 
     save_training_info(out_dir, {
         "trained_at": datetime.now(timezone.utc).isoformat(),
+        "seed": int(os.environ.get("FT_SEED", "42")),
         "model_key": model_key,
         "base_model_hf_id": hf_id,
         "method": "dpo",
         "num_examples": len(records),
         "hyperparams": {
             "lora_r": lora_r, "lora_alpha": lora_alpha, "lora_dropout": lora_dropout,
-            "epochs": epochs, "batch_size": batch_size, "grad_accum": grad_accum,
+            "epochs": epochs, "batch_size": bs, "grad_accum": ga,
+            "requested_batch_size": batch_size, "oom_retries": oom_retries,
             "lr": lr, "max_seq_len": max_seq_len, "dtype": dtype_str, "beta": beta,
         },
         **(extra_info or {}),
@@ -551,7 +626,9 @@ def run_reward_model(
         bf16=(dtype_str == "bf16"),
         fp16=(dtype_str == "fp16"),
         gradient_checkpointing=True,
-        report_to="none",
+        report_to=os.environ.get("FT_REPORT_TO", "none"),
+        run_name=os.environ.get("WANDB_RUN_NAME"),
+        seed=int(os.environ.get("FT_SEED", "42")),
         max_length=max_seq_len,
     )
 
@@ -706,6 +783,7 @@ def run_ppo(
 
     save_training_info(out_dir, {
         "trained_at": datetime.now(timezone.utc).isoformat(),
+        "seed": int(os.environ.get("FT_SEED", "42")),
         "model_key": model_key,
         "base_model_hf_id": hf_id,
         "method": "rlhf_ppo",
@@ -835,6 +913,10 @@ def print_next_steps(model_key: str, method: str, out_root: Path):
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def main():
+    # Reduce CUDA fragmentation OOMs (esp. DPO with long multilingual sequences).
+    # Must be set before the first CUDA allocation, so do it at entry.
+    os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+
     parser = argparse.ArgumentParser(
         description="Safety fine-tuning (SFT / DPO) with LoRA")
 
@@ -845,8 +927,16 @@ def main():
                         help="Fine-tuning method: sft, dpo, rlhf, or both (sft+dpo) (default: sft)")
 
     # Data
-    parser.add_argument("--data-source", choices=["pku", "local"], default="pku",
-                        help="Data source: pku=PKU-SafeRLHF CSV, local=data/prompts/ files")
+    parser.add_argument("--data-source", choices=["pku", "local", "multilingual"], default="pku",
+                        help="Data source: pku=PKU-SafeRLHF CSV (English), "
+                             "local=data/prompts/ files, "
+                             "multilingual=balanced 6-lang PKU set from 03c_translate_pku.py")
+    parser.add_argument("--multilingual-file",
+                        default="data/processed/pku_translated/pku_sft_multilingual.jsonl",
+                        help="Path to the combined multilingual SFT jsonl (for --data-source multilingual)")
+    parser.add_argument("--multilingual-dpo-file",
+                        default="data/processed/pku_translated/pku_dpo_multilingual_n3000.jsonl",
+                        help="Path to the multilingual DPO preference jsonl (for --data-source multilingual --method dpo)")
     parser.add_argument("--lang",        choices=LANG_CODES, default="en",
                         help="Language for --data-source local (default: en)")
     parser.add_argument("--max-samples", type=int, default=500,
@@ -880,6 +970,9 @@ def main():
     parser.add_argument("--max-seq-len",type=int,   default=512)
     parser.add_argument("--beta",       type=float, default=0.1,
                         help="DPO beta (KL penalty coefficient, default: 0.1)")
+    parser.add_argument("--skip-sft",   action="store_true",
+                        help="For --method dpo: skip SFT and run DPO from the existing "
+                             "{out-dir}/{model}_sft checkpoint (e.g. to resume after an OOM).")
     parser.add_argument("--reward-lr",  type=float, default=1e-4,
                         help="Learning rate for RLHF reward model (default: 1e-4)")
     parser.add_argument("--ppo-steps",  type=int,   default=100,
@@ -931,6 +1024,17 @@ def main():
         all_sft_records  = load_sft_data_pku(pku_csv, max_needed)
         all_dpo_records  = load_dpo_data_pku(pku_csv, max_needed) if args.method in ("dpo", "both", "rlhf") else []
         all_rlhf_records = all_dpo_records
+    elif args.data_source == "multilingual":
+        all_sft_records  = load_sft_data_multilingual(ROOT / args.multilingual_file, max_needed)
+        all_dpo_records  = (load_dpo_data_multilingual(ROOT / args.multilingual_dpo_file, max_needed)
+                            if args.method in ("dpo", "both") else [])
+        all_rlhf_records = all_dpo_records
+        if args.method in ("dpo", "both") and not all_dpo_records:
+            logger.error("--method dpo needs a multilingual DPO file; run 03d_translate_pku_dpo.py.")
+            sys.exit(1)
+        if args.method == "rlhf":
+            logger.warning("--data-source multilingual does not support rlhf.")
+            sys.exit(1)
     else:
         all_sft_records  = load_sft_data_local(prompts_dir, args.lang, max_needed)
         all_dpo_records  = []
@@ -972,17 +1076,18 @@ def main():
         extra_info=extra_info,
     )
 
-    for n in sample_sizes:
-        sft_records  = all_sft_records[:n]
-        dpo_records  = all_dpo_records[:n]
-        rlhf_records = all_rlhf_records[:n]
+    if args.skip_sft:
+        logger.info("--skip-sft: reusing existing SFT checkpoint(s); skipping SFT training.")
+    else:
+        for n in sample_sizes:
+            sft_records  = all_sft_records[:n]
 
-        # Use n-specific subdir when running multiple sizes
-        suffix = f"_n{n}" if len(sample_sizes) > 1 else ""
-        run_dir = out_root / f"{args.model}_sft{suffix}"
+            # Use n-specific subdir when running multiple sizes
+            suffix = f"_n{n}" if len(sample_sizes) > 1 else ""
+            run_dir = out_root / f"{args.model}_sft{suffix}"
 
-        logger.info(f"=== Sample size: {n} → {run_dir} ===")
-        run_sft(records=sft_records, out_dir=run_dir, **common_kwargs)
+            logger.info(f"=== Sample size: {n} → {run_dir} ===")
+            run_sft(records=sft_records, out_dir=run_dir, **common_kwargs)
 
     if args.method in ("dpo", "both") and all_dpo_records:
         for n in sample_sizes:

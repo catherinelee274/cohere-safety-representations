@@ -189,7 +189,114 @@ def analyse_model_lang(
                     "n":        len(idx),
                 })
 
+    df = pd.DataFrame(rows)
+
+    # Fig 3 scatter: per-prompt belief scores
+    if n_rh >= 3 and n_al >= 3:
+        belief_df = compute_beliefs(
+            prompts, groups, tinst_root, postinst_root, model_key, lang, cfg.probe_layers
+        )
+        plot_fig3_scatter(belief_df, model_key, lang)
+        belief_df.to_csv(PROB_DIR / f"belief_scores_{model_key}_{lang}.csv", index=False)
+
+    return df
+
+
+# ── per-prompt belief scores (Zhao et al. Fig 3) ─────────────────────────────
+
+def compute_beliefs(
+    prompts: list[dict],
+    groups: dict[str, np.ndarray],
+    tinst_root: Path,
+    postinst_root: Path,
+    model_key: str,
+    lang: str,
+    layers: list[int],
+) -> pd.DataFrame:
+    """
+    Compute Δ_harmful and Δ_refuse per individual prompt (averaged over layers),
+    following Zhao et al. Equations 3 & 4.
+
+    Δ_harmful = mean_l [ cos(h_tinst,    μ_refused_harmful_tinst)
+                        - cos(h_tinst,    μ_accepted_harmless_tinst) ]
+    Δ_refuse  = mean_l [ cos(h_postinst, μ_refused_harmful_postinst)
+                        - cos(h_postinst, μ_accepted_harmless_postinst) ]
+    """
+    harm_scores: dict[int, np.ndarray] = {}   # prompt_idx → per-layer score
+    ref_scores:  dict[int, np.ndarray] = {}
+
+    n = len(prompts)
+    harm_mat = np.full((n, len(layers)), np.nan)
+    ref_mat  = np.full((n, len(layers)), np.nan)
+
+    for li, layer in enumerate(layers):
+        tinst_acts    = load_acts(tinst_root,    model_key, lang, layer)
+        postinst_acts = load_acts(postinst_root, model_key, lang, layer)
+
+        for position, acts, mat in [
+            ("t_inst",    tinst_acts,    harm_mat),
+            ("post_inst", postinst_acts, ref_mat),
+        ]:
+            if acts is None:
+                continue
+            mu_rh = acts[groups["refused_harmful"]].mean(0)
+            mu_al = acts[groups["accepted_harmless"]].mean(0)
+            mu_rh_n = mu_rh / (np.linalg.norm(mu_rh) + 1e-8)
+            mu_al_n = mu_al / (np.linalg.norm(mu_al) + 1e-8)
+            h_n = acts / (np.linalg.norm(acts, axis=1, keepdims=True) + 1e-8)
+            mat[:, li] = h_n @ mu_rh_n - h_n @ mu_al_n
+
+    delta_harm = np.nanmean(harm_mat, axis=1)
+    delta_ref  = np.nanmean(ref_mat,  axis=1)
+
+    # Assign group label per prompt
+    group_label = np.full(n, "other", dtype=object)
+    for g_name, idx in groups.items():
+        group_label[idx] = g_name
+
+    rows = []
+    for i, p in enumerate(prompts):
+        rows.append({
+            "id":          p.get("id", i),
+            "label":       p.get("label", ""),
+            "group":       group_label[i],
+            "delta_harm":  round(float(delta_harm[i]), 4),
+            "delta_refuse": round(float(delta_ref[i]), 4),
+        })
     return pd.DataFrame(rows)
+
+
+def plot_fig3_scatter(belief_df: pd.DataFrame, model_key: str, lang: str):
+    model_name = MODELS[model_key].name if model_key in MODELS else model_key
+    lang_name  = LANG_NAMES.get(lang, lang)
+
+    SCATTER_STYLE = {
+        "refused_harmful":   {"color": "#EE4444", "marker": "o",  "label": "refused harmful",   "alpha": 0.6, "s": 25},
+        "accepted_harmful":  {"color": "#EE4444", "marker": "+",  "label": "accepted harmful",  "alpha": 0.6, "s": 40},
+        "accepted_harmless": {"color": "#4477AA", "marker": "s",  "label": "accepted harmless", "alpha": 0.5, "s": 20},
+    }
+
+    fig, ax = plt.subplots(figsize=(5, 5))
+    for group, style in SCATTER_STYLE.items():
+        sub = belief_df[belief_df["group"] == group]
+        if sub.empty:
+            continue
+        ax.scatter(sub["delta_harm"], sub["delta_refuse"],
+                   c=style["color"], marker=style["marker"],
+                   label=style["label"], alpha=style["alpha"], s=style["s"])
+
+    ax.axhline(0, color="gray", linestyle=":", linewidth=0.8)
+    ax.axvline(0, color="gray", linestyle=":", linewidth=0.8)
+    ax.set_xlabel(r"$\Delta_\mathrm{harmful}$")
+    ax.set_ylabel(r"$\Delta_\mathrm{refuse}$")
+    ax.set_title(f"Belief of harmfulness vs refusal\n{model_name} / {lang_name}", fontsize=9)
+    ax.legend(fontsize=7)
+    plt.tight_layout()
+
+    out = FIG_DIR / f"fig3_belief_scatter_{model_key}_{lang}.png"
+    fig.savefig(out, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    logger.info(f"Saved → {out}")
 
 
 # ── plotting ──────────────────────────────────────────────────────────────────

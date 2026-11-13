@@ -1,0 +1,198 @@
+2026-04-17 13:53:29,495 WARNING base/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,495 WARNING base/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,514 WARNING base/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,514 WARNING base/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:29,537 WARNING base/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,537 WARNING base/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:29,560 WARNING base/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,560 WARNING base/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:29,573 WARNING base/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,573 WARNING base/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,592 WARNING base/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,592 WARNING base/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,596 INFO global/en: 126 refused / 304 complied
+2026-04-17 13:53:29,603 INFO   global/en/layer4/refusal: acc=0.312  auc=0.643
+2026-04-17 13:53:29,610 INFO   global/en/layer9/refusal: acc=0.312  auc=0.640
+2026-04-17 13:53:29,617 INFO   global/en/layer18/refusal: acc=0.312  auc=0.648
+2026-04-17 13:53:29,622 INFO   global/en/layer24/refusal: acc=0.312  auc=0.644
+2026-04-17 13:53:29,625 INFO   global/en/layer30/refusal: acc=0.351  auc=0.634
+2026-04-17 13:53:29,628 INFO   global/en/layer35/refusal: acc=0.565  auc=0.630
+2026-04-17 13:53:29,634 INFO global/fr: 65 refused / 365 complied
+2026-04-17 13:53:29,640 INFO   global/fr/layer4/refusal: acc=0.605  auc=0.670
+2026-04-17 13:53:29,647 INFO   global/fr/layer9/refusal: acc=0.602  auc=0.698
+2026-04-17 13:53:29,651 INFO   global/fr/layer18/refusal: acc=0.605  auc=0.679
+2026-04-17 13:53:29,654 INFO   global/fr/layer24/refusal: acc=0.605  auc=0.656
+2026-04-17 13:53:29,657 INFO   global/fr/layer30/refusal: acc=0.612  auc=0.655
+2026-04-17 13:53:29,660 INFO   global/fr/layer35/refusal: acc=0.626  auc=0.644
+2026-04-17 13:53:29,668 INFO global/ar: 11 refused / 419 complied
+2026-04-17 13:53:29,674 INFO   global/ar/layer4/refusal: acc=0.630  auc=0.738
+2026-04-17 13:53:29,677 INFO   global/ar/layer9/refusal: acc=0.612  auc=0.753
+2026-04-17 13:53:29,680 INFO   global/ar/layer18/refusal: acc=0.639  auc=0.770
+2026-04-17 13:53:29,684 INFO   global/ar/layer24/refusal: acc=0.637  auc=0.771
+2026-04-17 13:53:29,686 INFO   global/ar/layer30/refusal: acc=0.635  auc=0.728
+2026-04-17 13:53:29,689 INFO   global/ar/layer35/refusal: acc=0.637  auc=0.726
+2026-04-17 13:53:29,690 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/global/hi/labels.npy
+2026-04-17 13:53:29,694 INFO global/sw: 16 refused / 414 complied
+2026-04-17 13:53:29,701 INFO   global/sw/layer4/refusal: acc=0.058  auc=0.761
+2026-04-17 13:53:29,704 INFO   global/sw/layer9/refusal: acc=0.058  auc=0.690
+2026-04-17 13:53:29,707 INFO   global/sw/layer18/refusal: acc=0.058  auc=0.744
+2026-04-17 13:53:29,711 INFO   global/sw/layer24/refusal: acc=0.058  auc=0.703
+2026-04-17 13:53:29,713 INFO   global/sw/layer30/refusal: acc=0.265  auc=0.692
+2026-04-17 13:53:29,716 INFO   global/sw/layer35/refusal: acc=0.491  auc=0.653
+2026-04-17 13:53:29,723 WARNING global/yo: too few refused (1) or complied (429) samples — skipping refusal probe
+2026-04-17 13:53:29,729 WARNING base_sft/en: 339 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,729 INFO base_sft/en: 25 refused / 66 complied
+2026-04-17 13:53:29,733 INFO   base_sft/en/layer4/refusal: acc=0.308  auc=0.836
+2026-04-17 13:53:29,737 INFO   base_sft/en/layer9/refusal: acc=0.308  auc=0.749
+2026-04-17 13:53:29,739 INFO   base_sft/en/layer18/refusal: acc=0.308  auc=0.707
+2026-04-17 13:53:29,742 INFO   base_sft/en/layer24/refusal: acc=0.308  auc=0.838
+2026-04-17 13:53:29,744 INFO   base_sft/en/layer30/refusal: acc=0.341  auc=0.750
+2026-04-17 13:53:29,746 INFO   base_sft/en/layer35/refusal: acc=0.407  auc=0.636
+2026-04-17 13:53:29,754 WARNING base_sft/fr: 344 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,754 WARNING base_sft/fr: too few refused (3) or complied (83) samples — skipping refusal probe
+2026-04-17 13:53:29,761 WARNING base_sft/ar: 346 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,761 WARNING base_sft/ar: too few refused (0) or complied (84) samples — skipping refusal probe
+2026-04-17 13:53:29,762 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft/hi/labels.npy
+2026-04-17 13:53:29,764 WARNING base_sft/sw: 430 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,764 WARNING base_sft/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,767 WARNING base_sft/yo: 430 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,767 WARNING base_sft/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,768 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_20k/en/labels.npy
+2026-04-17 13:53:29,768 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_20k/fr/labels.npy
+2026-04-17 13:53:29,768 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_20k/ar/labels.npy
+2026-04-17 13:53:29,768 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_20k/hi/labels.npy
+2026-04-17 13:53:29,768 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_20k/sw/labels.npy
+2026-04-17 13:53:29,768 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_20k/yo/labels.npy
+2026-04-17 13:53:29,773 WARNING base_dpo/en: 339 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,773 INFO base_dpo/en: 38 refused / 53 complied
+2026-04-17 13:53:29,778 INFO   base_dpo/en/layer4/refusal: acc=0.451  auc=0.753
+2026-04-17 13:53:29,782 INFO   base_dpo/en/layer9/refusal: acc=0.451  auc=0.743
+2026-04-17 13:53:29,785 INFO   base_dpo/en/layer18/refusal: acc=0.451  auc=0.756
+2026-04-17 13:53:29,787 INFO   base_dpo/en/layer24/refusal: acc=0.451  auc=0.779
+2026-04-17 13:53:29,790 INFO   base_dpo/en/layer30/refusal: acc=0.670  auc=0.758
+2026-04-17 13:53:29,792 INFO   base_dpo/en/layer35/refusal: acc=0.736  auc=0.753
+2026-04-17 13:53:29,797 WARNING base_dpo/fr: 344 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,797 INFO base_dpo/fr: 30 refused / 56 complied
+2026-04-17 13:53:29,801 INFO   base_dpo/fr/layer4/refusal: acc=0.767  auc=0.721
+2026-04-17 13:53:29,804 INFO   base_dpo/fr/layer9/refusal: acc=0.651  auc=0.741
+2026-04-17 13:53:29,806 INFO   base_dpo/fr/layer18/refusal: acc=0.651  auc=0.736
+2026-04-17 13:53:29,809 INFO   base_dpo/fr/layer24/refusal: acc=0.814  auc=0.745
+2026-04-17 13:53:29,811 INFO   base_dpo/fr/layer30/refusal: acc=0.663  auc=0.724
+2026-04-17 13:53:29,813 INFO   base_dpo/fr/layer35/refusal: acc=0.639  auc=0.712
+2026-04-17 13:53:29,818 WARNING base_dpo/ar: 346 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,818 WARNING base_dpo/ar: too few refused (1) or complied (83) samples — skipping refusal probe
+2026-04-17 13:53:29,841 WARNING base_dpo/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,841 WARNING base_dpo/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:29,844 WARNING base_dpo/sw: 430 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,844 WARNING base_dpo/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,846 WARNING base_dpo/yo: 430 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,846 WARNING base_dpo/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,853 WARNING base_sft_n500/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,853 WARNING base_sft_n500/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,871 WARNING base_sft_n500/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,871 WARNING base_sft_n500/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:29,892 WARNING base_sft_n500/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,892 WARNING base_sft_n500/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:29,915 WARNING base_sft_n500/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,915 WARNING base_sft_n500/hi: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:29,928 WARNING base_sft_n500/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,928 WARNING base_sft_n500/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,946 WARNING base_sft_n500/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,946 WARNING base_sft_n500/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,953 WARNING base_sft_n2000/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,953 WARNING base_sft_n2000/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:29,971 WARNING base_sft_n2000/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,971 WARNING base_sft_n2000/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:29,991 WARNING base_sft_n2000/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,991 WARNING base_sft_n2000/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n2000/hi/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n2000/sw/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n2000/yo/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n5000/en/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n5000/fr/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n5000/ar/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n5000/hi/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n5000/sw/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n5000/yo/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n10000/en/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n10000/fr/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n10000/ar/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n10000/hi/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n10000/sw/labels.npy
+2026-04-17 13:53:29,992 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_n10000/yo/labels.npy
+2026-04-17 13:53:29,999 WARNING base_sft_n20000/en: 3215 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:29,999 WARNING base_sft_n20000/en: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:30,016 WARNING base_sft_n20000/fr: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:30,016 WARNING base_sft_n20000/fr: too few refused (0) or complied (9) samples — skipping refusal probe
+2026-04-17 13:53:30,037 WARNING base_sft_n20000/ar: 9995 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:30,037 WARNING base_sft_n20000/ar: too few refused (0) or complied (5) samples — skipping refusal probe
+2026-04-17 13:53:30,060 WARNING base_sft_n20000/hi: 9991 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:30,060 WARNING base_sft_n20000/hi: too few refused (1) or complied (8) samples — skipping refusal probe
+2026-04-17 13:53:30,073 WARNING base_sft_n20000/sw: 9850 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:30,073 WARNING base_sft_n20000/sw: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:30,092 WARNING base_sft_n20000/yo: 9873 harmful prompts had no behavioral response — dropping them from refusal probe
+2026-04-17 13:53:30,092 WARNING base_sft_n20000/yo: too few refused (0) or complied (0) samples — skipping refusal probe
+2026-04-17 13:53:30,092 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/gemma/en/labels.npy
+2026-04-17 13:53:30,092 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/gemma/fr/labels.npy
+2026-04-17 13:53:30,092 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/gemma/ar/labels.npy
+2026-04-17 13:53:30,092 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/gemma/hi/labels.npy
+2026-04-17 13:53:30,092 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/gemma/sw/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/gemma/yo/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/ministral/en/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/ministral/fr/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/ministral/ar/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/ministral/hi/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/ministral/sw/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/ministral/yo/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/qwen/en/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/qwen/fr/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/qwen/ar/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/qwen/hi/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/qwen/sw/labels.npy
+2026-04-17 13:53:30,093 WARNING Missing: /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/qwen/yo/labels.npy
+2026-04-17 13:53:30,094 INFO Refusal summary → /home/catherine/Documents/GitHub/cohere-safety-representations/results/probes/refusal_summary.csv
+2026-04-17 13:53:30,095 INFO   harmful↔refusal global/en/layer4: -0.952
+2026-04-17 13:53:30,095 INFO   harmful↔refusal global/en/layer9: -0.957
+2026-04-17 13:53:30,095 INFO   harmful↔refusal global/en/layer18: -0.925
+2026-04-17 13:53:30,095 INFO   harmful↔refusal global/en/layer24: -0.850
+2026-04-17 13:53:30,095 INFO   harmful↔refusal global/en/layer30: -0.800
+2026-04-17 13:53:30,095 INFO   harmful↔refusal global/en/layer35: -0.751
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/fr/layer4: 0.045
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/fr/layer9: 0.112
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/fr/layer18: 0.054
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/fr/layer24: -0.090
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/fr/layer30: -0.229
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/fr/layer35: -0.424
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/ar/layer4: -0.665
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/ar/layer9: -0.517
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/ar/layer18: -0.661
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/ar/layer24: -0.680
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/ar/layer30: -0.655
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/ar/layer35: -0.591
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/sw/layer4: -0.925
+2026-04-17 13:53:30,096 INFO   harmful↔refusal global/sw/layer9: -0.924
+2026-04-17 13:53:30,097 INFO   harmful↔refusal global/sw/layer18: -0.890
+2026-04-17 13:53:30,097 INFO   harmful↔refusal global/sw/layer24: -0.827
+2026-04-17 13:53:30,097 INFO   harmful↔refusal global/sw/layer30: -0.699
+2026-04-17 13:53:30,097 INFO   harmful↔refusal global/sw/layer35: -0.511
+2026-04-17 13:53:30,097 INFO   harmful↔refusal base_sft/en/layer4: -0.720
+2026-04-17 13:53:30,097 INFO   harmful↔refusal base_sft/en/layer9: -0.833
+2026-04-17 13:53:30,097 INFO   harmful↔refusal base_sft/en/layer18: -0.807
+2026-04-17 13:53:30,097 INFO   harmful↔refusal base_sft/en/layer24: -0.680
+2026-04-17 13:53:30,097 INFO   harmful↔refusal base_sft/en/layer30: -0.532
+2026-04-17 13:53:30,097 INFO   harmful↔refusal base_sft/en/layer35: -0.532
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/en/layer4: -0.900
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/en/layer9: -0.930
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/en/layer18: -0.906
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/en/layer24: -0.824
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/en/layer30: -0.799
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/en/layer35: -0.830
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/fr/layer4: 0.795
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/fr/layer9: 0.814
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/fr/layer18: 0.790
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/fr/layer24: 0.608
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/fr/layer30: 0.517
+2026-04-17 13:53:30,099 INFO   harmful↔refusal base_dpo/fr/layer35: 0.458
+2026-04-17 13:53:30,105 INFO Harmful-vs-refusal alignment → /home/catherine/Documents/GitHub/cohere-safety-representations/results/probes/harmful_vs_refusal_alignment.csv
+
+Done.

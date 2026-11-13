@@ -1,0 +1,11 @@
+model,lang,layer,alpha,n,n_refused,refusal_rate
+base_sft,en,24,0.0,100,2,0.02
+base_sft,en,24,10.0,100,2,0.02
+base_sft,en,24,20.0,100,2,0.02
+base_sft,en,24,40.0,100,2,0.02
+base_sft,en,24,80.0,100,2,0.02
+base_dpo,en,18,0.0,100,3,0.03
+base_dpo,en,18,20.0,100,3,0.03
+base_dpo,en,18,50.0,100,3,0.03
+base_dpo,en,18,100.0,100,3,0.03
+base_dpo,en,18,200.0,100,3,0.03

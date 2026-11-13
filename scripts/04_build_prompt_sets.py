@@ -113,38 +113,48 @@ def load_aya_redteam(raw_dir: Path, lang: str) -> list[dict]:
     return records
 
 
-def load_litmus(raw_dir: Path, lang: str) -> tuple[list[dict], list[dict]]:
-    """
-    Load LITMUS harmful + harmless prompts (English only).
-    Returns (harmful_records, harmless_records).
-    """
-    if lang != "en":
-        return [], []
+# Map our lang codes to ISO 639-3 codes used as language column values in Aya Eval
+_AYA_EVAL_ISO = {
+    "en":  "eng",
+    "fr":  "fra",
+    "ar":  "arb",
+    "zh":  "zho",
+    "hi":  "hin",
+    "sw":  "swh",
+    "yo":  "yor",
+    "fil": "tgl",
+}
 
-    harmful, harmless = [], []
-    for label, bucket in [("unsafe", harmful), ("safe", harmless)]:
-        p = raw_dir / "litmus" / f"litmus_{label}.csv"
-        if not p.exists():
-            continue
+def load_aya_eval(raw_dir: Path, lang: str) -> list[dict]:
+    """
+    Load Aya Evaluation Suite (dolly_machine_translated) harmless prompts for a language.
+    Files saved by 02_download_datasets.py as data/raw/aya_eval/{iso_code}.csv.
+    """
+    iso = _AYA_EVAL_ISO.get(lang)
+    if not iso:
+        return []
+
+    p = raw_dir / "aya_eval" / f"{iso}.csv"
+    if not p.exists():
+        return []
+
+    try:
         df = pd.read_csv(p)
-        text_col = "input" if "input" in df.columns else df.columns[0]
-        axiom_col = "axiom" if "axiom" in df.columns else None
-        for _, row in df.iterrows():
-            text = str(row[text_col]).strip()
-            if not text or text == "nan":
-                continue
-            rec = {
+    except Exception:
+        return []
+
+    records = []
+    for _, row in df.iterrows():
+        text = str(row.get("inputs", "")).strip()
+        if text and text != "nan":
+            records.append({
                 "id":     make_id(text, lang),
                 "text":   text,
-                "source": "litmus",
+                "source": "aya_eval",
                 "lang":   lang,
-                "label":  "harmful" if label == "unsafe" else "harmless",
-            }
-            if axiom_col:
-                rec["axiom"] = str(row[axiom_col])
-            bucket.append(rec)
-
-    return harmful, harmless
+                "label":  "harmless",
+            })
+    return records
 
 
 def load_en_translated(processed_dir: Path, lang: str) -> list[dict]:
@@ -232,7 +242,7 @@ def _cohere_rephrase(texts: list[str], lang: str, api_key: str) -> list[str]:
     for t in texts:
         resp = co.chat(
             message=REPHRASE_TEMPLATE.format(prompt=t),
-            model="command-r-plus",
+            model="command-a-03-2025",
             temperature=0.3,
         )
         results.append(resp.text.strip())
@@ -252,17 +262,20 @@ def build_for_lang(
     harmful_dir  = prompts_dir / lang
     harmless_dir = prompts_dir / lang
 
-    # Collect harmful prompts
+    # Collect harmful prompts — split XSafety 80/20 train/eval to avoid leakage
+    xsafety_all = load_xsafety(raw_dir, lang)
+    split_idx = int(len(xsafety_all) * 0.8)
+    # Deterministic split: sort by id first so order is stable across runs
+    xsafety_all_sorted = sorted(xsafety_all, key=lambda r: r["id"])
+    xsafety_train = xsafety_all_sorted[:split_idx]
+    xsafety_eval  = xsafety_all_sorted[split_idx:]
+
     harmful = []
-    harmful += load_xsafety(raw_dir, lang)
+    harmful += xsafety_train
     harmful += load_aya_redteam(raw_dir, lang)
     if lang != "en":
         harmful += load_pku_translated(processed_dir, lang)
         harmful += load_en_translated(processed_dir, lang)
-
-    # LITMUS: English-only; provides both harmful and pre-labelled harmless
-    litmus_harmful, litmus_harmless = load_litmus(raw_dir, lang)
-    harmful += litmus_harmful
 
     # Deduplicate harmful by id
     seen = set()
@@ -279,45 +292,28 @@ def build_for_lang(
     harmful = harmful[:n]
     save_jsonl(harmful, harmful_dir / "harmful.jsonl")
 
+    # Save held-out XSafety eval split (used by 07_behavioral_baseline.py)
+    save_jsonl(xsafety_eval, harmful_dir / "harmful_eval.jsonl")
+    print(f"  XSafety split: {len(xsafety_train)} train / {len(xsafety_eval)} eval")
+
     # Generate / load harmless counterparts
     harmless_path = harmless_dir / "harmless.jsonl"
     if harmless_path.exists():
         harmless = load_jsonl(harmless_path)
         print(f"  Loaded {len(harmless)} existing harmless prompts.")
     else:
-        # For English: seed with LITMUS safe prompts before falling back to LLM rephrase
+        # Seed from Aya Eval (already multilingual, no translation needed)
         seed_harmless = []
         seen_h = set()
-        for r in litmus_harmless:
+        for r in load_aya_eval(raw_dir, lang):
             if r["id"] not in seen_h:
                 seen_h.add(r["id"])
                 seed_harmless.append(r)
 
-        n_still_needed = max(0, n - len(seed_harmless))
-        if n_still_needed > 0:
-            texts = [r["text"] for r in harmful[:n_still_needed]]
-            rephrased = generate_harmless_batch(texts, lang)
-            llm_harmless = [
-                {
-                    "id":     make_id(r, lang),
-                    "text":   r,
-                    "source": "llm_rephrase",
-                    "lang":   lang,
-                    "label":  "harmless",
-                }
-                for r in rephrased
-            ]
-        else:
-            llm_harmless = []
-
-        harmless = (seed_harmless + llm_harmless)[:n]
+        # Use Aya Eval only — native multilingual harmless, no LLM rephrase needed
+        harmless = seed_harmless
         save_jsonl(harmless, harmless_path)
-
-        n_litmus = sum(1 for r in harmless if r["source"] == "litmus")
-        n_llm    = sum(1 for r in harmless if r["source"] == "llm_rephrase")
-        print(f"  Harmless: {n_litmus} from LITMUS, {n_llm} LLM-rephrased")
-        if n_llm > 0:
-            print(f"  NOTE: Spot-check LLM-rephrased entries in {harmless_path}")
+        print(f"  Harmless: {len(harmless)} from Aya Eval")
 
 
 def main():

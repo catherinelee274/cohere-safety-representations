@@ -1,12 +1,12 @@
 """
 Quick translation helper for probe data.
 
-Uses NLLB-200-distilled-1.3B to produce:
-  1. Harmless prompts for non-English languages (from LITMUS safe subset)
-  2. Harmful prompts for sw/yo (translated from English XSafety)
+Uses NLLB-200-distilled-1.3B to translate harmful prompts for non-English languages.
+Harmless prompts come from Aya Evaluation Suite (already multilingual) — loaded
+directly in 04_build_prompt_sets.py, no translation needed here.
 
-Writes directly to data/prompts/{lang}/harmful.jsonl and harmless.jsonl,
-overwriting any stub entries.
+Writes translated harmful prompts to data/processed/en_translated/{lang}.jsonl,
+which 04_build_prompt_sets.py picks up as an additional harmful source.
 
 Usage:
     python scripts/03b_translate_for_probing.py --langs fr ar zh sw yo
@@ -79,28 +79,14 @@ class Translator:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--langs", nargs="+", default=["fr", "ar", "zh", "sw", "yo"])
-    parser.add_argument("--n-harmless", type=int, default=10_000)
     parser.add_argument("--n-harmful",  type=int, default=10_000)
     args = parser.parse_args()
 
     raw_dir     = ROOT / "data/raw"
     prompts_dir = ROOT / "data/prompts"
 
-    # --- load English LITMUS safe prompts (harmless source) ---
-    litmus_safe_path = raw_dir / "litmus" / "litmus_safe.csv"
-    if litmus_safe_path.exists():
-        df_safe = pd.read_csv(litmus_safe_path)
-        text_col = "input" if "input" in df_safe.columns else df_safe.columns[0]
-        en_harmless_texts = (
-            df_safe[text_col].dropna().astype(str)
-            .str.strip().tolist()
-        )[:args.n_harmless]
-    else:
-        print("WARNING: litmus_safe.csv not found — skipping harmless translation")
-        en_harmless_texts = []
-
     # --- load English harmful prompts for translation ---
-    # XSafety en + LITMUS unsafe + PKU harmful prompts pooled
+    # XSafety en + PKU harmful prompts pooled
     en_harmful_texts = []
     xsafety_en_dir = raw_dir / "xsafety" / "en"
     if xsafety_en_dir.exists():
@@ -114,13 +100,6 @@ def main():
                         en_harmful_texts.append(text)
             except Exception:
                 continue
-    litmus_unsafe_path = raw_dir / "litmus" / "litmus_unsafe.csv"
-    if litmus_unsafe_path.exists():
-        df_unsafe = pd.read_csv(litmus_unsafe_path)
-        text_col = "input" if "input" in df_unsafe.columns else df_unsafe.columns[0]
-        for text in df_unsafe[text_col].dropna().astype(str).str.strip():
-            if text and text != "nan":
-                en_harmful_texts.append(text)
     pku_path = raw_dir / "pku_saferlhf" / "pku_saferlhf_sample.csv"
     if pku_path.exists():
         df_pku = pd.read_csv(pku_path)
@@ -172,22 +151,6 @@ def main():
                 for t in translated_harmful
             ]
             save_jsonl(new_records, translated_harmful_path)
-
-        # --- harmless (all non-en) — skip if already complete ---
-        harmless_path = prompts_dir / lang / "harmless.jsonl"
-        existing_harmless = sum(1 for _ in open(harmless_path, encoding="utf-8")) if harmless_path.exists() else 0
-        if existing_harmless >= args.n_harmless:
-            print(f"  harmless: {existing_harmless} already present, skipping.")
-        elif en_harmless_texts:
-            translated_harmless = translator.translate(en_harmless_texts, nllb_code)
-            records = [
-                {"id": make_id(t, lang), "text": t,
-                 "source": "litmus_translated", "lang": lang, "label": "harmless"}
-                for t in translated_harmless
-            ]
-            save_jsonl(records, harmless_path)
-        else:
-            print(f"  No harmless source — skipping {lang} harmless.")
 
     print("\nDone. Re-run scripts/04_build_prompt_sets.py if needed, then step 05.")
 

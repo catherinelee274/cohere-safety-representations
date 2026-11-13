@@ -59,6 +59,88 @@ MODELS: dict[str, ModelConfig] = {
         probe_layers=[4, 9, 18, 24, 30, 35],
         n_layers=36,
     ),
+    # Multilingual Safety-FT (RQ2 multilingual arm): SFT on a balanced 6-language
+    # PKU subset (03c_translate_pku.py), same data budget as the English base_sft.
+    "base_sft_ml": ModelConfig(
+        name="TinyAya-Base-SFT-ML",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_ml/base_sft",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    # Fair multilingual re-test (500/lang = 3000) + matched English-only control
+    # (same 3000 prompts, all English). Compare base_sft_ml_big vs base_sft_en3000.
+    "base_sft_ml_big": ModelConfig(
+        name="TinyAya-Base-SFT-ML-3000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_ml_big/base_sft",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_sft_en3000": ModelConfig(
+        name="TinyAya-Base-SFT-EN3000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_en3000/base_sft",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    # Fair multilingual DPO test (base -> SFT -> DPO on 500/lang pref pairs) + control.
+    "base_dpo_ml": ModelConfig(
+        name="TinyAya-Base-DPO-ML",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_dpo_ml/base_dpo",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    "base_dpo_en3000": ModelConfig(
+        name="TinyAya-Base-DPO-EN3000",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned_dpo_en3000/base_dpo",
+        stage="finetuned",
+        probe_layers=[4, 9, 18, 24, 30, 35],
+        n_layers=36,
+    ),
+    # Seed replications for the fair-budget RQ2 comparison (seed 42 uses the
+    # canonical keys above; these are the additional seed 43/44 checkpoints).
+    "base_sft_ml_s43": ModelConfig(
+        name="TinyAya-Base-SFT-ML-3000-s43",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed43/ml/base_sft",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_dpo_ml_s43": ModelConfig(
+        name="TinyAya-Base-DPO-ML-s43",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed43/ml/base_dpo",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_sft_en3000_s43": ModelConfig(
+        name="TinyAya-Base-SFT-EN3000-s43",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed43/en3000/base_sft",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_dpo_en3000_s43": ModelConfig(
+        name="TinyAya-Base-DPO-EN3000-s43",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed43/en3000/base_dpo",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_sft_ml_s44": ModelConfig(
+        name="TinyAya-Base-SFT-ML-3000-s44",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed44/ml/base_sft",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_dpo_ml_s44": ModelConfig(
+        name="TinyAya-Base-DPO-ML-s44",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed44/ml/base_dpo",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_sft_en3000_s44": ModelConfig(
+        name="TinyAya-Base-SFT-EN3000-s44",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed44/en3000/base_sft",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
+    "base_dpo_en3000_s44": ModelConfig(
+        name="TinyAya-Base-DPO-EN3000-s44",
+        hf_id="/home/catherine/Documents/GitHub/cohere-safety-representations/models/multiseed/seed44/en3000/base_dpo",
+        stage="finetuned", probe_layers=[4, 9, 18, 24, 30, 35], n_layers=36,
+    ),
     # ── SFT data-size sweep (finetuned_sweep/) ───────────────────────────
     "base_sft_n500": ModelConfig(
         name="TinyAya-Base-SFT-n500",
@@ -153,7 +235,8 @@ MODELS: dict[str, ModelConfig] = {
 
 # Ordered by training stage for plots
 MODEL_ORDER = ["base", "global", "earth", "fire", "water",
-               "base_sft", "base_sft_20k", "base_dpo",
+               "base_sft", "base_sft_ml", "base_sft_ml_big", "base_sft_en3000",
+               "base_dpo", "base_dpo_ml", "base_dpo_en3000", "base_sft_20k",
                "base_sft_n500", "base_sft_n2000", "base_sft_n5000", "base_sft_n10000", "base_sft_n20000",
                "gemma", "ministral", "qwen"]
 

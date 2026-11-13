@@ -1,0 +1,154 @@
+[
+  {
+    "run_at": "2026-04-20T18:02:34.619974+00:00",
+    "git_commit": "4137619",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T19:01:52.174141+00:00",
+    "git_commit": "050c354",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T20:02:15.801471+00:00",
+    "git_commit": "050c354",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-20T20:59:01.590737+00:00",
+    "git_commit": "050c354",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T01:29:50.853429+00:00",
+    "git_commit": "050c354",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T04:28:27.763663+00:00",
+    "git_commit": "caf949d",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-21T05:47:52.616338+00:00",
+    "git_commit": "caf949d",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  },
+  {
+    "run_at": "2026-04-22T00:19:48.791118+00:00",
+    "git_commit": "caf949d",
+    "model_key": "water",
+    "model_name": "TinyAya-Water",
+    "model_hf_id": "CohereLabs/tiny-aya-water",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "sw",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]

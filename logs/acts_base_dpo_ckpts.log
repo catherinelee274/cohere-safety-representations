@@ -1,0 +1,97 @@
+2026-04-15 23:05:25,831 INFO Checkpoint mode: 3 checkpoints × 6 langs = 18 pairs
+2026-04-15 23:05:25,842 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-15 on cuda (torch.float16)
+2026-04-15 23:05:26,434 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-15 23:05:26,500 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:19,  3.65it/s]Loading weights:  15%|█▍        | 43/290 [00:00<00:01, 131.85it/s]Loading weights:  26%|██▌       | 75/290 [00:00<00:01, 181.59it/s]Loading weights:  37%|███▋      | 106/290 [00:00<00:00, 218.68it/s]Loading weights:  46%|████▌     | 133/290 [00:00<00:00, 214.32it/s]Loading weights:  56%|█████▌    | 163/290 [00:00<00:00, 236.97it/s]Loading weights:  65%|██████▌   | 189/290 [00:00<00:00, 238.23it/s]Loading weights:  76%|███████▌  | 219/290 [00:01<00:00, 245.13it/s]Loading weights:  84%|████████▍ | 245/290 [00:01<00:00, 245.77it/s]Loading weights:  93%|█████████▎| 271/290 [00:01<00:00, 242.77it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 213.66it/s]
+2026-04-15 23:05:28,263 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+Traceback (most recent call last):
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/05_extract_activations.py", line 210, in <module>
+    main()
+  File "/home/catherine/Documents/GitHub/cohere-safety-representations/scripts/05_extract_activations.py", line 195, 2026-04-15 23:06:38,874 INFO   Saved layer 4: (3415, 2048)
+2026-04-15 23:06:38,883 INFO   Saved layer 9: (3415, 2048)
+2026-04-15 23:06:38,891 INFO   Saved layer 18: (3415, 2048)
+2026-04-15 23:06:38,899 INFO   Saved layer 24: (3415, 2048)
+2026-04-15 23:06:38,907 INFO   Saved layer 30: (3415, 2048)
+2026-04-15 23:06:38,915 INFO   Saved layer 35: (3415, 2048)
+2026-04-15 23:06:38,925 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt15/en
+2026-04-15 23:06:38,949 INFO Extracting base_dpo_ckpt15/fr: 200 harmless + 10000 harmful
+2026-04-15 23:12:14,943 INFO   Saved layer 4: (10200, 2048)
+2026-04-15 23:12:14,966 INFO   Saved layer 9: (10200, 2048)
+2026-04-15 23:12:14,992 INFO   Saved layer 18: (10200, 2048)
+2026-04-15 23:12:15,016 INFO   Saved layer 24: (10200, 2048)
+2026-04-15 23:12:15,039 INFO   Saved layer 30: (10200, 2048)
+2026-04-15 23:12:15,063 INFO   Saved layer 35: (10200, 2048)
+2026-04-15 23:12:15,089 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt15/fr
+2026-04-15 23:12:15,129 INFO Extracting base_dpo_ckpt15/ar: 365 harmless + 10000 harmful
+2026-04-15 23:17:48,998 INFO   Saved layer 4: (10365, 2048)
+2026-04-15 23:17:49,022 INFO   Saved layer 9: (10365, 2048)
+2026-04-15 23:17:49,047 INFO   Saved layer 18: (10365, 2048)
+2026-04-15 23:17:49,072 INFO   Saved layer 24: (10365, 2048)
+2026-04-15 23:17:49,098 INFO   Saved layer 30: (10365, 2048)
+2026-04-15 23:17:49,122 INFO   Saved layer 35: (10365, 2048)
+2026-04-15 23:17:49,153 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt15/ar
+2026-04-15 23:17:49,198 INFO Extracting base_dpo_ckpt15/hi: 200 harmless + 10000 harmful
+2026-04-15 23:26:14,212 INFO   Saved layer 4: (10200, 2048)
+2026-04-15 23:26:14,237 INFO   Saved layer 9: (10200, 2048)
+2026-04-15 23:26:14,261 INFO   Saved layer 18: (10200, 2048)
+2026-04-15 23:26:14,284 INFO   Saved layer 24: (10200, 2048)
+2026-04-15 23:26:14,306 INFO   Saved layer 30: (10200, 2048)
+2026-04-15 23:26:14,331 INFO   Saved layer 35: (10200, 2048)
+2026-04-15 23:26:14,363 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt15/hi
+2026-04-15 23:26:14,401 INFO Extracting base_dpo_ckpt15/sw: 200 harmless + 9850 harmful
+2026-04-15 23:31:44,948 INFO   Saved layer 4: (10050, 2048)
+2026-04-15 23:31:44,976 INFO   Saved layer 9: (10050, 2048)
+2026-04-15 23:31:45,000 INFO   Saved layer 18: (10050, 2048)
+2026-04-15 23:31:45,025 INFO   Saved layer 24: (10050, 2048)
+2026-04-15 23:31:45,066 INFO   Saved layer 30: (10050, 2048)
+2026-04-15 23:31:45,100 INFO   Saved layer 35: (10050, 2048)
+2026-04-15 23:31:45,128 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt15/sw
+2026-04-15 23:31:45,171 INFO Extracting base_dpo_ckpt15/yo: 200 harmless + 9873 harmful
+2026-04-15 23:39:01,769 INFO   Saved layer 4: (10073, 2048)
+2026-04-15 23:39:01,792 INFO   Saved layer 9: (10073, 2048)
+2026-04-15 23:39:01,815 INFO   Saved layer 18: (10073, 2048)
+2026-04-15 23:39:01,837 INFO   Saved layer 24: (10073, 2048)
+2026-04-15 23:39:01,869 INFO   Saved layer 30: (10073, 2048)
+2026-04-15 23:39:01,892 INFO   Saved layer 35: (10073, 2048)
+2026-04-15 23:39:01,922 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt15/yo
+2026-04-15 23:39:02,140 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_dpo/checkpoint-312 on cuda (torch.float16)
+2026-04-15 23:39:02,941 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-15 23:39:02,976 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<02:10,  2.21it/s]Loading weights:  20%|██        | 59/290 [00:00<00:01, 134.18it/s]Loading weights:  31%|███▏      | 91/290 [00:00<00:01, 174.62it/s]Loading weights:  42%|████▏     | 123/290 [00:00<00:00, 207.63it/s]Loading weights:  52%|█████▏    | 152/290 [00:00<00:00, 227.07it/s]Loading weights:  62%|██████▏   | 181/290 [00:01<00:00, 239.18it/s]Loading weights:  73%|███████▎  | 211/290 [00:01<00:00, 250.11it/s]Loading weights:  84%|████████▍ | 243/290 [00:01<00:00, 264.61it/s]Loading weights:  95%|█████████▍| 275/290 [00:01<00:00, 267.48it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 211.05it/s]
+2026-04-15 23:39:04,581 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/504 [00:00<?, ?it/s]Loading weights:  42%|████▏     | 211/504 [00:00<00:00, 2096.37it/s]Loading weights:  86%|████████▌ | 433/504 [00:00<00:00, 2167.93it/s]Loading weights: 100%|██████████| 504/504 [00:00<00:00, 2186.22it/s]
+2026-04-15 23:39:05,221 INFO Found 36 transformer blocks
+2026-04-15 23:39:05,227 INFO Extracting base_dpo_ckpt312/en: 200 harmless + 3215 harmful
+2026-04-15 23:41:01,150 INFO   Saved layer 4: (3415, 2048)
+2026-04-15 23:41:01,158 INFO   Saved layer 9: (3415, 2048)
+2026-04-15 23:41:01,166 INFO   Saved layer 18: (3415, 2048)
+2026-04-15 23:41:01,174 INFO   Saved layer 24: (3415, 2048)
+2026-04-15 23:41:01,182 INFO   Saved layer 30: (3415, 2048)
+2026-04-15 23:41:01,191 INFO   Saved layer 35: (3415, 2048)
+2026-04-15 23:41:01,202 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt312/en
+2026-04-15 23:41:01,221 INFO Extracting base_dpo_ckpt312/fr: 200 harmless + 10000 harmful
+2026-04-15 23:46:39,050 INFO   Saved layer 4: (10200, 2048)
+2026-04-15 23:46:39,074 INFO   Saved layer 9: (10200, 2048)
+2026-04-15 23:46:39,098 INFO   Saved layer 18: (10200, 2048)
+2026-04-15 23:46:39,122 INFO   Saved layer 24: (10200, 2048)
+2026-04-15 23:46:39,146 INFO   Saved layer 30: (10200, 2048)
+2026-04-15 23:46:39,170 INFO   Saved layer 35: (10200, 2048)
+2026-04-15 23:46:39,198 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt312/fr
+2026-04-15 23:46:39,242 INFO Extracting base_dpo_ckpt312/ar: 365 harmless + 10000 harmful
+2026-04-15 23:52:16,715 INFO   Saved layer 4: (10365, 2048)
+2026-04-15 23:52:16,746 INFO   Saved layer 9: (10365, 2048)
+2026-04-15 23:52:16,771 INFO   Saved layer 18: (10365, 2048)
+2026-04-15 23:52:16,796 INFO   Saved layer 24: (10365, 2048)
+2026-04-15 23:52:16,820 INFO   Saved layer 30: (10365, 2048)
+2026-04-15 23:52:16,844 INFO   Saved layer 35: (10365, 2048)
+2026-04-15 23:52:16,876 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt312/ar
+2026-04-15 23:52:16,926 INFO Extracting base_dpo_ckpt312/hi: 200 harmless + 10000 harmful
+2026-04-16 00:00:51,966 INFO   Saved layer 4: (10200, 2048)
+2026-04-16 00:00:51,993 INFO   Saved layer 9: (10200, 2048)
+2026-04-16 00:00:52,022 INFO   Saved layer 18: (10200, 2048)
+2026-04-16 00:00:52,049 INFO   Saved layer 24: (10200, 2048)
+2026-04-16 00:00:52,075 INFO   Saved layer 30: (10200, 2048)
+2026-04-16 00:00:52,099 INFO   Saved layer 35: (10200, 2048)
+2026-04-16 00:00:52,131 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_dpo_ckpt312/hi
+2026-04-16 00:00:52,168 INFO Extracting base_dpo_ckpt312/sw: 200 harmless + 9850 harmful

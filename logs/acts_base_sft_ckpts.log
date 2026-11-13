@@ -1,0 +1,97 @@
+2026-04-12 12:41:00,902 INFO Checkpoint mode: 8 checkpoints × 6 langs = 48 pairs
+2026-04-12 12:41:00,946 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-96 on cuda (torch.float16)
+2026-04-12 12:41:01,735 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-12 12:41:01,814 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:16,  3.78it/s]Loading weights:  15%|█▍        | 43/290 [00:00<00:01, 134.85it/s]Loading weights:  26%|██▌       | 75/290 [00:00<00:01, 188.98it/s]Loading weights:  35%|███▍      | 101/290 [00:00<00:00, 210.30it/s]Loading weights:  45%|████▌     | 131/290 [00:00<00:00, 218.24it/s]Loading weights:  56%|█████▌    | 163/290 [00:00<00:00, 246.14it/s]Loading weights:  66%|██████▌   | 190/290 [00:00<00:00, 252.14it/s]Loading weights:  76%|███████▌  | 219/290 [00:01<00:00, 262.62it/s]Loading weights:  87%|████████▋ | 251/290 [00:01<00:00, 269.84it/s]Loading weights:  98%|█████████▊| 283/290 [00:01<00:00, 270.81it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 227.83it/s]
+2026-04-12 12:41:03,434 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/504 [00:00<?, ?it/s]Loading weights: 100%|██████████| 504/504 [00:00<00:00, 7032.81it/s]
+2026-04-12 12:41:04,694 INFO Found 36 transformer blocks
+2026-04-12 12:41:04,701 INFO Extracting base_sft_ckpt96/en: 200 harmless + 3215 harmful
+2026-04-12 12:42:25,941 INFO   Saved layer 4: (3415, 2048)
+2026-04-12 12:42:25,948 INFO   Saved layer 9: (3415, 2048)
+2026-04-12 12:42:25,954 INFO   Saved layer 18: (3415, 2048)
+2026-04-12 12:42:25,961 INFO   Saved layer 24: (3415, 2048)
+2026-04-12 12:42:25,968 INFO   Saved layer 30: (3415, 2048)
+2026-04-12 12:42:25,976 INFO   Saved layer 35: (3415, 2048)
+2026-04-12 12:42:25,986 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt96/en
+2026-04-12 12:42:26,007 INFO Extracting base_sft_ckpt96/fr: 200 harmless + 10000 harmful
+2026-04-12 12:46:21,675 INFO   Saved layer 4: (10200, 2048)
+2026-04-12 12:46:21,709 INFO   Saved layer 9: (10200, 2048)
+2026-04-12 12:46:21,745 INFO   Saved layer 18: (10200, 2048)
+2026-04-12 12:46:21,783 INFO   Saved layer 24: (10200, 2048)
+2026-04-12 12:46:21,815 INFO   Saved layer 30: (10200, 2048)
+2026-04-12 12:46:21,836 INFO   Saved layer 35: (10200, 2048)
+2026-04-12 12:46:21,861 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt96/fr
+2026-04-12 12:46:21,898 INFO Extracting base_sft_ckpt96/ar: 365 harmless + 10000 harmful
+2026-04-12 12:50:18,184 INFO   Saved layer 4: (10365, 2048)
+2026-04-12 12:50:18,215 INFO   Saved layer 9: (10365, 2048)
+2026-04-12 12:50:18,240 INFO   Saved layer 18: (10365, 2048)
+2026-04-12 12:50:18,262 INFO   Saved layer 24: (10365, 2048)
+2026-04-12 12:50:18,285 INFO   Saved layer 30: (10365, 2048)
+2026-04-12 12:50:18,319 INFO   Saved layer 35: (10365, 2048)
+2026-04-12 12:50:18,345 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt96/ar
+2026-04-12 12:50:18,382 INFO Extracting base_sft_ckpt96/hi: 200 harmless + 10000 harmful
+2026-04-12 12:55:45,500 INFO   Saved layer 4: (10200, 2048)
+2026-04-12 12:55:45,525 INFO   Saved layer 9: (10200, 2048)
+2026-04-12 12:55:45,549 INFO   Saved layer 18: (10200, 2048)
+2026-04-12 12:55:45,570 INFO   Saved layer 24: (10200, 2048)
+2026-04-12 12:55:45,590 INFO   Saved layer 30: (10200, 2048)
+2026-04-12 12:55:45,611 INFO   Saved layer 35: (10200, 2048)
+2026-04-12 12:55:45,640 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt96/hi
+2026-04-12 12:55:45,672 INFO Extracting base_sft_ckpt96/sw: 200 harmless + 9850 harmful
+2026-04-12 12:59:36,561 INFO   Saved layer 4: (10050, 2048)
+2026-04-12 12:59:36,582 INFO   Saved layer 9: (10050, 2048)
+2026-04-12 12:59:36,603 INFO   Saved layer 18: (10050, 2048)
+2026-04-12 12:59:36,628 INFO   Saved layer 24: (10050, 2048)
+2026-04-12 12:59:36,654 INFO   Saved layer 30: (10050, 2048)
+2026-04-12 12:59:36,675 INFO   Saved layer 35: (10050, 2048)
+2026-04-12 12:59:36,697 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt96/sw
+2026-04-12 12:59:36,733 INFO Extracting base_sft_ckpt96/yo: 200 harmless + 9873 harmful
+2026-04-12 13:04:25,391 INFO   Saved layer 4: (10073, 2048)
+2026-04-12 13:04:25,414 INFO   Saved layer 9: (10073, 2048)
+2026-04-12 13:04:25,435 INFO   Saved layer 18: (10073, 2048)
+2026-04-12 13:04:25,456 INFO   Saved layer 24: (10073, 2048)
+2026-04-12 13:04:25,478 INFO   Saved layer 30: (10073, 2048)
+2026-04-12 13:04:25,508 INFO   Saved layer 35: (10073, 2048)
+2026-04-12 13:04:25,536 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt96/yo
+2026-04-12 13:04:25,746 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-312 on cuda (torch.float16)
+2026-04-12 13:04:26,528 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+2026-04-12 13:04:26,555 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<01:28,  3.26it/s]Loading weights:  20%|██        | 59/290 [00:00<00:01, 185.51it/s]Loading weights:  32%|███▏      | 93/290 [00:00<00:00, 210.58it/s]Loading weights:  42%|████▏     | 123/290 [00:00<00:00, 220.88it/s]Loading weights:  52%|█████▏    | 152/290 [00:00<00:00, 239.73it/s]Loading weights:  62%|██████▏   | 181/290 [00:00<00:00, 234.34it/s]Loading weights:  73%|███████▎  | 211/290 [00:00<00:00, 251.12it/s]Loading weights:  82%|████████▏ | 239/290 [00:01<00:00, 251.38it/s]Loading weights:  92%|█████████▏| 267/290 [00:01<00:00, 256.96it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 224.36it/s]
+2026-04-12 13:04:28,094 INFO HTTP Request: HEAD https://huggingface.co/CohereLabs/tiny-aya-base/resolve/main/generation_config.json "HTTP/1.1 401 Unauthorized"
+Loading weights:   0%|          | 0/504 [00:00<?, ?it/s]Loading weights:  96%|█████████▌| 484/504 [00:00<00:00, 4794.91it/s]Loading weights: 100%|██████████| 504/504 [00:00<00:00, 4698.19it/s]
+2026-04-12 13:04:28,639 INFO Found 36 transformer blocks
+2026-04-12 13:04:28,647 INFO Extracting base_sft_ckpt312/en: 200 harmless + 3215 harmful
+2026-04-12 13:05:50,271 INFO   Saved layer 4: (3415, 2048)
+2026-04-12 13:05:50,278 INFO   Saved layer 9: (3415, 2048)
+2026-04-12 13:05:50,285 INFO   Saved layer 18: (3415, 2048)
+2026-04-12 13:05:50,293 INFO   Saved layer 24: (3415, 2048)
+2026-04-12 13:05:50,300 INFO   Saved layer 30: (3415, 2048)
+2026-04-12 13:05:50,307 INFO   Saved layer 35: (3415, 2048)
+2026-04-12 13:05:50,317 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt312/en
+2026-04-12 13:05:50,333 INFO Extracting base_sft_ckpt312/fr: 200 harmless + 10000 harmful
+2026-04-12 13:09:45,019 INFO   Saved layer 4: (10200, 2048)
+2026-04-12 13:09:45,041 INFO   Saved layer 9: (10200, 2048)
+2026-04-12 13:09:45,062 INFO   Saved layer 18: (10200, 2048)
+2026-04-12 13:09:45,083 INFO   Saved layer 24: (10200, 2048)
+2026-04-12 13:09:45,104 INFO   Saved layer 30: (10200, 2048)
+2026-04-12 13:09:45,124 INFO   Saved layer 35: (10200, 2048)
+2026-04-12 13:09:45,148 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt312/fr
+2026-04-12 13:09:45,193 INFO Extracting base_sft_ckpt312/ar: 365 harmless + 10000 harmful
+2026-04-12 13:13:41,620 INFO   Saved layer 4: (10365, 2048)
+2026-04-12 13:13:41,645 INFO   Saved layer 9: (10365, 2048)
+2026-04-12 13:13:41,676 INFO   Saved layer 18: (10365, 2048)
+2026-04-12 13:13:41,698 INFO   Saved layer 24: (10365, 2048)
+2026-04-12 13:13:41,718 INFO   Saved layer 30: (10365, 2048)
+2026-04-12 13:13:41,739 INFO   Saved layer 35: (10365, 2048)
+2026-04-12 13:13:41,774 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt312/ar
+2026-04-12 13:13:41,823 INFO Extracting base_sft_ckpt312/hi: 200 harmless + 10000 harmful
+2026-04-12 13:19:10,066 INFO   Saved layer 4: (10200, 2048)
+2026-04-12 13:19:10,090 INFO   Saved layer 9: (10200, 2048)
+2026-04-12 13:19:10,111 INFO   Saved layer 18: (10200, 2048)
+2026-04-12 13:19:10,133 INFO   Saved layer 24: (10200, 2048)
+2026-04-12 13:19:10,153 INFO   Saved layer 30: (10200, 2048)
+2026-04-12 13:19:10,186 INFO   Saved layer 35: (10200, 2048)
+2026-04-12 13:19:10,214 INFO   Done → /home/catherine/Documents/GitHub/cohere-safety-representations/data/processed/activations/base_sft_ckpt312/hi
+2026-04-12 13:19:10,245 INFO Extracting base_sft_ckpt312/sw: 200 harmless + 9850 harmful

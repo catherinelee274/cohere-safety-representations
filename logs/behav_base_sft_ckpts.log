@@ -1,0 +1,473 @@
+2026-04-17 04:23:22,575 INFO Checkpoint mode: 8 checkpoints × 6 langs
+2026-04-17 04:23:22,575 INFO Skipping base_sft_ckpt96/en — already generated.
+2026-04-17 04:23:22,575 INFO Skipping base_sft_ckpt96/fr — already generated.
+2026-04-17 04:23:22,575 INFO Skipping base_sft_ckpt96/ar — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt96/hi — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt96/sw — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt96/yo — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt312/en — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt312/fr — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt312/ar — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt312/hi — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt312/sw — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt312/yo — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt624/en — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt624/fr — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt624/ar — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt624/hi — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt624/sw — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt624/yo — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt936/en — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt936/fr — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt936/ar — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt936/hi — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt936/sw — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt936/yo — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1248/en — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1248/fr — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1248/ar — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1248/hi — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1248/sw — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1248/yo — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1560/en — already generated.
+2026-04-17 04:23:22,576 INFO Skipping base_sft_ckpt1560/fr — already generated.
+2026-04-17 04:23:22,593 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1560 on cuda (torch.float16)
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-17 04:23:23,668 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.98it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.81it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 04:23:26,855 INFO Found 36 transformer blocks
+2026-04-17 04:23:26,855 INFO Generating base_sft_ckpt1560/ar (558 prompts)...
+2026-04-17 04:48:35,935 INFO   base_sft_ckpt1560/ar: refusal_rate=2.33%  (13/558)
+2026-04-17 04:48:36,067 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1560 on cuda (torch.float16)
+2026-04-17 04:48:36,727 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.97it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.80it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 04:48:38,689 INFO Found 36 transformer blocks
+2026-04-17 04:48:38,689 INFO Generating base_sft_ckpt1560/hi (597 prompts)...
+2026-04-17 05:16:08,476 INFO   base_sft_ckpt1560/hi: refusal_rate=2.68%  (16/597)
+2026-04-17 05:16:08,615 INFO Skipping base_sft_ckpt1560/sw — already generated.
+2026-04-17 05:16:08,616 INFO Skipping base_sft_ckpt1560/yo — already generated.
+2026-04-17 05:16:08,622 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 05:16:09,265 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.99it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.81it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:16:11,119 INFO Found 36 transformer blocks
+2026-04-17 05:16:11,119 INFO Generating base_sft_ckpt1872/en (558 prompts)...
+2026-04-17 05:41:29,924 INFO   base_sft_ckpt1872/en: refusal_rate=19.00%  (106/558)
+2026-04-17 05:41:30,074 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 05:41:30,721 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.06it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.89it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:41:32,375 INFO Found 36 transformer blocks
+2026-04-17 05:41:32,375 INFO Generating base_sft_ckpt1872/fr (558 prompts)...
+2026-04-17 06:07:10,581 INFO   base_sft_ckpt1872/fr: refusal_rate=5.73%  (32/558)
+2026-04-17 06:07:10,724 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 06:07:11,392 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.01it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.81it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 06:07:13,173 INFO Found 36 transformer blocks
+2026-04-17 06:07:13,173 INFO Generating base_sft_ckpt1872/ar (558 prompts)...
+2026-04-17 06:32:41,436 INFO   base_sft_ckpt1872/ar: refusal_rate=1.97%  (11/558)
+2026-04-17 06:32:41,576 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 06:32:42,190 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.97it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.80it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 06:32:43,792 INFO Found 36 transformer blocks
+2026-04-17 06:32:43,792 INFO Generating base_sft_ckpt1872/hi (597 prompts)...
+2026-04-17 07:00:47,883 INFO   base_sft_ckpt1872/hi: refusal_rate=2.51%  (15/597)
+2026-04-17 07:00:48,019 INFO Skipping base_sft_ckpt1872/sw — already generated.
+2026-04-17 07:00:48,020 INFO Skipping base_sft_ckpt1872/yo — already generated.
+2026-04-17 07:00:48,026 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 07:00:48,639 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.43it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.39it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.17it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 07:00:50,138 INFO Found 36 transformer blocks
+2026-04-17 07:00:50,138 INFO Generating base_sft_ckpt2169/en (558 prompts)...
+2026-04-17 07:27:00,007 INFO   base_sft_ckpt2169/en: refusal_rate=18.82%  (105/558)
+2026-04-17 07:27:00,158 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 07:27:00,853 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.31it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.19it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.99it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 07:27:02,431 INFO Found 36 transformer blocks
+2026-04-17 07:27:02,431 INFO Generating base_sft_ckpt2169/fr (558 prompts)...
+2026-04-17 07:53:03,042 INFO   base_sft_ckpt2169/fr: refusal_rate=5.91%  (33/558)
+2026-04-17 07:53:03,195 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 07:53:03,855 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.09it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.90it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 07:53:05,616 INFO Found 36 transformer blocks
+2026-04-17 07:53:05,616 INFO Generating base_sft_ckpt2169/ar (558 prompts)...
+2026-04-17 08:19:39,606 INFO   base_sft_ckpt2169/ar: refusal_rate=1.61%  (9/558)
+2026-04-17 08:19:39,772 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 08:19:40,486 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.04it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 08:19:41,949 INFO Found 36 transformer blocks
+2026-04-17 08:19:41,949 INFO Generating base_sft_ckpt2169/hi (597 prompts)...
+2026-04-17 08:48:07,115 INFO   base_sft_ckpt2169/hi: refusal_rate=2.85%  (17/597)
+2026-04-17 08:48:07,262 INFO Skipping base_sft_ckpt2169/sw — already generated.
+2026-04-17 08:48:07,263 INFO Skipping base_sft_ckpt2169/yo — already generated.
+
+Baseline summary:
+            model lang   n  refusal_rate
+             base   ar 558        0.0179
+             base   en 558        0.1523
+             base   fr 558        0.0484
+             base   hi 597        0.0000
+             base   sw   0        0.0000
+             base   yo   0        0.0000
+         base_dpo   ar 558        0.0161
+         base_dpo   en 558        0.2455
+         base_dpo   fr 558        0.2312
+         base_dpo   hi 597        0.0000
+         base_dpo   sw   0        0.0000
+         base_dpo   yo   0        0.0000
+         base_sft   ar 558        0.0161
+         base_sft   en 558        0.1882
+         base_sft   fr 558        0.0591
+         base_sft   hi 597        0.0285
+         base_sft   sw   0        0.0000
+         base_sft   yo   0        0.0000
+     base_sft_20k   ar 558        0.0125
+     base_sft_20k   en 558        0.1864
+     base_sft_20k   fr 558        0.0556
+     base_sft_20k   hi 597        0.0419
+     base_sft_20k   sw   0        0.0000
+     base_sft_20k   yo   0        0.0000
+base_sft_ckpt1248   ar 558        0.0305
+base_sft_ckpt1248   en 558        0.1470
+base_sft_ckpt1248   fr 558        0.0699
+base_sft_ckpt1248   hi 597        0.0184
+base_sft_ckpt1248   sw   0        0.0000
+base_sft_ckpt1248   yo   0        0.0000
+base_sft_ckpt1560   ar 558        0.0233
+base_sft_ckpt1560   en 558        0.1738
+base_sft_ckpt1560   fr 558        0.0609
+base_sft_ckpt1560   hi 597        0.0268
+base_sft_ckpt1560   sw   0        0.0000
+base_sft_ckpt1560   yo   0        0.0000
+base_sft_ckpt1872   ar 558        0.0197
+base_sft_ckpt1872   en 558        0.1900
+base_sft_ckpt1872   fr 558        0.0573
+base_sft_ckpt1872   hi 597        0.0251
+base_sft_ckpt1872   sw   0        0.0000
+base_sft_ckpt1872   yo   0        0.0000
+base_sft_ckpt2169   ar 558        0.0161
+base_sft_ckpt2169   en 558        0.1882
+base_sft_ckpt2169   fr 558        0.0591
+base_sft_ckpt2169   hi 597        0.0285
+base_sft_ckpt2169   sw   0        0.0000
+base_sft_ckpt2169   yo   0        0.0000
+ base_sft_ckpt312   ar 558        0.0143
+ base_sft_ckpt312   en 558        0.1935
+ base_sft_ckpt312   fr 558        0.0645
+ base_sft_ckpt312   hi 597        0.0050
+ base_sft_ckpt312   sw   0        0.0000
+ base_sft_ckpt312   yo   0        0.0000
+ base_sft_ckpt624   ar 558        0.0072
+ base_sft_ckpt624   en 558        0.1649
+ base_sft_ckpt624   fr 558        0.0573
+ base_sft_ckpt624   hi 597        0.0184
+ base_sft_ckpt624   sw   0        0.0000
+ base_sft_ckpt624   yo   0        0.0000
+ base_sft_ckpt936   ar 558        0.0108
+ base_sft_ckpt936   en 558        0.1900
+ base_sft_ckpt936   fr 558        0.0645
+ base_sft_ckpt936   hi 597        0.0134
+ base_sft_ckpt936   sw   0        0.0000
+ base_sft_ckpt936   yo   0        0.0000
+  base_sft_ckpt96   ar 558        0.0215
+  base_sft_ckpt96   en 558        0.1810
+  base_sft_ckpt96   fr 558        0.0896
+  base_sft_ckpt96   hi 597        0.0017
+  base_sft_ckpt96   sw   0        0.0000
+  base_sft_ckpt96   yo   0        0.0000
+  base_sft_n10000   ar 558        0.0251
+  base_sft_n10000   en 558        0.1613
+  base_sft_n10000   fr 558        0.0824
+  base_sft_n10000   hi 597        0.0268
+  base_sft_n10000   sw   0        0.0000
+  base_sft_n10000   yo   0        0.0000
+   base_sft_n2000   ar 558        0.0179
+   base_sft_n2000   en 558        0.1505
+   base_sft_n2000   fr 558        0.0556
+   base_sft_n2000   hi 597        0.0151
+   base_sft_n2000   sw   0        0.0000
+   base_sft_n2000   yo   0        0.0000
+  base_sft_n20000   ar 558        0.0143
+  base_sft_n20000   en 558        0.1810
+  base_sft_n20000   fr 558        0.0591
+  base_sft_n20000   hi 597        0.0235
+  base_sft_n20000   sw   0        0.0000
+  base_sft_n20000   yo   0        0.0000
+    base_sft_n500   ar 558        0.0179
+    base_sft_n500   en 558        0.1792
+    base_sft_n500   fr 558        0.0627
+    base_sft_n500   hi 597        0.0117
+    base_sft_n500   sw   0        0.0000
+    base_sft_n500   yo   0        0.0000
+   base_sft_n5000   ar 558        0.0233
+   base_sft_n5000   en 558        0.1828
+   base_sft_n5000   fr 558        0.0860
+   base_sft_n5000   hi 597        0.0419
+   base_sft_n5000   sw   0        0.0000
+   base_sft_n5000   yo   0        0.0000
+           global   ar 430        0.0256
+           global   en 430        0.2930
+           global   fr 430        0.1512
+           global   hi 597        0.0000
+           global   sw 430        0.0372
+           global   yo 430        0.0023
+           global   zh 430        0.0605
+
+Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/behavioral/baseline_summary.csv
+
+Done. Next: scripts/08_llm_judge.py  (to re-score with LLM judge)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     2026-04-17 04:33:46,443 INFO   base_sft_ckpt1560/ar: refusal_rate=2.33%  (13/558)
+2026-04-17 04:33:46,584 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1560 on cuda (torch.float16)
+2026-04-17 04:33:47,253 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.22it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 04:33:49,300 INFO Found 36 transformer blocks
+2026-04-17 04:33:49,300 INFO Generating base_sft_ckpt1560/hi (597 prompts)...
+2026-04-17 05:01:21,357 INFO   base_sft_ckpt1560/hi: refusal_rate=2.68%  (16/597)
+2026-04-17 05:01:21,497 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1560 on cuda (torch.float16)
+2026-04-17 05:01:22,176 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.18it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.91it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.75it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:01:23,902 INFO Found 36 transformer blocks
+2026-04-17 05:01:23,902 INFO Generating base_sft_ckpt1560/sw (0 prompts)...
+2026-04-17 05:01:23,902 INFO   base_sft_ckpt1560/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 05:01:24,028 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1560 on cuda (torch.float16)
+2026-04-17 05:01:24,633 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.99it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.82it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:01:26,287 INFO Found 36 transformer blocks
+2026-04-17 05:01:26,287 INFO Generating base_sft_ckpt1560/yo (0 prompts)...
+2026-04-17 05:01:26,287 INFO   base_sft_ckpt1560/yo: refusal_rate=0.00%  (0/0)
+2026-04-17 05:01:26,419 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 05:01:27,030 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.19it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.79it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:01:29,158 INFO Found 36 transformer blocks
+2026-04-17 05:01:29,158 INFO Generating base_sft_ckpt1872/en (558 prompts)...
+2026-04-17 05:26:39,591 INFO   base_sft_ckpt1872/en: refusal_rate=19.00%  (106/558)
+2026-04-17 05:26:39,732 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 05:26:40,352 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.98it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.81it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:26:42,182 INFO Found 36 transformer blocks
+2026-04-17 05:26:42,182 INFO Generating base_sft_ckpt1872/fr (558 prompts)...
+2026-04-17 05:52:20,576 INFO   base_sft_ckpt1872/fr: refusal_rate=5.73%  (32/558)
+2026-04-17 05:52:20,723 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 05:52:21,393 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.23it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.05it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.86it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 05:52:23,123 INFO Found 36 transformer blocks
+2026-04-17 05:52:23,123 INFO Generating base_sft_ckpt1872/ar (558 prompts)...
+2026-04-17 06:17:50,117 INFO   base_sft_ckpt1872/ar: refusal_rate=1.97%  (11/558)
+2026-04-17 06:17:50,258 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 06:17:50,901 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.13it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.92it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 06:17:52,527 INFO Found 36 transformer blocks
+2026-04-17 06:17:52,527 INFO Generating base_sft_ckpt1872/hi (597 prompts)...
+2026-04-17 06:45:43,327 INFO   base_sft_ckpt1872/hi: refusal_rate=2.51%  (15/597)
+2026-04-17 06:45:43,465 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 06:45:44,096 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.20it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.96it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.79it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 06:45:45,879 INFO Found 36 transformer blocks
+2026-04-17 06:45:45,879 INFO Generating base_sft_ckpt1872/sw (0 prompts)...
+2026-04-17 06:45:45,879 INFO   base_sft_ckpt1872/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 06:45:46,007 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-1872 on cuda (torch.float16)
+2026-04-17 06:45:46,627 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.93it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.76it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 06:45:48,368 INFO Found 36 transformer blocks
+2026-04-17 06:45:48,368 INFO Generating base_sft_ckpt1872/yo (0 prompts)...
+2026-04-17 06:45:48,368 INFO   base_sft_ckpt1872/yo: refusal_rate=0.00%  (0/0)
+2026-04-17 06:45:48,503 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 06:45:49,132 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.17it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.98it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 06:45:50,858 INFO Found 36 transformer blocks
+2026-04-17 06:45:50,858 INFO Generating base_sft_ckpt2169/en (558 prompts)...
+2026-04-17 07:11:55,575 INFO   base_sft_ckpt2169/en: refusal_rate=18.82%  (105/558)
+2026-04-17 07:11:55,731 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 07:11:56,482 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.07it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.89it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 07:11:58,100 INFO Found 36 transformer blocks
+2026-04-17 07:11:58,100 INFO Generating base_sft_ckpt2169/fr (558 prompts)...
+2026-04-17 07:37:57,493 INFO   base_sft_ckpt2169/fr: refusal_rate=5.91%  (33/558)
+2026-04-17 07:37:57,634 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 07:37:58,300 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.38it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.29it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00,  2.08it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 07:37:59,894 INFO Found 36 transformer blocks
+2026-04-17 07:37:59,894 INFO Generating base_sft_ckpt2169/ar (558 prompts)...
+2026-04-17 08:04:16,948 INFO   base_sft_ckpt2169/ar: refusal_rate=1.61%  (9/558)
+2026-04-17 08:04:17,096 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 08:04:17,834 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.32it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.15it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.97it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 08:04:19,529 INFO Found 36 transformer blocks
+2026-04-17 08:04:19,529 INFO Generating base_sft_ckpt2169/hi (597 prompts)...
+2026-04-17 08:33:09,225 INFO   base_sft_ckpt2169/hi: refusal_rate=2.85%  (17/597)
+2026-04-17 08:33:09,370 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 08:33:10,032 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.18it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.00it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.81it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 08:33:11,913 INFO Found 36 transformer blocks
+2026-04-17 08:33:11,913 INFO Generating base_sft_ckpt2169/sw (0 prompts)...
+2026-04-17 08:33:11,913 INFO   base_sft_ckpt2169/sw: refusal_rate=0.00%  (0/0)
+2026-04-17 08:33:12,077 INFO Loading /home/catherine/Documents/GitHub/cohere-safety-representations/models/finetuned/base_sft/checkpoint-2169 on cuda (torch.float16)
+2026-04-17 08:33:12,812 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.25it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.12it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.92it/s]
+/home/catherine/miniconda3/lib/python3.12/site-packages/peft/config.py:165: UserWarning: Unexpected keyword arguments ['alora_invocation_tokens', 'arrow_config', 'ensure_weight_tying', 'peft_version'] for class LoraConfig, these are ignored. This probably means that you're loading a configuration file that was saved using a higher version of the library and additional parameters have been introduced since. It is highly recommended to upgrade the PEFT version before continuing (e.g. by running `pip install -U peft`).
+  warnings.warn(
+2026-04-17 08:33:14,425 INFO Found 36 transformer blocks
+2026-04-17 08:33:14,425 INFO Generating base_sft_ckpt2169/yo (0 prompts)...
+2026-04-17 08:33:14,425 INFO   base_sft_ckpt2169/yo: refusal_rate=0.00%  (0/0)
+
+Baseline summary:
+            model lang   n  refusal_rate
+             base   ar 558        0.0179
+             base   en 558        0.1523
+             base   fr 558        0.0484
+             base   hi 597        0.0000
+             base   sw   0        0.0000
+             base   yo   0        0.0000
+         base_dpo   ar 558        0.0161
+         base_dpo   en 558        0.2455
+         base_dpo   fr 558        0.2312
+         base_dpo   hi 597        0.0000
+         base_dpo   sw   0        0.0000
+         base_dpo   yo   0        0.0000
+         base_sft   ar 558        0.0161
+         base_sft   en 558        0.1882
+         base_sft   fr 558        0.0591
+         base_sft   hi 597        0.0285
+         base_sft   sw   0        0.0000
+         base_sft   yo   0        0.0000
+     base_sft_20k   ar 558        0.0125
+     base_sft_20k   en 558        0.1864
+     base_sft_20k   fr 558        0.0556
+     base_sft_20k   hi 597        0.0419
+     base_sft_20k   sw   0        0.0000
+     base_sft_20k   yo   0        0.0000
+base_sft_ckpt1248   ar 558        0.0305
+base_sft_ckpt1248   en 558        0.1470
+base_sft_ckpt1248   fr 558        0.0699
+base_sft_ckpt1248   hi 597        0.0184
+base_sft_ckpt1248   sw   0        0.0000
+base_sft_ckpt1248   yo   0        0.0000
+base_sft_ckpt1560   ar 558        0.0233
+base_sft_ckpt1560   en 558        0.1738
+base_sft_ckpt1560   fr 558        0.0609
+base_sft_ckpt1560   hi 597        0.0268
+base_sft_ckpt1560   sw   0        0.0000
+base_sft_ckpt1560   yo   0        0.0000
+base_sft_ckpt1872   ar 558        0.0197
+base_sft_ckpt1872   en 558        0.1900
+base_sft_ckpt1872   fr 558        0.0573
+base_sft_ckpt1872   hi 597        0.0251
+base_sft_ckpt1872   sw   0        0.0000
+base_sft_ckpt1872   yo   0        0.0000
+base_sft_ckpt2169   ar 558        0.0161
+base_sft_ckpt2169   en 558        0.1882
+base_sft_ckpt2169   fr 558        0.0591
+base_sft_ckpt2169   hi 597        0.0285
+base_sft_ckpt2169   sw   0        0.0000
+base_sft_ckpt2169   yo   0        0.0000
+ base_sft_ckpt312   ar 558        0.0143
+ base_sft_ckpt312   en 558        0.1935
+ base_sft_ckpt312   fr 558        0.0645
+ base_sft_ckpt312   hi 597        0.0050
+ base_sft_ckpt312   sw   0        0.0000
+ base_sft_ckpt312   yo   0        0.0000
+ base_sft_ckpt624   ar 558        0.0072
+ base_sft_ckpt624   en 558        0.1649
+ base_sft_ckpt624   fr 558        0.0573
+ base_sft_ckpt624   hi 597        0.0184
+ base_sft_ckpt624   sw   0        0.0000
+ base_sft_ckpt624   yo   0        0.0000
+ base_sft_ckpt936   ar 558        0.0108
+ base_sft_ckpt936   en 558        0.1900
+ base_sft_ckpt936   fr 558        0.0645
+ base_sft_ckpt936   hi 597        0.0134
+ base_sft_ckpt936   sw   0        0.0000
+ base_sft_ckpt936   yo   0        0.0000
+  base_sft_ckpt96   ar 558        0.0215
+  base_sft_ckpt96   en 558        0.1810
+  base_sft_ckpt96   fr 558        0.0896
+  base_sft_ckpt96   hi 597        0.0017
+  base_sft_ckpt96   sw   0        0.0000
+  base_sft_ckpt96   yo   0        0.0000
+  base_sft_n10000   ar 558        0.0251
+  base_sft_n10000   en 558        0.1613
+  base_sft_n10000   fr 558        0.0824
+  base_sft_n10000   hi 597        0.0268
+  base_sft_n10000   sw   0        0.0000
+  base_sft_n10000   yo   0        0.0000
+   base_sft_n2000   ar 558        0.0179
+   base_sft_n2000   en 558        0.1505
+   base_sft_n2000   fr 558        0.0556
+   base_sft_n2000   hi 597        0.0151
+   base_sft_n2000   sw   0        0.0000
+   base_sft_n2000   yo   0        0.0000
+  base_sft_n20000   ar 558        0.0143
+  base_sft_n20000   en 558        0.1810
+  base_sft_n20000   fr 558        0.0591
+  base_sft_n20000   hi 597        0.0235
+  base_sft_n20000   sw   0        0.0000
+  base_sft_n20000   yo   0        0.0000
+    base_sft_n500   ar 558        0.0179
+    base_sft_n500   en 558        0.1792
+    base_sft_n500   fr 558        0.0627
+    base_sft_n500   hi 597        0.0117
+    base_sft_n500   sw   0        0.0000
+    base_sft_n500   yo   0        0.0000
+   base_sft_n5000   ar 558        0.0233
+   base_sft_n5000   en 558        0.1828
+   base_sft_n5000   fr 558        0.0860
+   base_sft_n5000   hi 597        0.0419
+   base_sft_n5000   sw   0        0.0000
+   base_sft_n5000   yo   0        0.0000
+           global   ar 430        0.0256
+           global   en 430        0.2930
+           global   fr 430        0.1512
+           global   hi 597        0.0000
+           global   sw 430        0.0372
+           global   yo 430        0.0023
+           global   zh 430        0.0605
+
+Saved → /home/catherine/Documents/GitHub/cohere-safety-representations/results/behavioral/baseline_summary.csv
+
+Done. Next: scripts/08_llm_judge.py  (to re-score with LLM judge)

@@ -1,0 +1,21 @@
+[
+  {
+    "run_at": "2026-04-28T00:18:12.207900+00:00",
+    "git_commit": "26dd88c",
+    "model_key": "fire",
+    "model_name": "TinyAya-Fire",
+    "model_hf_id": "CohereLabs/tiny-aya-fire",
+    "model_stage": "regional",
+    "script": "06_train_probes",
+    "lang": "ar",
+    "layers": [
+      4,
+      9,
+      18,
+      24,
+      30,
+      35
+    ],
+    "n_probes": 12
+  }
+]
